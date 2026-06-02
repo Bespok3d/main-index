@@ -1,0 +1,36 @@
+name: assemble-index
+
+# When an atom changes (a plugin's CI commits atoms/<name>.atom.json), rebuild the published
+# index.json from all atoms and commit it. The app fetches this index.json. index.json is at the
+# repo root (not under atoms/), so committing it does not re-trigger this workflow.
+on:
+  push:
+    branches: [main]
+    paths:
+      - atoms/**
+      - scripts/assemble.mjs
+      - .github/workflows/assemble.yml
+  workflow_dispatch:
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/assemble.mjs
+      - name: Commit index.json
+        run: |
+          git config user.name "bespok3d-bot"
+          git config user.email "bot@bespok3d.local"
+          git add index.json
+          if git diff --cached --quiet; then
+            echo "index unchanged; nothing to commit"
+          else
+            git commit -m "assemble index.json"
+            git push
+          fi
