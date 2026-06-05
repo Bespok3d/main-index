@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - atoms/**
+      - lists/**
       - scripts/assemble.mjs
       - .github/workflows/assemble.yml
   workflow_dispatch:

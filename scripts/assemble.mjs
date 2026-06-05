@@ -37,8 +37,10 @@ function resolveDeps(atom, providers) {
 }
 
 // Drop the internal `require` (only the resolver needs it) and replace it with the resolved `deps`,
-// so each published entry matches the catalog entry shape the app expects.
-export function assemble(atoms) {
+// so each published entry matches the catalog entry shape the app expects. `lists` are sub-list
+// references ({name, url}) from lists/*.json: main-index is a list-of-lists (ADR-0012), so a
+// co-repo that publishes its own index.json is referenced by URL here rather than copying its atoms.
+export function assemble(atoms, lists = []) {
   const sorted = [...atoms].sort((earlier, later) => earlier.name.localeCompare(later.name))
   const providers = providerByService(sorted)
   const plugins = sorted.map((atom) => {
@@ -46,18 +48,23 @@ export function assemble(atoms) {
     return { ...entry, deps: resolveDeps(atom, providers) }
   })
   const updated = plugins.reduce((latest, plugin) => (plugin.updated_at > latest ? plugin.updated_at : latest), '')
-  return { schema_version: 1, name: 'Bespok3d Official', publisher: 'PLACEHOLDER', updated, plugins, lists: [] }
+  const sortedLists = [...lists].sort((earlier, later) => earlier.name.localeCompare(later.name))
+  return { schema_version: 1, name: 'Bespok3d Official', publisher: 'PLACEHOLDER', updated, plugins, lists: sortedLists }
+}
+
+async function readJsonDir(dir, suffix) {
+  const names = (await readdir(dir).catch(() => [])).filter((name) => name.endsWith(suffix))
+  return Promise.all(names.map((name) => readFile(join(dir, name), 'utf8').then(JSON.parse)))
 }
 
 async function main() {
   const scriptDir = dirname(fileURLToPath(import.meta.url))
   const repoDir = dirname(scriptDir)
-  const atomsDir = join(repoDir, 'atoms')
-  const names = (await readdir(atomsDir).catch(() => [])).filter((name) => name.endsWith('.atom.json'))
-  const atoms = await Promise.all(names.map((name) => readFile(join(atomsDir, name), 'utf8').then(JSON.parse)))
-  const index = assemble(atoms)
+  const atoms = await readJsonDir(join(repoDir, 'atoms'), '.atom.json')
+  const lists = await readJsonDir(join(repoDir, 'lists'), '.json')
+  const index = assemble(atoms, lists)
   await writeFile(join(repoDir, 'index.json'), `${JSON.stringify(index, null, 2)}\n`)
-  process.stdout.write(`Wrote index.json (${index.plugins.length} plugins)\n`)
+  process.stdout.write(`Wrote index.json (${index.plugins.length} plugins, ${index.lists.length} lists)\n`)
 }
 
 if (process.argv[1] && process.argv[1].endsWith('assemble.mjs')) {
