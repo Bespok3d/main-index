@@ -1,0 +1,38 @@
+{
+  "name": "moonraker-auth",
+  "title": "Moonraker Login",
+  "version": "0.1.1",
+  "description": "Controls Moonraker's force_logins setting. When on, the web UI requires a login before any control; when off, local clients connect without logging in. Toggle the setting below before installing.",
+  "tagline": "Require a login for the web UI, or allow open access.",
+  "category": "system",
+  "channel": "stable",
+  "publisher": "PLACEHOLDER",
+  "printer_specific": false,
+  "published_at": "2026-03-15",
+  "updated_at": "2026-04-02",
+  "requires": {
+    "capabilities": [
+      "klipper-generic"
+    ]
+  },
+  "provides": [
+    "moonraker-auth"
+  ],
+  "require": [],
+  "conflicts": [],
+  "doc_url": "https://github.com/Bespok3d/moonraker-auth/blob/main/moonraker-auth/doc/README.md",
+  "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/441693066",
+  "min_daemon_version": "0.10.1-dev",
+  "config": [
+    {
+      "key": "FORCE_LOGINS",
+      "label": "Require login",
+      "type": "toggle",
+      "onValue": "true",
+      "offValue": "false",
+      "default": "false",
+      "hint": "On: the web UI asks for a login before any control. Off: local clients connect without logging in.",
+      "userEditable": true
+    }
+  ]
+}
