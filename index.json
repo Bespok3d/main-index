@@ -328,6 +328,31 @@
       "deps": [
         "rfid-ntag"
       ]
+    },
+    {
+      "name": "timelapse",
+      "title": "Timelapse",
+      "version": "0.1.1",
+      "description": "Adds a minimal Moonraker timelapse component and enables it, so the Timelapse menu shows up in Fluidd and Mainsail. Ships its own component, so it works on stock firmware where Moonraker has none.",
+      "tagline": "Enable the Timelapse menu in Fluidd & Mainsail.",
+      "category": "camera",
+      "channel": "stable",
+      "publisher": "PLACEHOLDER",
+      "printer_specific": false,
+      "published_at": "2025-12-05",
+      "updated_at": "2026-01-08",
+      "requires": {
+        "capabilities": [
+          "klipper-generic"
+        ]
+      },
+      "provides": [
+        "timelapse"
+      ],
+      "conflicts": [],
+      "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/blob/main/timelapse/doc/README.md",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/441698941",
+      "deps": []
     }
   ],
   "lists": [
