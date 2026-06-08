@@ -221,6 +221,10 @@
   ],
   "lists": [
     {
+      "name": "U1 Camera Configs",
+      "url": "https://raw.githubusercontent.com/Bespok3d/u1-camera-configs/main/index.json"
+    },
+    {
       "name": "U1 Force Macros",
       "url": "https://raw.githubusercontent.com/Bespok3d/u1-force-macros/main/index.json"
     },
