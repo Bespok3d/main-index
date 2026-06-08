@@ -223,6 +223,10 @@
     {
       "name": "U1 Force Macros",
       "url": "https://raw.githubusercontent.com/Bespok3d/u1-force-macros/main/index.json"
+    },
+    {
+      "name": "U1 Motion Tweaks",
+      "url": "https://raw.githubusercontent.com/Bespok3d/u1-motion-teweaks/main/index.json"
     }
   ]
 }
