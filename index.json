@@ -357,6 +357,10 @@
   ],
   "lists": [
     {
+      "name": "U1 AFC Lite",
+      "url": "github:Bespok3d/u1-afc-lite/index.json"
+    },
+    {
       "name": "U1 Camera Configs",
       "url": "github:Bespok3d/u1-camera-configs/index.json"
     },
