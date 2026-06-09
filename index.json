@@ -358,11 +358,11 @@
   "lists": [
     {
       "name": "U1 Camera Configs",
-      "url": "https://raw.githubusercontent.com/Bespok3d/u1-camera-configs/main/index.json"
+      "url": "github:Bespok3d/u1-camera-configs/index.json"
     },
     {
       "name": "U1 Force Macros",
-      "url": "https://raw.githubusercontent.com/Bespok3d/u1-force-macros/main/index.json"
+      "url": "github:Bespok3d/u1-force-macros/index.json"
     },
     {
       "name": "U1 Klipper Config Enhancers",
