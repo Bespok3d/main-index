@@ -379,6 +379,11 @@
       "trust": "project"
     },
     {
+      "name": "U1 Extras",
+      "url": "github:Bespok3d/u1-extras/index.json",
+      "trust": "project"
+    },
+    {
       "name": "U1 Faulty Toolhead Bypass",
       "url": "github:Bespok3d/u1-faulty-toolhead/index.json",
       "trust": "project"
