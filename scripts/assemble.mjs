@@ -36,6 +36,18 @@ function resolveDeps(atom, providers) {
   return resolved
 }
 
+// The org that publishes this main list. A sub-list this org owns is first-party (trust 'project');
+// any other list accepted into the main list is 'community'. Trust is curation, declared HERE.
+const OFFICIAL_OWNER = 'Bespok3d'
+
+// Trust a sub-list by who published it: a `github:<OFFICIAL_OWNER>/...` ref is org-published
+// (project); anything else accepted into the list is third-party (community). The curator can pin a
+// ref's trust explicitly in lists/*.json (e.g. a manufacturer list) and that wins.
+function listTrust(ref) {
+  if (ref.trust) return ref.trust
+  return ref.url.startsWith(`github:${OFFICIAL_OWNER}/`) ? 'project' : 'community'
+}
+
 // Drop the internal `require` (only the resolver needs it) and replace it with the resolved `deps`,
 // so each published entry matches the catalog entry shape the app expects. `lists` are sub-list
 // references ({name, url}) from lists/*.json: main-index is a list-of-lists (ADR-0012), so a
@@ -48,7 +60,9 @@ export function assemble(atoms, lists = []) {
     return { ...entry, deps: resolveDeps(atom, providers) }
   })
   const updated = plugins.reduce((latest, plugin) => (plugin.updated_at > latest ? plugin.updated_at : latest), '')
-  const sortedLists = [...lists].sort((earlier, later) => earlier.name.localeCompare(later.name))
+  const sortedLists = [...lists]
+    .sort((earlier, later) => earlier.name.localeCompare(later.name))
+    .map((ref) => ({ ...ref, trust: listTrust(ref) }))
   return { schema_version: 1, name: 'Bespok3d Official', publisher: 'PLACEHOLDER', updated, plugins, lists: sortedLists }
 }
 
