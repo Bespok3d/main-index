@@ -365,31 +365,38 @@
   "lists": [
     {
       "name": "Reference Python Plugins",
-      "url": "github:Bespok3d/reference-python-plugins/index.json"
+      "url": "github:Bespok3d/reference-python-plugins/index.json",
+      "trust": "project"
     },
     {
       "name": "U1 AFC Lite",
-      "url": "github:Bespok3d/u1-afc-lite/index.json"
+      "url": "github:Bespok3d/u1-afc-lite/index.json",
+      "trust": "project"
     },
     {
       "name": "U1 Camera Configs",
-      "url": "github:Bespok3d/u1-camera-configs/index.json"
+      "url": "github:Bespok3d/u1-camera-configs/index.json",
+      "trust": "project"
     },
     {
       "name": "U1 Faulty Toolhead Bypass",
-      "url": "github:Bespok3d/u1-faulty-toolhead/index.json"
+      "url": "github:Bespok3d/u1-faulty-toolhead/index.json",
+      "trust": "project"
     },
     {
       "name": "U1 Force Macros",
-      "url": "github:Bespok3d/u1-force-macros/index.json"
+      "url": "github:Bespok3d/u1-force-macros/index.json",
+      "trust": "project"
     },
     {
       "name": "U1 Klipper Config Enhancers",
-      "url": "github:Bespok3d/u1-klipper-config-enhancers/index.json"
+      "url": "github:Bespok3d/u1-klipper-config-enhancers/index.json",
+      "trust": "project"
     },
     {
       "name": "U1 Motion Tweaks",
-      "url": "github:Bespok3d/u1-motion-teweaks/index.json"
+      "url": "github:Bespok3d/u1-motion-teweaks/index.json",
+      "trust": "project"
     }
   ]
 }
