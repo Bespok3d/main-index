@@ -147,7 +147,7 @@
       ],
       "conflicts": [],
       "doc_url": "https://github.com/Bespok3d/moonraker-auth/blob/main/moonraker-auth/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/441693066",
+      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/442760192",
       "min_daemon_version": "0.10.1-dev",
       "config": [
         {
@@ -161,6 +161,7 @@
           "userEditable": true
         }
       ],
+      "changelog_url": "moonraker-auth/doc/CHANGELOG.md",
       "deps": []
     },
     {
