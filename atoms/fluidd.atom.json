@@ -21,7 +21,7 @@
   "require": [],
   "conflicts": [],
   "doc_url": "https://github.com/Bespok3d/fluidd-plugin/blob/main/fluidd/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/441693309",
+  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/442765997",
   "homepage": "https://github.com/bespok3d-org/plugin-fluidd",
   "config": [
     {
@@ -33,6 +33,7 @@
       "userEditable": true
     }
   ],
+  "changelog_url": "fluidd/doc/CHANGELOG.md",
   "endpoints": [
     {
       "label": "Fluidd",
