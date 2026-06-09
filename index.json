@@ -2,7 +2,7 @@
   "schema_version": 1,
   "name": "Bespok3d Official",
   "publisher": "PLACEHOLDER",
-  "updated": "2026-06-05",
+  "updated": "2026-06-09",
   "plugins": [
     {
       "name": "camera-hw-accel",
@@ -163,6 +163,50 @@
         }
       ],
       "changelog_url": "moonraker-auth/doc/CHANGELOG.md",
+      "deps": []
+    },
+    {
+      "name": "panda-breath",
+      "title": "Panda Breath",
+      "version": "0.1.0",
+      "description": "Drives a BIQU Panda Breath chamber-heating device as a standard Klipper heater. Adds a Klipper extra (panda_breath.py) that talks to the Panda Breath over its OEM WebSocket protocol, plus a [heater_generic] so you control chamber heat from the web UI and slicer like any other heater. Point it at your Panda Breath's host. The Panda Breath hardware is separate. Experimental: not yet verified on a physical device.",
+      "tagline": "Chamber heating with a BIQU Panda Breath, as a Klipper heater.",
+      "category": "sensors",
+      "channel": "experiment",
+      "publisher": "PLACEHOLDER",
+      "printer_specific": false,
+      "published_at": "2026-06-09",
+      "updated_at": "2026-06-09",
+      "requires": {
+        "capabilities": [
+          "klipper-generic"
+        ]
+      },
+      "provides": [
+        "panda-breath"
+      ],
+      "conflicts": [],
+      "doc_url": "https://github.com/Bespok3d/panda-breath/blob/main/panda-breath/doc/README.md",
+      "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/442918346",
+      "homepage": "https://github.com/justinh-rahb/pandabreath-klipper",
+      "config": [
+        {
+          "key": "PANDA_HOST",
+          "label": "Panda Breath host",
+          "type": "text",
+          "default": "PandaBreath.local",
+          "hint": "Hostname or IP of the Panda Breath. If .local does not resolve, use the IP.",
+          "userEditable": true
+        },
+        {
+          "key": "PANDA_PORT",
+          "label": "Port",
+          "type": "number",
+          "default": "80",
+          "userEditable": true
+        }
+      ],
+      "changelog_url": "panda-breath/doc/CHANGELOG.md",
       "deps": []
     },
     {
