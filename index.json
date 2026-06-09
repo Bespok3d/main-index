@@ -361,6 +361,10 @@
       "url": "github:Bespok3d/u1-camera-configs/index.json"
     },
     {
+      "name": "U1 Faulty Toolhead Bypass",
+      "url": "github:Bespok3d/u1-faulty-toolhead/index.json"
+    },
+    {
       "name": "U1 Force Macros",
       "url": "github:Bespok3d/u1-force-macros/index.json"
     },
