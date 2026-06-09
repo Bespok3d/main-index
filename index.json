@@ -357,6 +357,10 @@
   ],
   "lists": [
     {
+      "name": "Reference Python Plugins",
+      "url": "github:Bespok3d/reference-python-plugins/index.json"
+    },
+    {
       "name": "U1 AFC Lite",
       "url": "github:Bespok3d/u1-afc-lite/index.json"
     },
