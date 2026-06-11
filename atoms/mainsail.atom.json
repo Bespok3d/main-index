@@ -21,7 +21,7 @@
   "require": [],
   "conflicts": [],
   "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/445067046",
+  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/445085461",
   "config": [
     {
       "key": "MAINSAIL_PORT",
