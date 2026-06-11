@@ -86,7 +86,7 @@
     {
       "name": "mainsail",
       "title": "Mainsail",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "description": "Installs Mainsail v2.17.0 as a second web frontend. Runs on port 81 by default so Fluidd stays on port 80. Set port 80 to make Mainsail primary; Fluidd shifts to 81 automatically.",
       "tagline": "Mainsail web interface alongside Fluidd, on your chosen port.",
       "category": "ui",
@@ -105,7 +105,7 @@
       ],
       "conflicts": [],
       "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/442755511",
+      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/445067046",
       "config": [
         {
           "key": "MAINSAIL_PORT",
