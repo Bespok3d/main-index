@@ -1,7 +1,7 @@
 {
   "name": "octoeverywhere",
   "title": "OctoEverywhere",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Free, secure remote access to your printer from anywhere, plus AI failure detection and remote notifications, via the OctoEverywhere cloud. This runs the official OctoEverywhere companion agent (a Moonraker companion) in its own isolated Python virtual environment; the app code and all its dependencies are baked into the package and installed offline, so the printer never runs pip or git. On first start the service logs a one-time link URL: open it to connect the printer to your OctoEverywhere account. OctoEverywhere is an external cloud service (free tier available); this plugin only runs the agent. Experimental, not yet verified on a physical printer.",
   "tagline": "Free remote access + AI failure detection via the OctoEverywhere cloud.",
   "category": "system",
@@ -9,7 +9,7 @@
   "publisher": "PLACEHOLDER",
   "printer_specific": false,
   "published_at": "2026-06-09",
-  "updated_at": "2026-06-09",
+  "updated_at": "2026-06-11",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -21,7 +21,7 @@
   "require": [],
   "conflicts": [],
   "doc_url": "https://github.com/Bespok3d/octoeverywhere/blob/main/octoeverywhere/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/442934377",
+  "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/444827266",
   "min_daemon_version": "0.10.33-dev",
   "homepage": "https://octoeverywhere.com",
   "changelog_url": "octoeverywhere/doc/CHANGELOG.md"
