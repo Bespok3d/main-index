@@ -62,7 +62,7 @@
       ],
       "conflicts": [],
       "doc_url": "https://github.com/Bespok3d/fluidd-plugin/blob/main/fluidd/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/444825765",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/445085398",
       "homepage": "https://github.com/bespok3d-org/plugin-fluidd",
       "config": [
         {
@@ -105,7 +105,7 @@
       ],
       "conflicts": [],
       "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/445067046",
+      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/445085461",
       "config": [
         {
           "key": "MAINSAIL_PORT",
@@ -148,7 +148,7 @@
       ],
       "conflicts": [],
       "doc_url": "https://github.com/Bespok3d/moonraker-auth/blob/main/moonraker-auth/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/444826636",
+      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/445085460",
       "min_daemon_version": "0.10.1-dev",
       "config": [
         {
@@ -187,7 +187,7 @@
       ],
       "conflicts": [],
       "doc_url": "https://github.com/Bespok3d/octoeverywhere/blob/main/octoeverywhere/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/444827266",
+      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/445085590",
       "min_daemon_version": "0.10.33-dev",
       "homepage": "https://octoeverywhere.com",
       "changelog_url": "octoeverywhere/doc/CHANGELOG.md",
@@ -215,7 +215,7 @@
       ],
       "conflicts": [],
       "doc_url": "https://github.com/Bespok3d/panda-breath/blob/main/panda-breath/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/444827491",
+      "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/445085580",
       "homepage": "https://github.com/justinh-rahb/pandabreath-klipper",
       "config": [
         {
@@ -318,7 +318,7 @@
       ],
       "conflicts": [],
       "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/444828285",
+      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/445085659",
       "min_daemon_version": "0.10.1-dev",
       "homepage": "https://github.com/bespok3d-org/plugin-spoolman",
       "macros": [
@@ -429,7 +429,7 @@
       ],
       "conflicts": [],
       "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/blob/main/timelapse/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/444825962",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/445085306",
       "changelog_url": "timelapse/doc/CHANGELOG.md",
       "deps": []
     }
