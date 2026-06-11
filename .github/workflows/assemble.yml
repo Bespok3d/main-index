@@ -28,10 +28,17 @@ jobs:
         run: |
           git config user.name "bespok3d-bot"
           git config user.email "bot@bespok3d.local"
-          git add index.json
-          if git diff --cached --quiet; then
-            echo "index unchanged; nothing to commit"
-          else
+          for attempt in 1 2 3 4 5; do
+            node scripts/assemble.mjs
+            git add index.json
+            if git diff --cached --quiet; then
+              echo "index unchanged; nothing to commit"
+              break
+            fi
             git commit -m "assemble index.json"
-            git push
-          fi
+            git push && { echo "pushed index.json (attempt ${attempt})"; break; }
+            [ "$attempt" = 5 ] && { echo "index.json push failed after ${attempt} attempts"; exit 1; }
+            echo "index.json push rejected; resyncing to remote main (attempt ${attempt})"
+            git fetch origin main
+            git reset --hard origin/main
+          done
