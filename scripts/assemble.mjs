@@ -38,6 +38,11 @@ function resolveDeps(atom, providers) {
 
 // The org that publishes this main list. A sub-list this org owns is first-party (trust 'project');
 // any other list accepted into the main list is 'community'. Trust is curation, declared HERE.
+//
+// TEMPORARY: this is a parameter-driven heuristic (the URL owner), so it is spoofable and only as
+// trustworthy as the curation of this file. Real trust must be anchored to the publisher's SIGNING
+// KEY -- a list/plugin is 'project' because it is signed by the org's key, not because a field says
+// so. Replace this with key-derived trust when PGP verification lands.
 const OFFICIAL_OWNER = 'Bespok3d'
 
 // Trust a sub-list by who published it: a `github:<OFFICIAL_OWNER>/...` ref is org-published
