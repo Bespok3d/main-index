@@ -1,7 +1,7 @@
 {
   "name": "spoolman",
   "title": "Spoolman Bridge",
-  "version": "0.1.5",
+  "version": "0.1.8",
   "description": "Reads rfid_data.json at startup and on every card change, syncs the active spool to your Spoolman server. Length used per print is logged automatically.",
   "tagline": "Zero-config Spoolman: active spool always tracked.",
   "category": "filament",
@@ -9,7 +9,7 @@
   "publisher": "PLACEHOLDER",
   "printer_specific": false,
   "published_at": "2025-09-20",
-  "updated_at": "2026-05-31",
+  "updated_at": "2026-06-11",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -26,7 +26,7 @@
   ],
   "conflicts": [],
   "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/441698629",
+  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/444828285",
   "min_daemon_version": "0.10.1-dev",
   "homepage": "https://github.com/bespok3d-org/plugin-spoolman",
   "macros": [
