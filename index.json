@@ -2,7 +2,7 @@
   "schema_version": 1,
   "name": "Bespok3d Official",
   "publisher": "PLACEHOLDER",
-  "updated": "2026-06-12",
+  "updated": "2026-06-28",
   "plugins": [
     {
       "name": "camera-hw-accel",
@@ -240,7 +240,7 @@
     {
       "name": "remote-screen",
       "title": "Remote Screen",
-      "version": "0.1.12",
+      "version": "0.1.15",
       "description": "Mirror the printer's on-device touchscreen to a browser. Low-overhead framebuffer capture, no UI changes on the device side.\n\nTo have the screen appear as a tile in Fluidd and Mainsail (alongside your cameras, no manual setup under Settings → Cameras), also install b3d://bespok3d-org/webcam-screen; registers the mirror as a Moonraker [webcam] iframe entry sized for the U1's 480:320 display.",
       "tagline": "Stream your printer's framebuffer as MJPEG.",
       "category": "screen",
@@ -248,7 +248,7 @@
       "publisher": "PLACEHOLDER",
       "printer_specific": true,
       "published_at": "2025-07-30",
-      "updated_at": "2026-05-30",
+      "updated_at": "2026-06-28",
       "requires": {
         "capabilities": [
           "klipper-generic"
@@ -259,7 +259,7 @@
       ],
       "conflicts": [],
       "doc_url": "https://github.com/Bespok3d/u1-remote-screen/blob/main/remote-screen/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/450544445",
+      "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/460252572",
       "changelog_url": "remote-screen/doc/CHANGELOG.md",
       "endpoints": [
         {
