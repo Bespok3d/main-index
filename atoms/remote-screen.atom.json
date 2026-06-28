@@ -1,7 +1,7 @@
 {
   "name": "remote-screen",
   "title": "Remote Screen",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "Mirror the printer's on-device touchscreen to a browser. Low-overhead framebuffer capture, no UI changes on the device side.\n\nTo have the screen appear as a tile in Fluidd and Mainsail (alongside your cameras, no manual setup under Settings → Cameras), also install b3d://bespok3d-org/webcam-screen; registers the mirror as a Moonraker [webcam] iframe entry sized for the U1's 480:320 display.",
   "tagline": "Stream your printer's framebuffer as MJPEG.",
   "category": "screen",
@@ -21,7 +21,7 @@
   "require": [],
   "conflicts": [],
   "doc_url": "https://github.com/Bespok3d/u1-remote-screen/blob/main/remote-screen/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/460328253",
+  "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/460554352",
   "changelog_url": "remote-screen/doc/CHANGELOG.md",
   "endpoints": [
     {
