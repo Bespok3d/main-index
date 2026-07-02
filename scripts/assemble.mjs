@@ -53,22 +53,39 @@ function listTrust(ref) {
   return ref.url.startsWith(`github:${OFFICIAL_OWNER}/`) ? 'project' : 'community'
 }
 
+function isCollectionAtom(atom) {
+  return atom.kind === 'collection'
+}
+
+// A collection atom carries `kind` only so the assembler can route it; strip it from the published
+// entry (a collection's type is the collections[] array it sits in). Collections are
+// install-orchestration metadata (a members[] list), never resolved to a .b3; trust is stamped at
+// load time from the source ref, exactly like plugins, not declared here.
+function toCollectionEntry(atom) {
+  const { kind: _kind, ...entry } = atom
+  return entry
+}
+
 // Drop the internal `require` (only the resolver needs it) and replace it with the resolved `deps`,
 // so each published entry matches the catalog entry shape the app expects. `lists` are sub-list
 // references ({name, url}) from lists/*.json: main-index is a list-of-lists (ADR-0012), so a
 // co-repo that publishes its own index.json is referenced by URL here rather than copying its atoms.
+// Collection atoms committed directly here are partitioned into a sibling collections[].
 export function assemble(atoms, lists = []) {
   const sorted = [...atoms].sort((earlier, later) => earlier.name.localeCompare(later.name))
-  const providers = providerByService(sorted)
-  const plugins = sorted.map((atom) => {
+  const pluginAtoms = sorted.filter((atom) => !isCollectionAtom(atom))
+  const collectionAtoms = sorted.filter(isCollectionAtom)
+  const providers = providerByService(pluginAtoms)
+  const plugins = pluginAtoms.map((atom) => {
     const { require: _require, ...entry } = atom
     return { ...entry, deps: resolveDeps(atom, providers) }
   })
-  const updated = plugins.reduce((latest, plugin) => (plugin.updated_at > latest ? plugin.updated_at : latest), '')
+  const collections = collectionAtoms.map(toCollectionEntry)
+  const updated = [...plugins, ...collections].reduce((latest, entry) => (entry.updated_at > latest ? entry.updated_at : latest), '')
   const sortedLists = [...lists]
     .sort((earlier, later) => earlier.name.localeCompare(later.name))
     .map((ref) => ({ ...ref, trust: listTrust(ref) }))
-  return { schema_version: 1, name: 'Bespok3d Official', publisher: 'PLACEHOLDER', updated, plugins, lists: sortedLists }
+  return { schema_version: 1, name: 'Bespok3d Official', publisher: 'PLACEHOLDER', updated, plugins, collections, lists: sortedLists }
 }
 
 async function readJsonDir(dir, suffix) {
@@ -83,7 +100,7 @@ async function main() {
   const lists = await readJsonDir(join(repoDir, 'lists'), '.json')
   const index = assemble(atoms, lists)
   await writeFile(join(repoDir, 'index.json'), `${JSON.stringify(index, null, 2)}\n`)
-  process.stdout.write(`Wrote index.json (${index.plugins.length} plugins, ${index.lists.length} lists)\n`)
+  process.stdout.write(`Wrote index.json (${index.plugins.length} plugins, ${index.collections.length} collections, ${index.lists.length} lists)\n`)
 }
 
 if (process.argv[1] && process.argv[1].endsWith('assemble.mjs')) {
