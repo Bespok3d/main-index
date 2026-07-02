@@ -466,6 +466,7 @@
       "deps": []
     }
   ],
+  "collections": [],
   "lists": [
     {
       "name": "Reference Python Plugins",
