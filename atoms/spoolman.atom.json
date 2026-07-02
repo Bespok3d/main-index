@@ -1,15 +1,15 @@
 {
   "name": "spoolman",
   "title": "Spoolman Bridge",
-  "version": "0.1.8",
-  "description": "Reads rfid_data.json at startup and on every card change, syncs the active spool to your Spoolman server. Length used per print is logged automatically.",
+  "version": "0.1.28",
+  "description": "Spoolman for the U1 multi-tool: the active spool follows the tag the printer reads or the spool you pick, color and material reach the screen and AFC panel, tags are matched by their hardware UID, and you can record which printer each spool is on. Filament length per print is logged automatically.",
   "tagline": "Zero-config Spoolman: active spool always tracked.",
   "category": "filament",
   "channel": "stable",
   "publisher": "PLACEHOLDER",
   "printer_specific": false,
   "published_at": "2025-09-20",
-  "updated_at": "2026-06-11",
+  "updated_at": "2026-07-02",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -26,7 +26,7 @@
   ],
   "conflicts": [],
   "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/445085659",
+  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/464215062",
   "min_daemon_version": "0.10.1-dev",
   "homepage": "https://github.com/bespok3d-org/plugin-spoolman",
   "macros": [
@@ -60,6 +60,11 @@
       "name": "GET_FILAMENT_ID",
       "params": "TOOL={0..3}",
       "description": "Print the currently read tag for the selected lane."
+    },
+    {
+      "name": "SH_BIND_CARD_UID",
+      "params": "CHANNEL={0..3} SPOOL=<id>",
+      "description": "Bind the tag UID currently on a lane to a Spoolman spool, so the next tap of that tag resolves to it directly."
     },
     {
       "name": "SH_CONFIG",
@@ -107,6 +112,48 @@
       ],
       "default": "info",
       "hint": "How chatty the logs are, from least to most.",
+      "userEditable": true
+    },
+    {
+      "key": "CARD_UIDS_STRATEGY",
+      "label": "Spool resolution order",
+      "type": "text",
+      "placeholder": "spool_id,uid,sku",
+      "default": "spool_id,uid,sku",
+      "hint": "Comma-separated, first match wins. Options: spool_id (id on the tag), uid (the tag's hardware UID, bound in Spoolman), sku.",
+      "userEditable": true
+    },
+    {
+      "key": "CARD_UIDS_AUTO_REGISTER",
+      "label": "Auto-bind tag UID on SKU match",
+      "type": "select",
+      "options": [
+        "true",
+        "false"
+      ],
+      "default": "false",
+      "hint": "Opt-in (off by default). When on, a spool found by SKU that has no UID yet gets the current tag's UID written onto it in Spoolman, so the next tap is a direct UID match. Off means tags are only ever bound on your explicit request (SH_BIND_CARD_UID).",
+      "userEditable": true
+    },
+    {
+      "key": "SPOOLMAN_TRACK_LOCATION",
+      "label": "Track spool location in Spoolman",
+      "type": "select",
+      "options": [
+        "true",
+        "false"
+      ],
+      "default": "false",
+      "hint": "When on, a spool loaded on this printer gets this printer's name written to its Spoolman location, and it is cleared when the spool is unloaded -- so you can see in Spoolman which printer a spool is on.",
+      "userEditable": true
+    },
+    {
+      "key": "SPOOLMAN_LOCATION",
+      "label": "This printer's name (Spoolman location)",
+      "type": "text",
+      "placeholder": "e.g. unU1jr",
+      "default": "",
+      "hint": "The name written as a loaded spool's location in Spoolman (e.g. unU1jr). Location tracking is inactive until a name is set.",
       "userEditable": true
     }
   ],
