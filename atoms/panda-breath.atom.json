@@ -18,10 +18,7 @@
   "provides": [
     "panda-breath"
   ],
-  "require": [],
   "conflicts": [],
-  "doc_url": "https://github.com/Bespok3d/panda-breath/blob/main/panda-breath/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/445085580",
   "homepage": "https://github.com/justinh-rahb/pandabreath-klipper",
   "config": [
     {
@@ -40,5 +37,8 @@
       "userEditable": true
     }
   ],
-  "changelog_url": "panda-breath/doc/CHANGELOG.md"
+  "changelog_url": "panda-breath/doc/CHANGELOG.md",
+  "require": [],
+  "doc_url": "https://github.com/Bespok3d/panda-breath/blob/main/panda-breath/doc/README.md",
+  "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/481356649"
 }
