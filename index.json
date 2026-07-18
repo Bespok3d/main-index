@@ -528,6 +528,11 @@
       "trust": "project"
     },
     {
+      "name": "Networking",
+      "url": "github:Bespok3d/networking/index.json",
+      "trust": "project"
+    },
+    {
       "name": "Reference Python Plugins",
       "url": "github:Bespok3d/reference-python-plugins/index.json",
       "trust": "project"
