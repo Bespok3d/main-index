@@ -2,11 +2,19 @@
 // is one catalog entry emitted by a plugin's CI, carrying a raw `require` so cross-plugin `deps` are
 // resolved HERE, across all atoms (a plugin requiring a service maps to whichever atom provides it).
 // The output is the ADR-0012 federated-index shape, byte-identical to what the monorepo generates,
-// so the app loads it through the same resolver. Signing (index.json.sig) is deferred.
+// so the app loads it through the same resolver. `index.json` is detached-signed with the org's
+// registry key (see keys/README.md); `publisher` carries that key's fingerprint.
 
 import { readdir, readFile, writeFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
+
+// Lazy dynamic import of the sibling b3-builder repo's built core, mirroring
+// Bespok3d/scripts/app-bundle.mjs's importBuilderCore -- one signing implementation, not two.
+export async function importBuilderCore(scriptDir) {
+  const corePath = join(scriptDir, '..', '..', 'b3-builder', 'dist', 'core', 'index.js')
+  return import(pathToFileURL(corePath).href)
+}
 
 function serviceName(provided) {
   return typeof provided === 'string' ? provided : provided.service
@@ -40,9 +48,10 @@ function resolveDeps(atom, providers) {
 // any other list accepted into the main list is 'community'. Trust is curation, declared HERE.
 //
 // TEMPORARY: this is a parameter-driven heuristic (the URL owner), so it is spoofable and only as
-// trustworthy as the curation of this file. Real trust must be anchored to the publisher's SIGNING
-// KEY -- a list/plugin is 'project' because it is signed by the org's key, not because a field says
-// so. Replace this with key-derived trust when PGP verification lands.
+// trustworthy as the curation of this file. No sub-list carries its own verifiable signature yet
+// (per-list/per-publisher signing is deferred, keys/README.md) -- only the top-level index itself is
+// now key-derived (see `publisher`, below). Replace this with key-derived per-list trust once a
+// sub-list can be checked against its own publisher key.
 const OFFICIAL_OWNER = 'Bespok3d'
 
 // Trust a sub-list by who published it: a `github:<OFFICIAL_OWNER>/...` ref is org-published
@@ -71,7 +80,7 @@ function toCollectionEntry(atom) {
 // references ({name, url}) from lists/*.json: main-index is a list-of-lists (ADR-0012), so a
 // co-repo that publishes its own index.json is referenced by URL here rather than copying its atoms.
 // Collection atoms committed directly here are partitioned into a sibling collections[].
-export function assemble(atoms, lists = []) {
+export function assemble(atoms, lists = [], publisher = 'PLACEHOLDER') {
   const sorted = [...atoms].sort((earlier, later) => earlier.name.localeCompare(later.name))
   const pluginAtoms = sorted.filter((atom) => !isCollectionAtom(atom))
   const collectionAtoms = sorted.filter(isCollectionAtom)
@@ -85,7 +94,7 @@ export function assemble(atoms, lists = []) {
   const sortedLists = [...lists]
     .sort((earlier, later) => earlier.name.localeCompare(later.name))
     .map((ref) => ({ ...ref, trust: listTrust(ref) }))
-  return { schema_version: 1, name: 'Bespok3d Official', publisher: 'PLACEHOLDER', updated, plugins, collections, lists: sortedLists }
+  return { schema_version: 1, name: 'Bespok3d Official', publisher, updated, plugins, collections, lists: sortedLists }
 }
 
 async function readJsonDir(dir, suffix) {
@@ -96,11 +105,21 @@ async function readJsonDir(dir, suffix) {
 async function main() {
   const scriptDir = dirname(fileURLToPath(import.meta.url))
   const repoDir = dirname(scriptDir)
+  const builder = await importBuilderCore(scriptDir)
+  const pubkey = await readFile(join(repoDir, 'keys', 'bespok3d-list.pub.asc'), 'utf8')
+  const publisher = await builder.publicKeyFingerprint(pubkey)
   const atoms = await readJsonDir(join(repoDir, 'atoms'), '.atom.json')
   const lists = await readJsonDir(join(repoDir, 'lists'), '.json')
-  const index = assemble(atoms, lists)
-  await writeFile(join(repoDir, 'index.json'), `${JSON.stringify(index, null, 2)}\n`)
+  const index = assemble(atoms, lists, publisher)
+  const bytes = `${JSON.stringify(index, null, 2)}\n`
+  await writeFile(join(repoDir, 'index.json'), bytes)
   process.stdout.write(`Wrote index.json (${index.plugins.length} plugins, ${index.collections.length} collections, ${index.lists.length} lists)\n`)
+  const signingKey = process.env.REGISTRY_SIGNING_KEY
+  if (signingKey) {
+    const signature = await builder.signDetached(Buffer.from(bytes, 'utf8'), signingKey)
+    await writeFile(join(repoDir, 'index.json.sig'), signature)
+    process.stdout.write('Wrote index.json.sig\n')
+  }
 }
 
 if (process.argv[1] && process.argv[1].endsWith('assemble.mjs')) {

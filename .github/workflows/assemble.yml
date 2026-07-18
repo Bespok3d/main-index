@@ -20,17 +20,33 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: main-index
+      # assemble.mjs's importBuilderCore resolves ../../b3-builder/dist/core relative to its own repo
+      # root, so the sibling checkout must land next to main-index, exactly like the local layout.
+      - uses: actions/checkout@v4
+        with:
+          repository: Bespok3d/b3-builder
+          path: b3-builder
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: node scripts/assemble.mjs
+      - name: Build the b3-builder core
+        working-directory: b3-builder
+        run: |
+          npm ci
+          npm run build
       - name: Commit index.json
+        working-directory: main-index
+        env:
+          REGISTRY_SIGNING_KEY: ${{ secrets.REGISTRY_SIGNING_KEY }}
         run: |
           git config user.name "bespok3d-bot"
           git config user.email "bot@bespok3d.local"
           for attempt in 1 2 3 4 5; do
             node scripts/assemble.mjs
             git add index.json
+            [ -f index.json.sig ] && git add index.json.sig
             if git diff --cached --quiet; then
               echo "index unchanged; nothing to commit"
               break
