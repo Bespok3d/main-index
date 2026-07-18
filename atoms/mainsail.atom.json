@@ -1,7 +1,7 @@
 {
   "name": "mainsail",
   "title": "Mainsail",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Installs Mainsail v2.18.0 as a second web frontend. Runs on port 81 by default so Fluidd stays on port 80. Set port 80 to make Mainsail primary; Fluidd shifts to 81 automatically.",
   "tagline": "Mainsail web interface alongside Fluidd, on your chosen port.",
   "category": "ui",
@@ -9,7 +9,7 @@
   "publisher": "PLACEHOLDER",
   "printer_specific": true,
   "published_at": "2026-01-10",
-  "updated_at": "2026-07-02",
+  "updated_at": "2026-07-03",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -18,10 +18,7 @@
   "provides": [
     "mainsail-ui"
   ],
-  "require": [],
   "conflicts": [],
-  "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/464107085",
   "config": [
     {
       "key": "MAINSAIL_PORT",
@@ -39,5 +36,8 @@
       "label": "Mainsail",
       "path": ":81/"
     }
-  ]
+  ],
+  "require": [],
+  "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
+  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/481356611"
 }
