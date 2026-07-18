@@ -1,0 +1,60 @@
+name: Register atoms in the Bespok3d index
+description: Commit a plugin repo's built atoms into Bespok3d/main-index, so they appear in the published index.json.
+author: Bespok3d
+branding:
+  icon: upload-cloud
+  color: purple
+
+# The Bespok3d-specific half of an atom repo's release. b3-builder itself stays org-agnostic (THE HARD
+# BOUNDARY, ADR-0041): it builds atoms and knows nothing about who publishes them or where they land.
+# This action is the other side of that seam, and it lives HERE because it is allowed to know exactly
+# one thing the tool must not: this index-of-lists is Bespok3d/main-index. That is hardcoded below on
+# purpose, not passed in.
+#
+# An atom repo registers by pushing straight into atoms/, which is what the org's own repos do today.
+# A community repo cannot (it has no write token), so it will register by PR instead. That path is not
+# built yet; when it is, it lands in THIS action behind an input, so a publisher's release.yml never
+# has to know which of the two it got.
+
+inputs:
+  token:
+    description: a token with write access to Bespok3d/main-index (repo secret MAIN_INDEX_TOKEN)
+    required: true
+  atoms-dir:
+    description: dir holding the built *.atom.json files, relative to the checkout (the b3-builder out dir)
+    required: false
+    default: dist
+
+runs:
+  using: composite
+  steps:
+    - name: Commit the built atoms into the index
+      shell: bash
+      env:
+        MAIN_INDEX_TOKEN: ${{ inputs.token }}
+        B3D_ATOMS_DIR: ${{ inputs.atoms-dir }}
+      run: |
+        set -euo pipefail
+        shopt -s nullglob
+        atoms=("$B3D_ATOMS_DIR"/*.atom.json)
+        [ ${#atoms[@]} -gt 0 ] || { echo "no *.atom.json in ${B3D_ATOMS_DIR}; nothing to register" >&2; exit 1; }
+        workdir="$(mktemp -d)"
+        # Full clone (no --depth 1) so a rebase on a concurrent push from another plugin repo has the
+        # history it needs. Several repos release into this one index and they do collide.
+        git clone "https://x-access-token:${MAIN_INDEX_TOKEN}@github.com/Bespok3d/main-index.git" "$workdir"
+        cp "${atoms[@]}" "$workdir/atoms/"
+        cd "$workdir"
+        git config user.name "bespok3d-bot"
+        git config user.email "bot@bespok3d.local"
+        git add atoms/
+        if git diff --cached --quiet; then
+          echo "atoms unchanged; nothing to commit"
+          exit 0
+        fi
+        git commit -m "update atoms from ${GITHUB_REPOSITORY##*/}"
+        for attempt in 1 2 3 4 5; do
+          git push && { echo "pushed main-index (attempt ${attempt})"; exit 0; }
+          [ "$attempt" = 5 ] && { echo "main-index push failed after ${attempt} attempts" >&2; exit 1; }
+          echo "main-index push rejected; rebasing on remote main (attempt ${attempt})"
+          git pull --rebase --no-edit origin main
+        done
