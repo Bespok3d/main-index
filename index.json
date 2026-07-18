@@ -75,7 +75,7 @@
     {
       "name": "fluidd",
       "title": "Fluidd",
-      "version": "0.1.3",
+      "version": "0.1.4",
       "description": "Swaps SM's outdated Fluidd for the current upstream release. You get input-shaper graphs, integrated config/G-code editors, tool-colour preview, modern mesh viz. Uninstall restores the SM-shipped copy automatically; no nginx config touched.",
       "tagline": "Modern Fluidd v1.37.2: replaces the stock SM build.",
       "category": "ui",
@@ -83,7 +83,7 @@
       "publisher": "PLACEHOLDER",
       "printer_specific": true,
       "published_at": "2025-10-12",
-      "updated_at": "2026-07-02",
+      "updated_at": "2026-07-03",
       "requires": {
         "capabilities": [
           "klipper-generic"
@@ -93,8 +93,6 @@
         "fluidd-ui"
       ],
       "conflicts": [],
-      "doc_url": "https://github.com/Bespok3d/fluidd-plugin/blob/main/fluidd/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/464129760",
       "homepage": "https://github.com/bespok3d-org/plugin-fluidd",
       "config": [
         {
@@ -113,12 +111,14 @@
           "path": "/"
         }
       ],
+      "doc_url": "https://github.com/Bespok3d/fluidd-plugin/blob/main/fluidd/doc/README.md",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/481356638",
       "deps": []
     },
     {
       "name": "mainsail",
       "title": "Mainsail",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "description": "Installs Mainsail v2.18.0 as a second web frontend. Runs on port 81 by default so Fluidd stays on port 80. Set port 80 to make Mainsail primary; Fluidd shifts to 81 automatically.",
       "tagline": "Mainsail web interface alongside Fluidd, on your chosen port.",
       "category": "ui",
@@ -126,7 +126,7 @@
       "publisher": "PLACEHOLDER",
       "printer_specific": true,
       "published_at": "2026-01-10",
-      "updated_at": "2026-07-02",
+      "updated_at": "2026-07-03",
       "requires": {
         "capabilities": [
           "klipper-generic"
@@ -136,8 +136,6 @@
         "mainsail-ui"
       ],
       "conflicts": [],
-      "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/464107085",
       "config": [
         {
           "key": "MAINSAIL_PORT",
@@ -156,6 +154,8 @@
           "path": ":81/"
         }
       ],
+      "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
+      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/481356611",
       "deps": []
     },
     {
@@ -179,8 +179,6 @@
         "moonraker-auth"
       ],
       "conflicts": [],
-      "doc_url": "https://github.com/Bespok3d/moonraker-auth/blob/main/moonraker-auth/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/445085460",
       "min_daemon_version": "0.10.1-dev",
       "config": [
         {
@@ -195,6 +193,8 @@
         }
       ],
       "changelog_url": "moonraker-auth/doc/CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/moonraker-auth/blob/main/moonraker-auth/doc/README.md",
+      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/481356679",
       "deps": []
     },
     {
@@ -218,11 +218,11 @@
         "octoeverywhere"
       ],
       "conflicts": [],
-      "doc_url": "https://github.com/Bespok3d/octoeverywhere/blob/main/octoeverywhere/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/445102618",
       "min_daemon_version": "0.10.33-dev",
       "homepage": "https://octoeverywhere.com",
       "changelog_url": "octoeverywhere/doc/CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/octoeverywhere/blob/main/octoeverywhere/doc/README.md",
+      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/481356685",
       "deps": []
     },
     {
@@ -246,8 +246,6 @@
         "panda-breath"
       ],
       "conflicts": [],
-      "doc_url": "https://github.com/Bespok3d/panda-breath/blob/main/panda-breath/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/445085580",
       "homepage": "https://github.com/justinh-rahb/pandabreath-klipper",
       "config": [
         {
@@ -267,6 +265,8 @@
         }
       ],
       "changelog_url": "panda-breath/doc/CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/panda-breath/blob/main/panda-breath/doc/README.md",
+      "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/481356649",
       "deps": []
     },
     {
@@ -290,8 +290,6 @@
         "screen-service"
       ],
       "conflicts": [],
-      "doc_url": "https://github.com/Bespok3d/u1-remote-screen/blob/main/remote-screen/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/460554352",
       "changelog_url": "remote-screen/doc/CHANGELOG.md",
       "endpoints": [
         {
@@ -299,6 +297,8 @@
           "path": "/screen/"
         }
       ],
+      "doc_url": "https://github.com/Bespok3d/u1-remote-screen/blob/main/remote-screen/doc/README.md",
+      "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/481356686",
       "deps": []
     },
     {
@@ -322,10 +322,10 @@
         "rfid-service"
       ],
       "conflicts": [],
-      "doc_url": "https://github.com/Bespok3d/u1-enhanced-rfid/blob/main/rfid-ntag/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/464107764",
       "homepage": "https://github.com/bespok3d-org/plugin-rfid-ntag",
       "changelog_url": "rfid-ntag/doc/CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/u1-enhanced-rfid/blob/main/rfid-ntag/doc/README.md",
+      "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/481356629",
       "deps": []
     },
     {
@@ -514,9 +514,9 @@
         "timelapse"
       ],
       "conflicts": [],
-      "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/blob/main/timelapse/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/445085306",
       "changelog_url": "timelapse/doc/CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/blob/main/timelapse/doc/README.md",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/481356631",
       "deps": []
     }
   ],
