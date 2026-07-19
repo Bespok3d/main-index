@@ -1,1 +1,7 @@
 .DS_Store
+
+# Build output of scripts/assemble.mjs, not source. Tracking them only produces rebase conflicts.
+# CI publishes them with `git add -f` (see doc note in Bespok3d/doc/gpg-signing/done.md): the app
+# fetches both as REPO FILES at the default-branch path, never as release assets.
+index.json
+index.json.sig

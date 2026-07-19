@@ -27,6 +27,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: Bespok3d/b3-builder
+          ref: 66509afcc88b13f911e252ebede80ac04c13f6bd  # main @ 2026-07-19
           path: b3-builder
       - uses: actions/setup-node@v4
         with:
