@@ -6,11 +6,13 @@
 
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { readFile } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { importBuilderCore } from './assemble.mjs'
+import { importBuilderCore, writeIndexSignature, writeSignedIndex } from './assemble.mjs'
 
 const scriptDir = dirname(fileURLToPath(import.meta.url))
 const repoDir = dirname(scriptDir)
@@ -35,4 +37,30 @@ test('a signature made with REGISTRY_SIGNING_KEY verifies against the committed 
   const signature = await builder.signDetached(bytes, signingKey)
   const verified = await builder.verifyDetached(bytes, signature, pubkey)
   assert.equal(verified, true)
+})
+
+// A stale .sig outlives the index it signed, and the app reads that mismatch as tampering rather than
+// as an unsigned list -- so an unsigned run must remove it. The builder is unused on the no-key path.
+test('an unsigned run deletes the index.json.sig a signed run left behind', async () => {
+  const workDir = await mkdtemp(join(tmpdir(), 'assemble-sig-'))
+  const signaturePath = join(workDir, 'index.json.sig')
+  await writeFile(signaturePath, 'stale signature from an earlier signed run\n')
+  const signed = await writeIndexSignature(workDir, '{}\n', undefined, null)
+  assert.equal(signed, false)
+  assert.equal(existsSync(signaturePath), false)
+  await rm(workDir, { recursive: true, force: true })
+})
+
+// index.json and its .sig are one artifact. Writing the index before signing would leave the new index
+// beside the PREVIOUS run's signature whenever signing throws, and the app reads that mismatch as
+// tampering. Signing first means a signing failure leaves the last good pair untouched.
+test('a signing failure writes nothing, so the previous index and signature survive', async () => {
+  const workDir = await mkdtemp(join(tmpdir(), 'assemble-sig-'))
+  await writeFile(join(workDir, 'index.json'), '{"name":"previous good index"}\n')
+  await writeFile(join(workDir, 'index.json.sig'), 'signature over the previous good index\n')
+  const failingBuilder = { signDetached: () => Promise.reject(new Error('no such key')) }
+  await assert.rejects(() => writeSignedIndex(workDir, '{"name":"new index"}\n', 'a-signing-key', failingBuilder))
+  assert.equal(await readFile(join(workDir, 'index.json'), 'utf8'), '{"name":"previous good index"}\n')
+  assert.equal(await readFile(join(workDir, 'index.json.sig'), 'utf8'), 'signature over the previous good index\n')
+  await rm(workDir, { recursive: true, force: true })
 })

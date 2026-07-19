@@ -5,7 +5,7 @@
 // so the app loads it through the same resolver. `index.json` is detached-signed with the org's
 // registry key (see keys/README.md); `publisher` carries that key's fingerprint.
 
-import { readdir, readFile, writeFile } from 'node:fs/promises'
+import { readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
@@ -97,6 +97,34 @@ export function assemble(atoms, lists = [], publisher = 'PLACEHOLDER') {
   return { schema_version: 1, name: 'Bespok3d Official', publisher, updated, plugins, collections, lists: sortedLists }
 }
 
+// Placing the signature is a REPLACE, never an append. A run that produced no signature must DELETE the
+// one a previous signed run left behind: those bytes no longer match the index sitting next to them, and
+// the app reads a stale signature as a failed verification (tampering) rather than as an unsigned list.
+async function placeIndexSignature(repoDir, signature) {
+  const signaturePath = join(repoDir, 'index.json.sig')
+  if (!signature) {
+    await rm(signaturePath, { force: true })
+    return false
+  }
+  await writeFile(signaturePath, signature)
+  return true
+}
+
+export async function writeIndexSignature(repoDir, bytes, signingKey, builder) {
+  return placeIndexSignature(repoDir, signingKey ? await builder.signDetached(Buffer.from(bytes, 'utf8'), signingKey) : null)
+}
+
+// index.json and its signature are ONE artifact, so they get written together. Writing the index first
+// would leave it on disk beside the PREVIOUS run's .sig whenever signing throws, and a signature that
+// does not match the index next to it reads as tampering, not as an unsigned list. Signing first means
+// a signing failure aborts before anything is written and the last good pair survives untouched.
+export async function writeSignedIndex(repoDir, bytes, signingKey, builder) {
+  const signature = signingKey ? await builder.signDetached(Buffer.from(bytes, 'utf8'), signingKey) : null
+  await writeFile(join(repoDir, 'index.json'), bytes)
+
+  return placeIndexSignature(repoDir, signature)
+}
+
 async function readJsonDir(dir, suffix) {
   const names = (await readdir(dir).catch(() => [])).filter((name) => name.endsWith(suffix))
   return Promise.all(names.map((name) => readFile(join(dir, name), 'utf8').then(JSON.parse)))
@@ -112,14 +140,9 @@ async function main() {
   const lists = await readJsonDir(join(repoDir, 'lists'), '.json')
   const index = assemble(atoms, lists, publisher)
   const bytes = `${JSON.stringify(index, null, 2)}\n`
-  await writeFile(join(repoDir, 'index.json'), bytes)
+  const signed = await writeSignedIndex(repoDir, bytes, process.env.REGISTRY_SIGNING_KEY, builder)
   process.stdout.write(`Wrote index.json (${index.plugins.length} plugins, ${index.collections.length} collections, ${index.lists.length} lists)\n`)
-  const signingKey = process.env.REGISTRY_SIGNING_KEY
-  if (signingKey) {
-    const signature = await builder.signDetached(Buffer.from(bytes, 'utf8'), signingKey)
-    await writeFile(join(repoDir, 'index.json.sig'), signature)
-    process.stdout.write('Wrote index.json.sig\n')
-  }
+  process.stdout.write(signed ? 'Wrote index.json.sig\n' : 'No REGISTRY_SIGNING_KEY: removed any stale index.json.sig\n')
 }
 
 if (process.argv[1] && process.argv[1].endsWith('assemble.mjs')) {
