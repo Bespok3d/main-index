@@ -46,8 +46,8 @@ jobs:
           git config user.email "bot@bespok3d.local"
           for attempt in 1 2 3 4 5; do
             node scripts/assemble.mjs
-            git add index.json
-            [ -f index.json.sig ] && git add index.json.sig
+            git add -f index.json
+            [ -f index.json.sig ] && git add -f index.json.sig
             if git diff --cached --quiet; then
               echo "index unchanged; nothing to commit"
               break
