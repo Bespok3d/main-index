@@ -6,7 +6,7 @@
   "tagline": "Enable the Timelapse menu in Fluidd & Mainsail.",
   "category": "camera",
   "channel": "stable",
-  "publisher": "PLACEHOLDER",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
   "printer_specific": false,
   "published_at": "2025-12-05",
   "updated_at": "2026-01-08",
@@ -22,5 +22,5 @@
   "changelog_url": "timelapse/doc/CHANGELOG.md",
   "require": [],
   "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/blob/main/timelapse/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/481356631"
+  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/484993844"
 }
