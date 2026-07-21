@@ -6,7 +6,7 @@
   "tagline": "Free remote access + AI failure detection via the OctoEverywhere cloud.",
   "category": "system",
   "channel": "stable",
-  "publisher": "PLACEHOLDER",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
   "printer_specific": false,
   "published_at": "2026-06-09",
   "updated_at": "2026-06-12",
@@ -24,5 +24,5 @@
   "changelog_url": "octoeverywhere/doc/CHANGELOG.md",
   "require": [],
   "doc_url": "https://github.com/Bespok3d/octoeverywhere/blob/main/octoeverywhere/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/481356685"
+  "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/484994456"
 }
