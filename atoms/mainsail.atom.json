@@ -6,7 +6,7 @@
   "tagline": "Mainsail web interface alongside Fluidd, on your chosen port.",
   "category": "ui",
   "channel": "stable",
-  "publisher": "PLACEHOLDER",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
   "printer_specific": true,
   "published_at": "2026-01-10",
   "updated_at": "2026-07-03",
@@ -39,5 +39,5 @@
   ],
   "require": [],
   "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/481356611"
+  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/484993937"
 }
