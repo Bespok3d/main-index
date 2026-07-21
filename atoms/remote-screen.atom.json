@@ -6,7 +6,7 @@
   "tagline": "Stream your printer's framebuffer as MJPEG.",
   "category": "screen",
   "channel": "stable",
-  "publisher": "PLACEHOLDER",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
   "printer_specific": true,
   "published_at": "2025-07-30",
   "updated_at": "2026-06-28",
@@ -28,5 +28,5 @@
   ],
   "require": [],
   "doc_url": "https://github.com/Bespok3d/u1-remote-screen/blob/main/remote-screen/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/481356686"
+  "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/484994996"
 }
