@@ -33,7 +33,7 @@ jobs:
       # assemble.mjs's importBuilderCore resolves ../../b3-builder/dist/core relative to its own repo
       # root, so the built core has to sit next to main-index, exactly like the local layout.
       - name: Place the built core beside main-index
-        run: ln -s "${{ steps.builder-core.outputs.core-root }}" b3-builder
+        run: ln -sfn "${{ steps.builder-core.outputs.core-root }}" b3-builder
       - name: Commit index.json
         working-directory: main-index
         env:
@@ -43,8 +43,14 @@ jobs:
           git config user.email "bot@bespok3d.local"
           for attempt in 1 2 3 4 5; do
             node scripts/assemble.mjs
-            git add -f index.json
-            [ -f index.json.sig ] && git add -f index.json.sig
+            # A missing REGISTRY_SIGNING_KEY makes assemble.mjs drop the signature and still succeed,
+            # which would publish an index the app cannot verify while the run stayed green. The
+            # published index is only ever a signed one, so the absent signature fails the run here.
+            if [ ! -f index.json.sig ]; then
+              echo "assemble produced no index.json.sig (REGISTRY_SIGNING_KEY missing?); refusing to publish an unsigned index"
+              exit 1
+            fi
+            git add -f index.json index.json.sig
             if git diff --cached --quiet; then
               echo "index unchanged; nothing to commit"
               break
