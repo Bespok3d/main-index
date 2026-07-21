@@ -15,6 +15,7 @@ const COLLECTION_ATOM = {
   updated_at: '2026-06-30',
   members: [{ id: 'rfid-ntag', version: '>=0.1.6' }],
   doc_url: 'all-the-tags/doc/README.md',
+  publisher: 'PLACEHOLDER',
 }
 
 const PLUGIN_ATOM = {
@@ -26,6 +27,7 @@ const PLUGIN_ATOM = {
   require: [],
   conflicts: [],
   download_url: 'spoolman-0.1.4.b3',
+  publisher: 'PLACEHOLDER',
 }
 
 test('assemble partitions collection atoms into collections[] and strips the kind discriminator', () => {
@@ -42,4 +44,10 @@ test('assemble keeps stamping list trust and always emits a collections[] slot',
   const index = assemble([], [{ name: 'Material Tags', url: 'github:Bespok3d/material-tags/index.json' }])
   assert.deepEqual(index.collections, [])
   assert.equal(index.lists[0].trust, 'project')
+})
+
+test('assemble overrides each plugin and collection publisher with the derived signer identity', () => {
+  const index = assemble([PLUGIN_ATOM, COLLECTION_ATOM], [], 'AABBCCDD')
+  assert.equal(index.plugins[0].publisher, 'AABBCCDD')
+  assert.equal(index.collections[0].publisher, 'AABBCCDD')
 })

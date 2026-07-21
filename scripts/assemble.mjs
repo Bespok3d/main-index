@@ -87,9 +87,9 @@ export function assemble(atoms, lists = [], publisher = 'PLACEHOLDER') {
   const providers = providerByService(pluginAtoms)
   const plugins = pluginAtoms.map((atom) => {
     const { require: _require, ...entry } = atom
-    return { ...entry, deps: resolveDeps(atom, providers) }
+    return { ...entry, deps: resolveDeps(atom, providers), publisher }
   })
-  const collections = collectionAtoms.map(toCollectionEntry)
+  const collections = collectionAtoms.map((atom) => ({ ...toCollectionEntry(atom), publisher }))
   const updated = [...plugins, ...collections].reduce((latest, entry) => (entry.updated_at > latest ? entry.updated_at : latest), '')
   const sortedLists = [...lists]
     .sort((earlier, later) => earlier.name.localeCompare(later.name))
