@@ -112,7 +112,7 @@
         }
       ],
       "doc_url": "https://github.com/Bespok3d/fluidd-plugin/blob/main/fluidd/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/481356638",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/484993967",
       "deps": []
     },
     {
@@ -155,7 +155,7 @@
         }
       ],
       "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/481356611",
+      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/484993937",
       "deps": []
     },
     {
@@ -194,7 +194,7 @@
       ],
       "changelog_url": "moonraker-auth/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/moonraker-auth/blob/main/moonraker-auth/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/481356679",
+      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/484994213",
       "deps": []
     },
     {
@@ -516,7 +516,7 @@
       "conflicts": [],
       "changelog_url": "timelapse/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/blob/main/timelapse/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/481356631",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/484993844",
       "deps": []
     }
   ],
