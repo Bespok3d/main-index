@@ -6,7 +6,7 @@
   "tagline": "NTAG215/OpenSpool RFID: your filament knows what it is.",
   "category": "filament",
   "channel": "stable",
-  "publisher": "PLACEHOLDER",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
   "printer_specific": true,
   "published_at": "2025-09-02",
   "updated_at": "2026-07-01",
@@ -23,5 +23,5 @@
   "changelog_url": "rfid-ntag/doc/CHANGELOG.md",
   "require": [],
   "doc_url": "https://github.com/Bespok3d/u1-enhanced-rfid/blob/main/rfid-ntag/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/481356629"
+  "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/484994588"
 }
