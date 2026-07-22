@@ -44,12 +44,12 @@ jobs:
           for attempt in 1 2 3 4 5; do
             node scripts/assemble.mjs
             # A missing REGISTRY_SIGNING_KEY makes assemble.mjs drop the signature and still succeed,
-            # which would publish an index the app cannot verify while the run stayed green. The
-            # published index is only ever a signed one, so the absent signature fails the run here.
-            if [ ! -f index.json.sig ]; then
-              echo "assemble produced no index.json.sig (REGISTRY_SIGNING_KEY missing?); refusing to publish an unsigned index"
-              exit 1
-            fi
+            # which would publish an index the app cannot verify while the run stayed green. Checking
+            # only that a .sig EXISTS passes just as happily for a signature over different bytes,
+            # which the app reads as tampering and refuses outright, so the check is the real one: the
+            # signature has to verify over the exact bytes about to be committed, against the org
+            # public key checked in under keys/.
+            node scripts/verify-index.mjs
             git add -f index.json index.json.sig
             if git diff --cached --quiet; then
               echo "index unchanged; nothing to commit"

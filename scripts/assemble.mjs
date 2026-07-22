@@ -47,11 +47,11 @@ function resolveDeps(atom, providers) {
 // The org that publishes this main list. A sub-list this org owns is first-party (trust 'project');
 // any other list accepted into the main list is 'community'. Trust is curation, declared HERE.
 //
-// TEMPORARY: this is a parameter-driven heuristic (the URL owner), so it is spoofable and only as
-// trustworthy as the curation of this file. No sub-list carries its own verifiable signature yet
-// (per-list/per-publisher signing is deferred, keys/README.md) -- only the top-level index itself is
-// now key-derived (see `publisher`, below). Replace this with key-derived per-list trust once a
-// sub-list can be checked against its own publisher key.
+// The tier written here is curation and stays spoofable on its own: it is read off the URL owner, so
+// this file says who the curator MEANT. The proof is separate and it exists now: every sub-list is
+// published with a detached signature over its served bytes, the app checks that signature before it
+// shows any list, and `scripts/verify-lists.mjs` checks all of them at once against the org key in
+// keys/. A tier claimed here that no signature backs shows in the app as unknown, never as trusted.
 const OFFICIAL_OWNER = 'Bespok3d'
 
 // Trust a sub-list by who published it: a `github:<OFFICIAL_OWNER>/...` ref is org-published

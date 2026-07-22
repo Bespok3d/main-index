@@ -1,0 +1,38 @@
+name: checks
+
+# This repo's own tests existed and nothing ran them, so a change to the assembling or the signing of
+# the published index could only be caught by a person running node --test by hand. Every push runs
+# them here, plus the proof that the committed index.json and the signature beside it are the same
+# artifact: the app refuses a pair that disagrees, so a broken pair is a dead store, not a bad badge.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: main-index
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      # b3-builder is private and this repo's GITHUB_TOKEN cannot check it out; `uses:` is the reach the
+      # org Actions access setting permits, exactly as in assemble.yml.
+      - uses: Bespok3d/b3-builder/.github/actions/core@68f258d18bac6809acba3f27048bbd691ec6f814  # main @ 2026-07-21
+        id: builder-core
+      - name: Place the built core beside main-index
+        run: ln -sfn "${{ steps.builder-core.outputs.core-root }}" b3-builder
+      # The signing key is passed in because the sign/verify round trip SKIPS without it, and a test that
+      # skips in CI proves nothing about the key that actually signs the published index.
+      - name: Run the repo tests
+        working-directory: main-index
+        env:
+          REGISTRY_SIGNING_KEY: ${{ secrets.REGISTRY_SIGNING_KEY }}
+        run: node --test scripts/*.test.mjs
+      - name: Prove index.json and its signature are the same artifact
+        working-directory: main-index
+        run: node scripts/verify-index.mjs
