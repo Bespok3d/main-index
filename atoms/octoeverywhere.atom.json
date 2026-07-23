@@ -10,6 +10,7 @@
   "printer_specific": false,
   "published_at": "2026-06-09",
   "updated_at": "2026-06-12",
+  "author": "bespoked",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -21,8 +22,9 @@
   "conflicts": [],
   "min_daemon_version": "0.10.33-dev",
   "homepage": "https://octoeverywhere.com",
+  "sw_version": "4.6.8",
   "changelog_url": "octoeverywhere/doc/CHANGELOG.md",
   "require": [],
   "doc_url": "https://github.com/Bespok3d/octoeverywhere/blob/main/octoeverywhere/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/486304470"
+  "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/487120629"
 }
