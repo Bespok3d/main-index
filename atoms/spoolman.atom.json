@@ -10,6 +10,7 @@
   "printer_specific": false,
   "published_at": "2025-09-20",
   "updated_at": "2026-07-03",
+  "author": "bespoked",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -164,5 +165,5 @@
     }
   ],
   "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/486304655"
+  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/487120734"
 }
