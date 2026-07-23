@@ -10,6 +10,7 @@
   "printer_specific": true,
   "published_at": "2026-01-10",
   "updated_at": "2026-07-03",
+  "author": "bespoked",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -30,6 +31,7 @@
       "userEditable": true
     }
   ],
+  "sw_version": "2.18.0",
   "changelog_url": "mainsail/doc/CHANGELOG.md",
   "endpoints": [
     {
@@ -39,5 +41,5 @@
   ],
   "require": [],
   "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/486304158"
+  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/487120024"
 }
