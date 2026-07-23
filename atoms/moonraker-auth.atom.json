@@ -10,6 +10,7 @@
   "printer_specific": false,
   "published_at": "2026-03-15",
   "updated_at": "2026-04-02",
+  "author": "bespoked",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -35,5 +36,5 @@
   "changelog_url": "moonraker-auth/doc/CHANGELOG.md",
   "require": [],
   "doc_url": "https://github.com/Bespok3d/moonraker-auth/blob/main/moonraker-auth/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/486304278"
+  "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/487120522"
 }
