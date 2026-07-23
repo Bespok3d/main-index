@@ -85,6 +85,7 @@
       "printer_specific": true,
       "published_at": "2025-10-12",
       "updated_at": "2026-07-03",
+      "author": "bespoked",
       "requires": {
         "capabilities": [
           "klipper-generic"
@@ -105,6 +106,7 @@
           "userEditable": true
         }
       ],
+      "sw_version": "1.37.2",
       "changelog_url": "fluidd/doc/CHANGELOG.md",
       "endpoints": [
         {
@@ -113,7 +115,7 @@
         }
       ],
       "doc_url": "https://github.com/Bespok3d/fluidd-plugin/blob/main/fluidd/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/486304150",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/487120549",
       "deps": []
     },
     {
@@ -173,6 +175,7 @@
       "printer_specific": false,
       "published_at": "2026-03-15",
       "updated_at": "2026-04-02",
+      "author": "bespoked",
       "requires": {
         "capabilities": [
           "klipper-generic"
@@ -197,7 +200,7 @@
       ],
       "changelog_url": "moonraker-auth/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/moonraker-auth/blob/main/moonraker-auth/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/486304278",
+      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/487120522",
       "deps": []
     },
     {
@@ -212,6 +215,7 @@
       "printer_specific": false,
       "published_at": "2026-06-09",
       "updated_at": "2026-06-12",
+      "author": "bespoked",
       "requires": {
         "capabilities": [
           "klipper-generic"
@@ -223,9 +227,10 @@
       "conflicts": [],
       "min_daemon_version": "0.10.33-dev",
       "homepage": "https://octoeverywhere.com",
+      "sw_version": "4.6.8",
       "changelog_url": "octoeverywhere/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/octoeverywhere/blob/main/octoeverywhere/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/486304470",
+      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/487120629",
       "deps": []
     },
     {
@@ -240,6 +245,7 @@
       "printer_specific": false,
       "published_at": "2026-06-09",
       "updated_at": "2026-06-09",
+      "author": "bespoked",
       "requires": {
         "capabilities": [
           "klipper-generic"
@@ -269,7 +275,7 @@
       ],
       "changelog_url": "panda-breath/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/panda-breath/blob/main/panda-breath/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/486304467",
+      "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/487120703",
       "deps": []
     },
     {
@@ -343,6 +349,7 @@
       "printer_specific": false,
       "published_at": "2025-09-20",
       "updated_at": "2026-07-03",
+      "author": "bespoked",
       "requires": {
         "capabilities": [
           "klipper-generic"
@@ -491,7 +498,7 @@
       ],
       "changelog_url": "spoolman/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/486304655",
+      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/487120734",
       "deps": [
         "rfid-ntag"
       ]
