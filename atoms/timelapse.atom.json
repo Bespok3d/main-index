@@ -10,6 +10,7 @@
   "printer_specific": false,
   "published_at": "2025-12-05",
   "updated_at": "2026-01-08",
+  "author": "bespoked",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -22,5 +23,5 @@
   "changelog_url": "timelapse/doc/CHANGELOG.md",
   "require": [],
   "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/blob/main/timelapse/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/486304211"
+  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/487119880"
 }
