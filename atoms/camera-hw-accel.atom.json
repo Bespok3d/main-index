@@ -10,6 +10,7 @@
   "printer_specific": true,
   "published_at": "2025-08-14",
   "updated_at": "2026-07-17",
+  "author": "bespoked",
   "requires": {
     "capabilities": [
       "rockchip-mpp"
@@ -64,5 +65,5 @@
   ],
   "require": [],
   "doc_url": "https://github.com/Bespok3d/u1-hw-camera/blob/main/plugin/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/486305443"
+  "download_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/487121641"
 }
