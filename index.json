@@ -128,6 +128,7 @@
       "printer_specific": true,
       "published_at": "2026-01-10",
       "updated_at": "2026-07-03",
+      "author": "bespoked",
       "requires": {
         "capabilities": [
           "klipper-generic"
@@ -148,6 +149,7 @@
           "userEditable": true
         }
       ],
+      "sw_version": "2.18.0",
       "changelog_url": "mainsail/doc/CHANGELOG.md",
       "endpoints": [
         {
@@ -156,7 +158,7 @@
         }
       ],
       "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/486304158",
+      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/487120024",
       "deps": []
     },
     {
@@ -506,6 +508,7 @@
       "printer_specific": false,
       "published_at": "2025-12-05",
       "updated_at": "2026-01-08",
+      "author": "bespoked",
       "requires": {
         "capabilities": [
           "klipper-generic"
@@ -517,7 +520,7 @@
       "conflicts": [],
       "changelog_url": "timelapse/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/blob/main/timelapse/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/486304211",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/487119880",
       "deps": []
     }
   ],
