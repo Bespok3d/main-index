@@ -46,6 +46,29 @@ test('assemble keeps stamping list trust and always emits a collections[] slot',
   assert.equal(index.lists[0].trust, 'project')
 })
 
+test('assemble stamps the org author on the store envelope', () => {
+  const index = assemble([PLUGIN_ATOM], [], 'AABBCCDD')
+  assert.equal(index.author, 'bespoked')
+  assert.deepEqual(Object.keys(index), ['schema_version', 'name', 'publisher', 'author', 'updated', 'plugins', 'collections', 'lists'])
+})
+
+test('assemble stamps org author and the signer publisher onto an org-owned list ref', () => {
+  const index = assemble([], [{ name: 'Material Tags', url: 'github:Bespok3d/material-tags/index.json' }], 'AABBCCDD')
+  assert.equal(index.lists[0].author, 'bespoked')
+  assert.equal(index.lists[0].publisher, 'AABBCCDD')
+  assert.deepEqual(Object.keys(index.lists[0]), ['name', 'url', 'trust', 'author', 'publisher'])
+})
+
+test('assemble leaves a third-party list ref without an org author or publisher, and lets a ref override', () => {
+  const community = assemble([], [{ name: 'Acme Tags', url: 'github:Acme/tags/index.json' }], 'AABBCCDD')
+  assert.equal(community.lists[0].trust, 'community')
+  assert.equal('author' in community.lists[0], false)
+  assert.equal('publisher' in community.lists[0], false)
+  const pinned = assemble([], [{ name: 'Acme Tags', url: 'github:Acme/tags/index.json', author: 'acme', publisher: 'EE55' }], 'AABBCCDD')
+  assert.equal(pinned.lists[0].author, 'acme')
+  assert.equal(pinned.lists[0].publisher, 'EE55')
+})
+
 test('assemble overrides each plugin and collection publisher with the derived signer identity', () => {
   const index = assemble([PLUGIN_ATOM, COLLECTION_ATOM], [], 'AABBCCDD')
   assert.equal(index.plugins[0].publisher, 'AABBCCDD')

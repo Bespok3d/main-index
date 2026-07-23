@@ -54,12 +54,48 @@ function resolveDeps(atom, providers) {
 // keys/. A tier claimed here that no signature backs shows in the app as unknown, never as trusted.
 const OFFICIAL_OWNER = 'Bespok3d'
 
-// Trust a sub-list by who published it: a `github:<OFFICIAL_OWNER>/...` ref is org-published
-// (project); anything else accepted into the list is third-party (community). The curator can pin a
-// ref's trust explicitly in lists/*.json (e.g. a manufacturer list) and that wins.
+// The display name this org authors its own sub-lists under. Like trust, `author` is curation
+// declared HERE, distinct from `publisher` (the signing-key fingerprint that PROVES the list): the
+// two are separate fields because the human/org that authored a list and the key that signs it may
+// differ, and only the signature is proof. A ref can pin its own author in lists/*.json and it wins.
+const LIST_AUTHOR = 'bespoked'
+
+function isOrgOwned(ref) {
+  return ref.url.startsWith(`github:${OFFICIAL_OWNER}/`)
+}
+
+// Trust a sub-list by who published it: an org-owned ref is org-published (project); anything else
+// accepted into the list is third-party (community). A ref can pin its trust in lists/*.json (e.g. a
+// manufacturer list) and that wins.
 function listTrust(ref) {
   if (ref.trust) return ref.trust
-  return ref.url.startsWith(`github:${OFFICIAL_OWNER}/`) ? 'project' : 'community'
+  return isOrgOwned(ref) ? 'project' : 'community'
+}
+
+// Stamp a sub-list ref's author (display name) the same way trust is stamped: an org-owned ref is
+// authored by this org; anything else keeps whatever it declared, and a ref can override.
+function listAuthor(ref) {
+  if (ref.author) return ref.author
+  return isOrgOwned(ref) ? LIST_AUTHOR : undefined
+}
+
+// Stamp a sub-list ref's publisher (signing-key fingerprint) as the org key for an org-owned ref,
+// mirroring the top-level `publisher`: the same registry key signs the main list and its own
+// sub-lists. A ref can pin a different publisher (a list signed by another key) and it wins.
+function listRefPublisher(ref, publisher) {
+  if (ref.publisher) return ref.publisher
+  return isOrgOwned(ref) ? publisher : undefined
+}
+
+function stampListRef(ref, publisher) {
+  const author = listAuthor(ref)
+  const refPublisher = listRefPublisher(ref, publisher)
+  return {
+    ...ref,
+    trust: listTrust(ref),
+    ...(author !== undefined ? { author } : {}),
+    ...(refPublisher !== undefined ? { publisher: refPublisher } : {}),
+  }
 }
 
 function isCollectionAtom(atom) {
@@ -93,8 +129,8 @@ export function assemble(atoms, lists = [], publisher = 'PLACEHOLDER') {
   const updated = [...plugins, ...collections].reduce((latest, entry) => (entry.updated_at > latest ? entry.updated_at : latest), '')
   const sortedLists = [...lists]
     .sort((earlier, later) => earlier.name.localeCompare(later.name))
-    .map((ref) => ({ ...ref, trust: listTrust(ref) }))
-  return { schema_version: 1, name: 'Bespok3d Official', publisher, updated, plugins, collections, lists: sortedLists }
+    .map((ref) => stampListRef(ref, publisher))
+  return { schema_version: 1, name: 'Bespok3d Official', publisher, author: LIST_AUTHOR, updated, plugins, collections, lists: sortedLists }
 }
 
 // Placing the signature is a REPLACE, never an append. A run that produced no signature must DELETE the
