@@ -10,6 +10,7 @@
   "printer_specific": true,
   "published_at": "2025-07-30",
   "updated_at": "2026-06-28",
+  "author": "bespoked",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -28,5 +29,5 @@
   ],
   "require": [],
   "doc_url": "https://github.com/Bespok3d/u1-remote-screen/blob/main/remote-screen/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/486304781"
+  "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/487125495"
 }
