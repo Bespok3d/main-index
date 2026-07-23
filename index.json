@@ -322,6 +322,7 @@
       "printer_specific": true,
       "published_at": "2025-09-02",
       "updated_at": "2026-07-01",
+      "author": "bespoked",
       "requires": {
         "capabilities": [
           "rfid-spi"
@@ -334,7 +335,7 @@
       "homepage": "https://github.com/bespok3d-org/plugin-rfid-ntag",
       "changelog_url": "rfid-ntag/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/u1-enhanced-rfid/blob/main/rfid-ntag/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/486304520",
+      "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/487121083",
       "deps": []
     },
     {
