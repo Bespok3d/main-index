@@ -10,6 +10,7 @@
   "printer_specific": false,
   "published_at": "2026-06-09",
   "updated_at": "2026-06-09",
+  "author": "bespoked",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -40,5 +41,5 @@
   "changelog_url": "panda-breath/doc/CHANGELOG.md",
   "require": [],
   "doc_url": "https://github.com/Bespok3d/panda-breath/blob/main/panda-breath/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/486304467"
+  "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/487120703"
 }
