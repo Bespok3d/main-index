@@ -2,6 +2,7 @@
   "schema_version": 1,
   "name": "Bespok3d Official",
   "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+  "author": "bespoked",
   "updated": "2026-07-17",
   "plugins": [
     {
@@ -525,52 +526,72 @@
     {
       "name": "Material Tags",
       "url": "github:Bespok3d/material-tags/index.json",
-      "trust": "project"
+      "trust": "project",
+      "author": "bespoked",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
     },
     {
       "name": "Networking",
       "url": "github:Bespok3d/networking/index.json",
-      "trust": "project"
+      "trust": "project",
+      "author": "bespoked",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
     },
     {
       "name": "Reference Python Plugins",
       "url": "github:Bespok3d/reference-python-plugins/index.json",
-      "trust": "project"
+      "trust": "project",
+      "author": "bespoked",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
     },
     {
       "name": "U1 AFC Lite",
       "url": "github:Bespok3d/u1-afc-lite/index.json",
-      "trust": "project"
+      "trust": "project",
+      "author": "bespoked",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
     },
     {
       "name": "U1 Camera Configs",
       "url": "github:Bespok3d/u1-camera-configs/index.json",
-      "trust": "project"
+      "trust": "project",
+      "author": "bespoked",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
     },
     {
       "name": "U1 Extras",
       "url": "github:Bespok3d/u1-extras/index.json",
-      "trust": "project"
+      "trust": "project",
+      "author": "bespoked",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
     },
     {
       "name": "U1 Faulty Toolhead Bypass",
       "url": "github:Bespok3d/u1-faulty-toolhead/index.json",
-      "trust": "project"
+      "trust": "project",
+      "author": "bespoked",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
     },
     {
       "name": "U1 Force Macros",
       "url": "github:Bespok3d/u1-force-macros/index.json",
-      "trust": "project"
+      "trust": "project",
+      "author": "bespoked",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
     },
     {
       "name": "U1 Klipper Config Enhancers",
       "url": "github:Bespok3d/u1-klipper-config-enhancers/index.json",
-      "trust": "project"
+      "trust": "project",
+      "author": "bespoked",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
     },
     {
       "name": "U1 Motion Tweaks",
       "url": "github:Bespok3d/u1-motion-tweaks/index.json",
-      "trust": "project"
+      "trust": "project",
+      "author": "bespoked",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
     }
   ]
 }
