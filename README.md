@@ -1,8 +1,8 @@
 # main-index
 
 The official **Bespok3d** plugin list. The app fetches `index.json` from this repo and browses the
-catalog from it (no `.b3` download until install). It is a static, federated registry per ADR-0012;
-see the Bespok3d docs `doc/anatomy-of-a-list.md` and `doc/package-format.md`.
+catalog from it (no `.b3` download until install). It is a static, federated registry: the app fetches
+one index of lists, follows each list to its atoms, and never trusts an unsigned pair.
 
 ## How it works
 
@@ -18,7 +18,7 @@ index.json               the published catalog the app loads (generated; do not 
 
 Each atom carries a raw `require` (the services the plugin needs). `assemble.mjs` builds a
 service-provider map across all atoms and resolves each plugin's `deps` (store ids), then writes
-`index.json` in the ADR-0012 shape. A plugin's CI commits its atom here; the `assemble-index`
+`index.json`. A plugin's CI commits its atom here; the `assemble-index`
 workflow rebuilds `index.json` on every atom change.
 
 Adding/updating a plugin = a change to one `atoms/<name>.atom.json` (today the org's plugin CIs
