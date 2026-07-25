@@ -1,0 +1,34 @@
+name: pr-gate
+
+# Every pull request and every push to dev or main runs this repo's own gate. main-index's gate reuses
+# the shared detectors that live in lib_bespok3d, so that sibling is checked out beside this repo at the
+# path check.sh expects (../lib_bespok3d). lib_bespok3d is private, so a token that can read it is
+# needed; the org's central MAIN_INDEX_TOKEN grants that.
+#
+# Go-public note: fork PRs get no secret, so this lib_bespok3d checkout fails for external contributors.
+# Before flipping public, make lib_bespok3d public or fetch it with a read-only token.
+on:
+  pull_request:
+  push:
+    branches: [dev, main]
+  workflow_dispatch:
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: main-index
+      - uses: actions/checkout@v4
+        with:
+          repository: Bespok3d/lib_bespok3d
+          ref: main
+          token: ${{ secrets.MAIN_INDEX_TOKEN }}
+          path: lib_bespok3d
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run the gate
+        working-directory: main-index
+        run: bash scripts/check.sh
