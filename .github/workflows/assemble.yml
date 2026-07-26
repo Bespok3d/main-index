@@ -3,9 +3,14 @@ name: assemble-index
 # When an atom changes (a plugin's CI commits atoms/<name>.atom.json), rebuild the published
 # index.json from all atoms and commit it. The app fetches this index.json. index.json is at the
 # repo root (not under atoms/), so committing it does not re-trigger this workflow.
+#
+# Both branches are listed on purpose. A plugin's release job pushes its atom to this repo's DEFAULT
+# branch, which is dev, and the app reads the default branch too, so an atom that landed on dev with
+# this workflow watching main alone left index.json pointing at release assets that had already been
+# replaced, and the app got a 404 on every install of those plugins.
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
     paths:
       - atoms/**
       - lists/**
@@ -58,7 +63,9 @@ jobs:
             git commit -m "assemble index.json"
             git push && { echo "pushed index.json (attempt ${attempt})"; break; }
             [ "$attempt" = 5 ] && { echo "index.json push failed after ${attempt} attempts"; exit 1; }
-            echo "index.json push rejected; resyncing to remote main (attempt ${attempt})"
-            git fetch origin main
-            git reset --hard origin/main
+            # Resync to the branch this run is assembling, never a hardcoded main: a hardcoded reset
+            # on a dev run would discard the very atom commits that triggered it.
+            echo "index.json push rejected; resyncing to remote ${GITHUB_REF_NAME} (attempt ${attempt})"
+            git fetch origin "$GITHUB_REF_NAME"
+            git reset --hard "origin/$GITHUB_REF_NAME"
           done
