@@ -231,7 +231,7 @@
       "sw_version": "4.6.8",
       "changelog_url": "octoeverywhere/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/octoeverywhere/blob/main/octoeverywhere/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/487120629",
+      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/489807161",
       "deps": []
     },
     {
@@ -309,7 +309,7 @@
         }
       ],
       "doc_url": "https://github.com/Bespok3d/u1-remote-screen/blob/main/remote-screen/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/487125495",
+      "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/489807248",
       "deps": []
     },
     {
