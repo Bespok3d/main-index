@@ -116,7 +116,7 @@
         }
       ],
       "doc_url": "https://github.com/Bespok3d/fluidd-plugin/blob/main/fluidd/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/487120549",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/490662091",
       "deps": []
     },
     {
@@ -161,7 +161,7 @@
         }
       ],
       "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/487120024",
+      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/490661995",
       "deps": []
     },
     {
@@ -201,7 +201,7 @@
       ],
       "changelog_url": "moonraker-auth/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/moonraker-auth/blob/main/moonraker-auth/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/487120522",
+      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/490662051",
       "deps": []
     },
     {
@@ -231,7 +231,7 @@
       "sw_version": "4.6.8",
       "changelog_url": "octoeverywhere/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/octoeverywhere/blob/main/octoeverywhere/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/489807161",
+      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/490662003",
       "deps": []
     },
     {
@@ -276,7 +276,7 @@
       ],
       "changelog_url": "panda-breath/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/panda-breath/blob/main/panda-breath/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/487120703",
+      "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/490662001",
       "deps": []
     },
     {
@@ -501,7 +501,7 @@
       ],
       "changelog_url": "spoolman/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/487120734",
+      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/490662143",
       "deps": [
         "rfid-ntag"
       ]
@@ -530,7 +530,7 @@
       "conflicts": [],
       "changelog_url": "timelapse/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/blob/main/timelapse/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/487119880",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/490661893",
       "deps": []
     }
   ],
