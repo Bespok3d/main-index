@@ -21,6 +21,7 @@ run_check "assemble signing" node --test scripts/assemble-sign.test.mjs
 run_check "verify index"    node --test scripts/verify-index.test.mjs
 run_check "verify lists"    node --test scripts/verify-lists.test.mjs
 run_check "assemble workflow" node --test scripts/assemble-workflow.test.mjs
+run_check "register atoms"  node --test scripts/register-atoms-action.test.mjs
 
 workflow_pinning_check "$REPO_ROOT"
 # The atoms and lists carry the plugin descriptions users read in the app, so RULE ZERO covers the

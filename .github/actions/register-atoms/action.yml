@@ -41,7 +41,9 @@ runs:
         workdir="$(mktemp -d)"
         # Full clone (no --depth 1) so a rebase on a concurrent push from another plugin repo has the
         # history it needs. Several repos release into this one index and they do collide.
-        git clone "https://x-access-token:${MAIN_INDEX_TOKEN}@github.com/Bespok3d/main-index.git" "$workdir"
+        # --branch main: the atom has to land on the branch assembly and the app read, not on whatever
+        # the repo's default branch happens to be.
+        git clone --branch main "https://x-access-token:${MAIN_INDEX_TOKEN}@github.com/Bespok3d/main-index.git" "$workdir"
         cp "${atoms[@]}" "$workdir/atoms/"
         cd "$workdir"
         git config user.name "bespok3d-bot"
