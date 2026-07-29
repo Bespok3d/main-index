@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+# SPDX-License-Identifier: AGPL-3.0-or-later
 # The published index's own gate. main-index carries no application code: it is the assembled index
 # plus the scripts that assemble, sign and verify it, so its gate is those scripts' tests plus the
 # workspace-wide detectors. Exits non-zero on any failure.

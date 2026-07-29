@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // The published index and the signature beside it are ONE artifact, and the app refuses the pair when
 // they disagree: a mismatch is a dead store, not a wrong badge. The assemble run used to check only that
 // a .sig file EXISTED, which a hand-edit of index.json passes while leaving the pair broken, so these

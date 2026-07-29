@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // Assemble the published Bespok3d list (index.json) from the per-plugin atoms in atoms/. Each atom
 // is one catalog entry emitted by a plugin's CI, carrying a raw `require` so cross-plugin `deps` are
 // resolved HERE, across all atoms (a plugin requiring a service maps to whichever atom provides it).

@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // Read every sub-list this index sends the app to, the way the app reads it: fetch the exact served
 // index.json bytes and the detached signature beside them, and check the pair against the org public key
 // checked in under keys/. Nothing used to check this. A sub-list published with no signature, or signed

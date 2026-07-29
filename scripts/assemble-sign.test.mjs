@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // Proves index.json.sig verifies against the committed pubkey (keys/bespok3d-list.pub.asc).
 // The real private key is never committed or embedded here (REGISTRY_SIGNING_KEY is a GitHub
 // Actions secret only) -- the sign/verify round trip runs only when that env var is supplied

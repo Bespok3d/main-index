@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // Check the published pair the way a reader checks it: the exact bytes of index.json, the detached
 // signature sitting next to them, and the org public key checked in under keys/. The assemble run used to
 // check only that a .sig EXISTED, which passes just as happily for a signature made over different bytes,

@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // Unit tests for the collection (kind:collection) path through main-index assemble.mjs: a collection
 // atom committed here is partitioned into the published collections[] (kind stripped), and the
 // envelope always carries a collections[] slot. Run with: node --test scripts/assemble.test.mjs

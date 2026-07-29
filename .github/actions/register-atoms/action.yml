@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+# SPDX-License-Identifier: AGPL-3.0-or-later
 name: Register atoms in the Bespok3d index
 description: Commit a plugin repo's built atoms into Bespok3d/main-index, so they appear in the published index.json.
 author: Bespok3d

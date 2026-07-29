@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // The sweep over every sub-list the main index sends the app to. Nothing checked those lists before, so
 // the two states that actually shipped, a list published with no signature and a list signed over bytes
 // CI later rewrote, were invisible from here and green in every run. Each verdict names what a reader of

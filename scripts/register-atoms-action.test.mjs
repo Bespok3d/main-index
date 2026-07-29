@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // A plugin release pushes its atoms into this repo through the register-atoms action. Cloning with no
 // branch lands them on the repo's default branch, which is not the branch assembly signs and the app
 // reads, so the store keeps serving a stale index while every release looks green.

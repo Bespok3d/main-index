@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // The assembly workflow is the only thing that turns updated atoms into the index.json the app reads,
 // so the two ways it can silently stop doing that are guarded here rather than discovered as a 404 in
 // the store: watching a branch the atoms never land on, and resyncing a rejected push to a hardcoded

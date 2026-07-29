@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+# SPDX-License-Identifier: AGPL-3.0-or-later
 name: pr-gate
 
 # Every pull request and every push to dev or main runs this repo's own gate. main-index's gate reuses
