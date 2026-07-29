@@ -3,12 +3,12 @@
   "name": "Bespok3d Official",
   "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
   "author": "bespoked",
-  "updated": "2026-07-27",
+  "updated": "2026-07-28",
   "plugins": [
     {
       "name": "camera-hw-accel",
       "title": "Camera HW Accel",
-      "version": "0.1.8",
+      "version": "0.1.9",
       "description": "Tap into the SoC's video pipeline instead of CPU-encoding every frame. MJPEG over HTTP at /webcam, WebRTC at /webrtc; works on any browser, smooth 30fps even with two cameras attached.\n\nTo have these auto-registered as cameras in Fluidd and Mainsail (so you don't have to add them by hand under Settings → Cameras), also install b3d://bespok3d-org/webcam-builtin for the built-in MIPI camera and b3d://bespok3d-org/webcam-usb for the external USB camera.",
       "tagline": "HW-accelerated MJPEG and WebRTC streaming for MIPI & USB cameras.",
       "category": "camera",
@@ -16,7 +16,7 @@
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
       "printer_specific": true,
       "published_at": "2025-08-14",
-      "updated_at": "2026-07-17",
+      "updated_at": "2026-07-28",
       "author": "bespoked",
       "requires": {
         "capabilities": [
@@ -71,7 +71,7 @@
         }
       ],
       "doc_url": "https://github.com/Bespok3d/u1-hw-camera/blob/main/plugin/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/490662981",
+      "download_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/494337762",
       "deps": []
     },
     {
@@ -116,7 +116,7 @@
         }
       ],
       "doc_url": "https://github.com/Bespok3d/fluidd-plugin/blob/main/fluidd/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/490662091",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/494334420",
       "deps": []
     },
     {
@@ -161,7 +161,7 @@
         }
       ],
       "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/490661995",
+      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/494334580",
       "deps": []
     },
     {
@@ -201,7 +201,7 @@
       ],
       "changelog_url": "moonraker-auth/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/moonraker-auth/blob/main/moonraker-auth/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/490662051",
+      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/494334746",
       "deps": []
     },
     {
@@ -231,21 +231,21 @@
       "sw_version": "4.6.8",
       "changelog_url": "octoeverywhere/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/octoeverywhere/blob/main/octoeverywhere/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/490662003",
+      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/494335021",
       "deps": []
     },
     {
       "name": "panda-breath",
       "title": "Panda Breath",
-      "version": "0.1.0",
-      "description": "Drives a BIQU Panda Breath chamber-heating device as a standard Klipper heater. Adds a Klipper extra (panda_breath.py) that talks to the Panda Breath over its OEM WebSocket protocol, plus a [heater_generic] so you control chamber heat from the web UI and slicer like any other heater. Point it at your Panda Breath's host. The Panda Breath hardware is separate. Experimental: not yet verified on a physical device.",
+      "version": "0.1.1",
+      "description": "Drives a BIQU Panda Breath chamber-heating device as a standard Klipper heater. Adds a Klipper extra (panda_breath.py) that talks to the Panda Breath over its OEM WebSocket protocol, plus a [heater_generic] so you control chamber heat from the web UI and slicer like any other heater. Point it at your Panda Breath's host. The Panda Breath hardware is separate. Experimental: we have no Panda Breath to test against, so it is unproven on the real device.",
       "tagline": "Chamber heating with a BIQU Panda Breath, as a Klipper heater.",
       "category": "sensors",
       "channel": "experiment",
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
       "printer_specific": false,
       "published_at": "2026-06-09",
-      "updated_at": "2026-06-09",
+      "updated_at": "2026-07-28",
       "author": "bespoked",
       "requires": {
         "capabilities": [
@@ -276,13 +276,13 @@
       ],
       "changelog_url": "panda-breath/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/panda-breath/blob/main/panda-breath/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/490662001",
+      "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/494335119",
       "deps": []
     },
     {
       "name": "remote-screen",
       "title": "Remote Screen",
-      "version": "0.1.21",
+      "version": "0.1.22",
       "description": "Mirror the printer's on-device touchscreen to a browser. Low-overhead framebuffer capture, no UI changes on the device side.\n\nThe screen also appears as a tile inside Fluidd and Mainsail, alongside your cameras, with no manual setup: the plugin registers the mirror as a Moonraker [webcam] iframe entry sized for the U1's 480:320 display. You pick the name it shows under when you install it.",
       "tagline": "Stream your printer's framebuffer as MJPEG.",
       "category": "screen",
@@ -290,7 +290,7 @@
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
       "printer_specific": true,
       "published_at": "2025-07-30",
-      "updated_at": "2026-07-27",
+      "updated_at": "2026-07-28",
       "author": "bespoked",
       "requires": {
         "capabilities": [
@@ -324,13 +324,13 @@
         }
       ],
       "doc_url": "https://github.com/Bespok3d/u1-remote-screen/blob/main/remote-screen/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/491825895",
+      "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/494336619",
       "deps": []
     },
     {
       "name": "rfid-ntag",
       "title": "RFID Spool Reader",
-      "version": "0.1.7",
+      "version": "0.1.8",
       "description": "USB RFID reader picks up OpenSpool-encoded NTAG215 cards. Writes the current spool's metadata to rfid_data.json on every card event so the rest of the stack just knows.",
       "tagline": "NTAG215/OpenSpool RFID: your filament knows what it is.",
       "category": "filament",
@@ -338,7 +338,7 @@
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
       "printer_specific": true,
       "published_at": "2025-09-02",
-      "updated_at": "2026-07-01",
+      "updated_at": "2026-07-28",
       "author": "bespoked",
       "requires": {
         "capabilities": [
@@ -352,7 +352,7 @@
       "homepage": "https://github.com/bespok3d-org/plugin-rfid-ntag",
       "changelog_url": "rfid-ntag/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/u1-enhanced-rfid/blob/main/rfid-ntag/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/490662342",
+      "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/494335951",
       "deps": []
     },
     {
@@ -516,7 +516,7 @@
       ],
       "changelog_url": "spoolman/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/490662143",
+      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/494336175",
       "deps": [
         "rfid-ntag"
       ]
@@ -545,7 +545,7 @@
       "conflicts": [],
       "changelog_url": "timelapse/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/blob/main/timelapse/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/490661893",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/494334565",
       "deps": []
     }
   ],
