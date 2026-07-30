@@ -18,6 +18,7 @@ cd "$REPO_ROOT" || exit 1
 echo ""
 echo "main-index gate"
 
+run_check "list ref urls"   node --test scripts/list-ref-url.test.mjs
 run_check "assemble"        node --test scripts/assemble.test.mjs
 run_check "assemble signing" node --test scripts/assemble-sign.test.mjs
 run_check "verify index"    node --test scripts/verify-index.test.mjs

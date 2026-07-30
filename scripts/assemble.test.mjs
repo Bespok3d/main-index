@@ -61,6 +61,14 @@ test('assemble stamps org author and the signer publisher onto an org-owned list
   assert.deepEqual(Object.keys(index.lists[0]), ['name', 'url', 'trust', 'author', 'publisher'])
 })
 
+test('assemble stamps an org list published as a release asset exactly like one read from the repo', () => {
+  const released = 'https://github.com/Bespok3d/material-tags/releases/latest/download/index.json'
+  const index = assemble([], [{ name: 'Material Tags', url: released }], 'AABBCCDD')
+  assert.equal(index.lists[0].trust, 'project')
+  assert.equal(index.lists[0].author, 'bespoked')
+  assert.equal(index.lists[0].publisher, 'AABBCCDD')
+})
+
 test('assemble leaves a third-party list ref without an org author or publisher, and lets a ref override', () => {
   const community = assemble([], [{ name: 'Acme Tags', url: 'github:Acme/tags/index.json' }], 'AABBCCDD')
   assert.equal(community.lists[0].trust, 'community')

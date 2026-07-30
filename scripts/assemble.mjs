@@ -11,6 +11,8 @@ import { readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
+import { listRefOwner } from './list-ref-url.mjs'
+
 // Lazy dynamic import of the sibling b3-builder repo's built core, mirroring
 // Bespok3d/scripts/app-bundle.mjs's importBuilderCore -- one signing implementation, not two.
 export async function importBuilderCore(scriptDir) {
@@ -63,7 +65,7 @@ const OFFICIAL_OWNER = 'Bespok3d'
 const LIST_AUTHOR = 'bespoked'
 
 function isOrgOwned(ref) {
-  return ref.url.startsWith(`github:${OFFICIAL_OWNER}/`)
+  return listRefOwner(ref.url) === OFFICIAL_OWNER
 }
 
 // Trust a sub-list by who published it: an org-owned ref is org-published (project); anything else
