@@ -1,7 +1,7 @@
 {
   "name": "spoolman",
   "title": "Spoolman Bridge",
-  "version": "0.1.29",
+  "version": "0.1.30",
   "description": "Spoolman for the U1 multi-tool: the active spool follows the tag the printer reads or the spool you pick, color and material reach the screen and AFC panel, tags are matched by their hardware UID, and you can record which printer each spool is on. Filament length per print is logged automatically.",
   "tagline": "Zero-config Spoolman: active spool always tracked.",
   "category": "filament",
@@ -165,5 +165,5 @@
     }
   ],
   "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/494336175"
+  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/495660522"
 }
