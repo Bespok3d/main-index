@@ -330,7 +330,7 @@
     {
       "name": "rfid-ntag",
       "title": "RFID Spool Reader",
-      "version": "0.1.8",
+      "version": "0.1.9",
       "description": "USB RFID reader picks up OpenSpool-encoded NTAG215 cards. Writes the current spool's metadata to rfid_data.json on every card event so the rest of the stack just knows.",
       "tagline": "NTAG215/OpenSpool RFID: your filament knows what it is.",
       "category": "filament",
@@ -352,13 +352,13 @@
       "homepage": "https://github.com/bespok3d-org/plugin-rfid-ntag",
       "changelog_url": "rfid-ntag/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/u1-enhanced-rfid/blob/main/rfid-ntag/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/494335951",
+      "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/495660737",
       "deps": []
     },
     {
       "name": "spoolman",
       "title": "Spoolman Bridge",
-      "version": "0.1.29",
+      "version": "0.1.30",
       "description": "Spoolman for the U1 multi-tool: the active spool follows the tag the printer reads or the spool you pick, color and material reach the screen and AFC panel, tags are matched by their hardware UID, and you can record which printer each spool is on. Filament length per print is logged automatically.",
       "tagline": "Zero-config Spoolman: active spool always tracked.",
       "category": "filament",
@@ -516,7 +516,7 @@
       ],
       "changelog_url": "spoolman/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/494336175",
+      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/495660522",
       "deps": [
         "rfid-ntag"
       ]
