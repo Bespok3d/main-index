@@ -52,7 +52,7 @@
       "userEditable": true
     }
   ],
-  "changelog_url": "camera-hw-accel/doc/CHANGELOG.md",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/496544864",
   "endpoints": [
     {
       "label": "Camera 1",
@@ -64,6 +64,6 @@
     }
   ],
   "require": [],
-  "doc_url": "https://github.com/Bespok3d/u1-hw-camera/blob/main/plugin/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/496459518"
+  "doc_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/496544885",
+  "download_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/496544825"
 }
