@@ -32,7 +32,7 @@
     }
   ],
   "sw_version": "1.37.2",
-  "changelog_url": "fluidd/doc/CHANGELOG.md",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/496550807",
   "endpoints": [
     {
       "label": "Fluidd",
@@ -40,6 +40,6 @@
     }
   ],
   "require": [],
-  "doc_url": "https://github.com/Bespok3d/fluidd-plugin/blob/main/fluidd/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/494334420"
+  "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/496550816",
+  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/496550803"
 }
