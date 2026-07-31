@@ -588,7 +588,7 @@
     },
     {
       "name": "U1 Extras",
-      "url": "github:Bespok3d/u1-extras/index.json",
+      "url": "https://github.com/Bespok3d/u1-extras/releases/latest/download/index.json",
       "trust": "project",
       "author": "bespoked",
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
