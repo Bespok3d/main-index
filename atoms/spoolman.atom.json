@@ -157,13 +157,13 @@
       "scope": "printer"
     }
   ],
-  "changelog_url": "spoolman/doc/CHANGELOG.md",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/496539658",
   "require": [
     {
       "service": "rfid-service",
       "cardinality": "one"
     }
   ],
-  "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/495660522"
+  "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/496539668",
+  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/496539640"
 }
