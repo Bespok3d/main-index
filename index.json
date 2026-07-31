@@ -514,9 +514,9 @@
           "scope": "printer"
         }
       ],
-      "changelog_url": "spoolman/doc/CHANGELOG.md",
-      "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/495660522",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/496539658",
+      "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/496539668",
+      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/496539640",
       "deps": [
         "rfid-ntag"
       ]
