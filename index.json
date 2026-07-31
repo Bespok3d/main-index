@@ -602,7 +602,7 @@
     },
     {
       "name": "U1 Force Macros",
-      "url": "github:Bespok3d/u1-force-macros/index.json",
+      "url": "https://github.com/Bespok3d/u1-force-macros/releases/latest/download/index.json",
       "trust": "project",
       "author": "bespoked",
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
