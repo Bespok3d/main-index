@@ -108,15 +108,15 @@
         }
       ],
       "sw_version": "1.37.2",
-      "changelog_url": "fluidd/doc/CHANGELOG.md",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/496550807",
       "endpoints": [
         {
           "label": "Fluidd",
           "path": "/"
         }
       ],
-      "doc_url": "https://github.com/Bespok3d/fluidd-plugin/blob/main/fluidd/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/494334420",
+      "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/496550816",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/496550803",
       "deps": []
     },
     {
@@ -560,7 +560,7 @@
     },
     {
       "name": "Networking",
-      "url": "github:Bespok3d/networking/index.json",
+      "url": "https://github.com/Bespok3d/networking/releases/latest/download/index.json",
       "trust": "project",
       "author": "bespoked",
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
