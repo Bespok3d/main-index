@@ -199,9 +199,9 @@
           "userEditable": true
         }
       ],
-      "changelog_url": "moonraker-auth/doc/CHANGELOG.md",
-      "doc_url": "https://github.com/Bespok3d/moonraker-auth/blob/main/moonraker-auth/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/494334746",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/496534302",
+      "doc_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/496534317",
+      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/496534287",
       "deps": []
     },
     {
@@ -543,9 +543,9 @@
         "timelapse"
       ],
       "conflicts": [],
-      "changelog_url": "timelapse/doc/CHANGELOG.md",
-      "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/blob/main/timelapse/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/494334565",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/496534190",
+      "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/496534198",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/496534177",
       "deps": []
     }
   ],
@@ -616,7 +616,7 @@
     },
     {
       "name": "U1 Motion Tweaks",
-      "url": "github:Bespok3d/u1-motion-tweaks/index.json",
+      "url": "https://github.com/Bespok3d/u1-motion-tweaks/releases/latest/download/index.json",
       "trust": "project",
       "author": "bespoked",
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
