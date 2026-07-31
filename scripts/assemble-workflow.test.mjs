@@ -12,6 +12,7 @@ import { dirname, join } from 'node:path'
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..')
 const workflow = readFileSync(join(repoRoot, '.github/workflows/assemble.yml'), 'utf-8')
+const registerAtoms = readFileSync(join(repoRoot, '.github/actions/register-atoms/action.yml'), 'utf-8')
 
 function pushBranches() {
   const match = workflow.match(/^\s*branches:\s*\[([^\]]*)\]/m)
@@ -20,10 +21,18 @@ function pushBranches() {
   return match[1].split(',').map((branch) => branch.trim())
 }
 
-test('assembly watches both the default branch the app reads and main', () => {
-  const branches = pushBranches()
-  assert.ok(branches.includes('dev'), 'atoms land on dev, so assembly must run there or index.json goes stale')
-  assert.ok(branches.includes('main'), 'main must keep assembling too')
+// The branch a plugin's release job puts its atom on, read off the action that puts it there, so the
+// two halves of one mechanism cannot drift apart: teaching register-atoms a different branch without
+// teaching assembly the same one is what leaves index.json frozen while atoms keep arriving.
+function atomLandingBranch() {
+  const match = registerAtoms.match(/git clone --branch (\S+)/)
+  assert.ok(match, 'register-atoms clones without naming a branch')
+
+  return match[1]
+}
+
+test('assembly watches exactly the branch atoms land on', () => {
+  assert.deepEqual(pushBranches(), [atomLandingBranch()])
 })
 
 test('a rejected push resyncs to the branch being assembled, not a hardcoded main', () => {

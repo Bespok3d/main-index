@@ -6,13 +6,13 @@ name: assemble-index
 # index.json from all atoms and commit it. The app fetches this index.json. index.json is at the
 # repo root (not under atoms/), so committing it does not re-trigger this workflow.
 #
-# Both branches are listed on purpose. A plugin's release job pushes its atom to this repo's DEFAULT
-# branch, which is dev, and the app reads the default branch too, so an atom that landed on dev with
-# this workflow watching main alone left index.json pointing at release assets that had already been
-# replaced, and the app got a 404 on every install of those plugins.
+# main only, because main is the whole published path: the register-atoms action clones this repo with
+# --branch main to land an atom, and the app reads index.json through the contents API pinned at
+# ?ref=main. Assembling on dev as well wrote a second index.json that nothing serves, onto the branch
+# the maintainer works on, which is what drove main and dev apart.
 on:
   push:
-    branches: [main, dev]
+    branches: [main]
     paths:
       - atoms/**
       - lists/**
