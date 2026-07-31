@@ -153,15 +153,15 @@
         }
       ],
       "sw_version": "2.18.0",
-      "changelog_url": "mainsail/doc/CHANGELOG.md",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/496549663",
       "endpoints": [
         {
           "label": "Mainsail",
           "path": ":81/"
         }
       ],
-      "doc_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/494334580",
+      "doc_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/496549682",
+      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/496549652",
       "deps": []
     },
     {
