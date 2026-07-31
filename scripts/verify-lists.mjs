@@ -10,16 +10,9 @@ import { readFile, readdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { importBuilderCore } from './assemble.mjs'
+import { servedListUrl } from './list-ref-url.mjs'
 
-const GITHUB_LIST_URL = /^github:([^/]+)\/([^/]+)\/(.+)$/
 const GITHUB_RAW_HEADERS = { Accept: 'application/vnd.github.raw', 'X-GitHub-Api-Version': '2022-11-28' }
-
-function contentsUrl(url) {
-  const parts = GITHUB_LIST_URL.exec(url)
-  if (!parts) throw new Error(`${url} is not a github: list url, and this sweep can only read those`)
-
-  return `https://api.github.com/repos/${parts[1]}/${parts[2]}/contents/${parts[3]}`
-}
 
 function readerHeaders() {
   const token = process.env.GITHUB_TOKEN
@@ -37,10 +30,10 @@ async function fetchServed(url) {
 // Unreachable is not the same as unsigned, and neither is the same as a bad signature. Each verdict names
 // what a reader of that list would actually see, because the fix differs: republish, sign, or investigate.
 export async function verdictForList(listUrl, armoredPublicKey, builder) {
-  const contents = contentsUrl(listUrl)
-  const servedBytes = await fetchServed(contents)
+  const served = servedListUrl(listUrl)
+  const servedBytes = await fetchServed(served)
   if (servedBytes === null) return 'no index.json published'
-  const armoredSignature = await fetchServed(`${contents}.sig`)
+  const armoredSignature = await fetchServed(`${served}.sig`)
   if (armoredSignature === null) return 'no signature beside it: the app can only show this list as unknown'
   const verified = await builder.verifyDetached(servedBytes, new TextDecoder().decode(armoredSignature), armoredPublicKey)
 
