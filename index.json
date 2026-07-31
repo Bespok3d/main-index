@@ -581,7 +581,7 @@
     },
     {
       "name": "U1 Camera Configs",
-      "url": "github:Bespok3d/u1-camera-configs/index.json",
+      "url": "https://github.com/Bespok3d/u1-camera-configs/releases/latest/download/index.json",
       "trust": "project",
       "author": "bespoked",
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
