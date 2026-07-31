@@ -21,8 +21,8 @@
   ],
   "conflicts": [],
   "homepage": "https://github.com/bespok3d-org/plugin-rfid-ntag",
-  "changelog_url": "rfid-ntag/doc/CHANGELOG.md",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/496542759",
   "require": [],
-  "doc_url": "https://github.com/Bespok3d/u1-enhanced-rfid/blob/main/rfid-ntag/doc/README.md",
-  "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/495660737"
+  "doc_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/496542764",
+  "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/496542718"
 }
