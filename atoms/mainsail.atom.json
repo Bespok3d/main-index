@@ -1,7 +1,7 @@
 {
   "name": "mainsail",
   "title": "Mainsail",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Installs Mainsail v2.18.0 as a second web frontend. Runs on port 81 by default so Fluidd stays on port 80. Set port 80 to make Mainsail primary; Fluidd shifts to 81 automatically.",
   "tagline": "Mainsail web interface alongside Fluidd, on your chosen port.",
   "category": "ui",
@@ -29,10 +29,23 @@
       "hint": "Auto-assigned. Make Mainsail primary to serve it on port 80.",
       "required": true,
       "userEditable": true
+    },
+    {
+      "key": "MAINSAIL_HIDE_VIRTUAL_TOOLS",
+      "label": "Hide unused tool buttons",
+      "type": "select",
+      "options": [
+        "off",
+        "on"
+      ],
+      "default": "off",
+      "hint": "Off by default. On, the Extruder panel shows one button per lane the printer actually has, instead of all 32 the firmware keeps room for and the saved copy the printer keeps of each. The tools are still there and a macro can still call them. Reload the page after changing this.",
+      "userEditable": true,
+      "scope": "printer"
     }
   ],
   "sw_version": "2.18.0",
-  "changelog_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/496549663",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/498191855",
   "endpoints": [
     {
       "label": "Mainsail",
@@ -40,6 +53,6 @@
     }
   ],
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/496549682",
-  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/496549652"
+  "doc_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/498191861",
+  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/498191849"
 }
