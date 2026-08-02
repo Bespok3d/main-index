@@ -20,7 +20,7 @@
     "moonraker-auth"
   ],
   "conflicts": [],
-  "min_daemon_version": "0.10.1-dev",
+  "min_daemon_version": "0.10.1",
   "config": [
     {
       "key": "FORCE_LOGINS",
@@ -33,8 +33,8 @@
       "userEditable": true
     }
   ],
-  "changelog_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/496534302",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/499090480",
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/496534317",
-  "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/496534287"
+  "doc_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/499090493",
+  "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/499090463"
 }
