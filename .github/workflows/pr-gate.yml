@@ -31,15 +31,20 @@ jobs:
         with:
           node-version: '20'
       # The gate's tests sign and verify through b3-builder's core, which assemble.mjs imports from a
-      # sibling b3-builder/ dir. b3-builder is private and this repo's GITHUB_TOKEN cannot check it out,
-      # so it is reached through `uses:` (what the org Actions access setting permits) and symlinked into
-      # place, exactly as checks.yml and assemble.yml already do.
+      # sibling b3-builder/ dir. It is reached through `uses:` at a pinned SHA and symlinked into place,
+      # exactly as checks.yml and assemble.yml already do.
       - uses: Bespok3d/b3-builder/.github/actions/core@68f258d18bac6809acba3f27048bbd691ec6f814  # main @ 2026-07-21
         id: builder-core
       - name: Place the built core beside main-index
         run: ln -sfn "${{ steps.builder-core.outputs.core-root }}" b3-builder
       # Passed in because the sign/verify round trip SKIPS without a key, and a test that skips in CI
       # proves nothing about the key that actually signs the published index.
+      #
+      # A pull request from a fork gets an empty secrets context, so this is empty there and the round
+      # trip skips, printing its reason. That is deliberate: a fork cannot be handed the signing key, and
+      # the rest of the gate is the only check an outside contributor gets, so it still runs. A fork PR
+      # being green therefore says the index assembles, NOT that the real key signs it. The push to main
+      # is where that is proven, and nothing publishes from a fork PR.
       - name: Run the gate
         working-directory: main-index
         env:

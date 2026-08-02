@@ -22,14 +22,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      # b3-builder is private and this repo's GITHUB_TOKEN cannot check it out; `uses:` is the reach the
-      # org Actions access setting permits, exactly as in assemble.yml.
+      # b3-builder's core is reached through `uses:` at a pinned SHA, exactly as in assemble.yml.
       - uses: Bespok3d/b3-builder/.github/actions/core@68f258d18bac6809acba3f27048bbd691ec6f814  # main @ 2026-07-21
         id: builder-core
       - name: Place the built core beside main-index
         run: ln -sfn "${{ steps.builder-core.outputs.core-root }}" b3-builder
       # The signing key is passed in because the sign/verify round trip SKIPS without it, and a test that
       # skips in CI proves nothing about the key that actually signs the published index.
+      #
+      # A pull request from a fork gets an empty secrets context, so this is empty there and the round
+      # trip skips, printing its reason. A fork cannot be handed the signing key, and these tests are the
+      # only check an outside contributor gets, so they still run. A fork PR being green therefore says
+      # the tests pass, NOT that the real key signs the index; the push to main proves that.
       - name: Run the repo tests
         working-directory: main-index
         env:
