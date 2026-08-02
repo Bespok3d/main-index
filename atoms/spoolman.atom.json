@@ -20,7 +20,7 @@
     "spoolman-service"
   ],
   "conflicts": [],
-  "min_daemon_version": "0.10.1-dev",
+  "min_daemon_version": "0.10.1",
   "homepage": "https://github.com/bespok3d-org/plugin-spoolman",
   "macros": [
     {
@@ -170,13 +170,13 @@
       "scope": "printer"
     }
   ],
-  "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499013736",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499090634",
   "require": [
     {
       "service": "rfid-service",
       "cardinality": "one"
     }
   ],
-  "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499013756",
-  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499013725"
+  "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499090655",
+  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499090628"
 }
