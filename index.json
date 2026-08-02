@@ -212,7 +212,7 @@
         "moonraker-auth"
       ],
       "conflicts": [],
-      "min_daemon_version": "0.10.1-dev",
+      "min_daemon_version": "0.10.1",
       "config": [
         {
           "key": "FORCE_LOGINS",
@@ -225,9 +225,9 @@
           "userEditable": true
         }
       ],
-      "changelog_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/496534302",
-      "doc_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/496534317",
-      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/496534287",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/499090480",
+      "doc_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/499090493",
+      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/499090463",
       "deps": []
     },
     {
@@ -252,12 +252,12 @@
         "octoeverywhere"
       ],
       "conflicts": [],
-      "min_daemon_version": "0.10.33-dev",
+      "min_daemon_version": "0.10.33",
       "homepage": "https://octoeverywhere.com",
       "sw_version": "4.6.8",
-      "changelog_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/496534761",
-      "doc_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/496534773",
-      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/496534743",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/499090605",
+      "doc_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/499090611",
+      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/499090585",
       "deps": []
     },
     {
@@ -403,7 +403,7 @@
         "spoolman-service"
       ],
       "conflicts": [],
-      "min_daemon_version": "0.10.1-dev",
+      "min_daemon_version": "0.10.1",
       "homepage": "https://github.com/bespok3d-org/plugin-spoolman",
       "macros": [
         {
@@ -553,9 +553,9 @@
           "scope": "printer"
         }
       ],
-      "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499013736",
-      "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499013756",
-      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499013725",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499090634",
+      "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499090655",
+      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499090628",
       "deps": [
         "rfid-ntag"
       ]
