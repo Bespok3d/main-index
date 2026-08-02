@@ -1,7 +1,7 @@
 {
   "name": "spoolman",
   "title": "Spoolman Bridge",
-  "version": "0.1.30",
+  "version": "0.1.31",
   "description": "Spoolman for the U1 multi-tool: the active spool follows the tag the printer reads or the spool you pick, color and material reach the screen and AFC panel, tags are matched by their hardware UID, and you can record which printer each spool is on. Filament length per print is logged automatically.",
   "tagline": "Zero-config Spoolman: active spool always tracked.",
   "category": "filament",
@@ -134,6 +134,19 @@
       "scope": "global"
     },
     {
+      "key": "CARD_UIDS_WRITE_FORM",
+      "label": "How tag UIDs are stored in Spoolman",
+      "type": "select",
+      "options": [
+        "array",
+        "comma_separated"
+      ],
+      "default": "array",
+      "hint": "array: a proper list, the right shape and the default. comma_separated: the same UIDs flattened into one comma-separated value, for when another app reading this field cannot handle a list. Either form is read back correctly here.",
+      "userEditable": true,
+      "scope": "global"
+    },
+    {
       "key": "SPOOLMAN_TRACK_LOCATION",
       "label": "Track spool location in Spoolman",
       "type": "select",
@@ -157,13 +170,13 @@
       "scope": "printer"
     }
   ],
-  "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/496539658",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499013736",
   "require": [
     {
       "service": "rfid-service",
       "cardinality": "one"
     }
   ],
-  "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/496539668",
-  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/496539640"
+  "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499013756",
+  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/499013725"
 }
