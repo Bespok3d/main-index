@@ -22,7 +22,7 @@
   "conflicts": [
     "webcam-screen"
   ],
-  "min_daemon_version": "0.10.1-dev",
+  "min_daemon_version": "0.10.1",
   "config": [
     {
       "key": "REMOTE_SCREEN_NAME",
@@ -35,7 +35,7 @@
       "userEditable": true
     }
   ],
-  "changelog_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/496547417",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/499090910",
   "endpoints": [
     {
       "label": "Remote screen",
@@ -43,6 +43,6 @@
     }
   ],
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/496547426",
-  "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/496547407"
+  "doc_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/499090925",
+  "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/499090902"
 }
