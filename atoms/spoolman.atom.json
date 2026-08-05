@@ -170,15 +170,13 @@
       "scope": "printer"
     }
   ],
-  "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/501890309",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/503041024",
   "require": [
     {
       "service": "rfid-service",
       "cardinality": "one"
     }
   ],
-  "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/501890327",
-  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/501890298",
-  "license_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/LICENSE",
-  "attributions": "# Attributions - spoolman\n\n**Plugin author:** Bespok3d (unlucio). This is a Klipper and Moonraker helper that talks to a Spoolman server; Spoolman itself is Daniel Hultgren (Donkie) and contributors, and none of its code is here\n\nConnects the printer to a Spoolman filament server.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Spoolman | Daniel Hultgren (Donkie) and contributors | AGPL-3.0 | yes | no |\n\nSpoolman runs on your own machine or server; nothing from it ships inside this plugin. The Moonraker\nproxy component here is written from scratch. Upstream: https://github.com/Donkie/Spoolman\n"
+  "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/503041034",
+  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/503041014"
 }
