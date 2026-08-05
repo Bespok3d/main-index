@@ -45,7 +45,7 @@
     }
   ],
   "sw_version": "2.18.0",
-  "changelog_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/503041043",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/503124739",
   "endpoints": [
     {
       "label": "Mainsail",
@@ -53,8 +53,6 @@
     }
   ],
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/503041055",
-  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/503041027",
-  "license_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/LICENSE",
-  "attributions": "# Attributions - mainsail\n\n**Plugin author:** the mainsail-crew, packaged by Bespok3d\n\nInstalls the Mainsail web interface.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Mainsail | the mainsail-crew | GPL-3.0 | yes | yes |\n\nThe released Mainsail web bundle is shipped verbatim inside this plugin (currently v2.18.0).\nUpstream: https://github.com/mainsail-crew/mainsail\n\nThe U1 packaging approach follows the Extended Firmware overlay `63-app-mainsail` (paxx12), GPL-3.0.\n"
+  "doc_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/503124760",
+  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/503124727"
 }
