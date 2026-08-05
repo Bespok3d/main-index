@@ -11,6 +11,8 @@
   "published_at": "2026-06-09",
   "updated_at": "2026-07-28",
   "author": "bespoked",
+  "attributions": "# Attributions - panda-breath\n\n**Plugin author:** justinh-rahb (BIQU / BIGTREETECH hardware), packaged by Bespok3d; Panda Breath support on the U1 was first done by @justinh-rahb in the Extended Firmware overlay `37-feature-panda-breath`\n\nDrives a BIQU Panda Breath chamber heater.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| pandabreath-klipper | justinh-rahb | GPL-3.0 | yes | yes |\n| Panda Breath hardware | BIQU / BIGTREETECH | hardware | yes | no |\n\n`panda_breath.py` is shipped inside this plugin at pinned commit\n`2fc8c03b918519060f0a2cc6b40a56fbc232e74f`, unchanged apart from normalising a dash character.\nUpstream: https://github.com/justinh-rahb/pandabreath-klipper\n\nPorted from the Extended Firmware overlay `37-feature-panda-breath`, GPL-3.0, whose commits are by\npaxx12 and one further contributor recorded in that project's own history; the chamber-heater work is\ncredited to @justinh-rahb.\n",
+  "license_url": "https://github.com/Bespok3d/panda-breath/blob/dev/panda-breath/doc/LICENSE",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -38,10 +40,8 @@
       "userEditable": true
     }
   ],
-  "changelog_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/496553979",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/503159776",
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/496553987",
-  "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/496553971",
-  "license_url": "https://github.com/Bespok3d/panda-breath-plugin/blob/main/panda-breath/doc/LICENSE",
-  "attributions": "# Attributions - panda-breath\n\n**Plugin author:** justinh-rahb (BIQU / BIGTREETECH hardware), packaged by Bespok3d; Panda Breath support on the U1 was first done by @justinh-rahb in the Extended Firmware overlay `37-feature-panda-breath`\n\nDrives a BIQU Panda Breath chamber heater.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| pandabreath-klipper | justinh-rahb | GPL-3.0 | yes | yes |\n| Panda Breath hardware | BIQU / BIGTREETECH | hardware | yes | no |\n\n`panda_breath.py` is shipped inside this plugin at pinned commit\n`2fc8c03b918519060f0a2cc6b40a56fbc232e74f`, unchanged apart from normalising a dash character.\nUpstream: https://github.com/justinh-rahb/pandabreath-klipper\n\nPorted from the Extended Firmware overlay `37-feature-panda-breath`, GPL-3.0, whose commits are by\npaxx12 and one further contributor recorded in that project's own history; the chamber-heater work is\ncredited to @justinh-rahb.\n"
+  "doc_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/503159787",
+  "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/503159769"
 }
