@@ -54,5 +54,7 @@
   ],
   "require": [],
   "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/498191890",
-  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/498191869"
+  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/498191869",
+  "license_url": "https://github.com/Bespok3d/fluidd-plugin/blob/main/fluidd/doc/LICENSE",
+  "attributions": "# Attributions - fluidd\n\n**Plugin author:** the Fluidd project (fluidd-core), packaged by Bespok3d\n\nInstalls the Fluidd web interface.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Fluidd | the Fluidd project (fluidd-core), started by Craig Bassett (cadriel) | GPL-3.0 | yes | yes |\n\nThe released Fluidd web bundle is shipped verbatim inside this plugin (currently v1.37.3). Upstream:\nhttps://github.com/fluidd-core/fluidd\n\nThe U1 packaging approach follows the Extended Firmware overlay `62-app-fluidd` (paxx12), GPL-3.0.\n"
 }

@@ -23,5 +23,7 @@
   "changelog_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/496534190",
   "require": [],
   "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/496534198",
-  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/496534177"
+  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/496534177",
+  "license_url": "https://github.com/Bespok3d/fluidd-timelapse/blob/main/timelapse/doc/LICENSE",
+  "attributions": "# Attributions - timelapse\n\n**Plugin author:** paxx12 (Extended Firmware overlay `33-feature-timelapse-stub`), packaged by Bespok3d\n\nTurns on the Timelapse menu in Fluidd and Mainsail.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Extended Firmware overlay `33-feature-timelapse-stub` | paxx12 | GPL-3.0 | no | yes |\n\nThe Moonraker component in this package, `moonraker/timelapse.py`, is the file from the Extended Firmware overlay\n`33-feature-timelapse-stub` (paxx12), GPL-3.0. It ships here unchanged, byte for byte. Timelapse\nrecovery work in that firmware is credited to @horzadome.\n\nThe widely used `moonraker-timelapse` component (mainsail-crew, GPL-3.0) is a different project and\nnone of its code is used here.\n"
 }
