@@ -11,6 +11,8 @@
   "published_at": "2025-09-02",
   "updated_at": "2026-07-28",
   "author": "bespoked",
+  "attributions": "# Attributions - rfid-ntag\n\n**Plugin author:** Bespok3d, with parts of the Extended Firmware overlay `13-patch-rfid`, OpenRFID there by @suchmememanyskill and the OpenSpool `subtype` field by @morgendagen\n\nReads NTAG filament tags on the printer's built-in reader.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| OpenSpool tag format | the OpenSpool project | published format | no | no |\n| Extended Firmware overlay `13-patch-rfid` | @suchmememanyskill and @morgendagen, packaged by paxx12 | GPL-3.0 | no | yes |\n\nThe patches in this plugin modify Snapmaker's own firmware files on the printer, and the Extended\nFirmware overlay `13-patch-rfid`, GPL-3.0, patches the same files. About a fifth of the lines our\nFM175xx reader patch adds are lines that overlay adds too. In `openspool_mapper.py`, 22 lines are\nthat overlay's: they fill Snapmaker's own tray structure field by field, with the same defaults.\nOpenRFID in that firmware is credited to @suchmememanyskill and the OpenSpool `subtype` field to\n@morgendagen.\n\nThe rest of the reader code (`bespok3d_rfid.py`, `ntag_reader.py`, `ndef_parser.py`,\n`mifare_classic.py`) is written from scratch.\n",
+  "license_url": "https://github.com/Bespok3d/u1-enhanced-rfid/blob/dev/rfid-ntag/doc/LICENSE",
   "requires": {
     "capabilities": [
       "rfid-spi"
@@ -21,10 +23,8 @@
   ],
   "conflicts": [],
   "homepage": "https://github.com/bespok3d-org/plugin-rfid-ntag",
-  "changelog_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/496542759",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/503159903",
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/496542764",
-  "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/496542718",
-  "license_url": "https://github.com/Bespok3d/u1-enhanced-rfid/blob/main/rfid-ntag/doc/LICENSE",
-  "attributions": "# Attributions - rfid-ntag\n\n**Plugin author:** Bespok3d, with parts of the Extended Firmware overlay `13-patch-rfid`, OpenRFID there by @suchmememanyskill and the OpenSpool `subtype` field by @morgendagen\n\nReads NTAG filament tags on the printer's built-in reader.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| OpenSpool tag format | the OpenSpool project | published format | no | no |\n| Extended Firmware overlay `13-patch-rfid` | @suchmememanyskill and @morgendagen, packaged by paxx12 | GPL-3.0 | no | yes |\n\nThe patches in this plugin modify Snapmaker's own firmware files on the printer, and the Extended\nFirmware overlay `13-patch-rfid`, GPL-3.0, patches the same files. About a fifth of the lines our\nFM175xx reader patch adds are lines that overlay adds too. In `openspool_mapper.py`, 22 lines are\nthat overlay's: they fill Snapmaker's own tray structure field by field, with the same defaults.\nOpenRFID in that firmware is credited to @suchmememanyskill and the OpenSpool `subtype` field to\n@morgendagen.\n\nThe rest of the reader code (`bespok3d_rfid.py`, `ntag_reader.py`, `ndef_parser.py`,\n`mifare_classic.py`) is written from scratch.\n"
+  "doc_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/503159918",
+  "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/503159898"
 }
