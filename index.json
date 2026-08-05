@@ -330,6 +330,8 @@
       "published_at": "2025-07-30",
       "updated_at": "2026-07-28",
       "author": "bespoked",
+      "attributions": "# Attributions - remote-screen\n\n**Plugin author:** Bespok3d, with the web app from the Extended Firmware overlay `61-app-remote-screen` by @horzadome; the framebuffer server here is written from scratch\n\nMirrors and controls the printer's screen from a browser.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Extended Firmware overlay `61-app-remote-screen` | the PWA by @horzadome, packaged by paxx12 | GPL-3.0 | no | yes |\n\nThe web app in this package comes from the Extended Firmware overlay `61-app-remote-screen`,\nGPL-3.0, whose PWA is credited to @horzadome and whose framebuffer double-buffering in\n`fb-http-server.py` is credited to @suchmememanyskill; packaging by paxx12. `html/manifest.json`\nships with one value changed (`start_url`) and `html/icon.svg` with its comments removed, and parts\nof `html/index.html`, `html/auth.js` and the nginx location file match that overlay. Each of those\nfiles carries a dated note of what changed, except `manifest.json`, which is JSON and cannot hold a\ncomment.\n\nThe framebuffer server, the touch input path and the watchdog are written from scratch.\n",
+      "license_url": "https://github.com/Bespok3d/u1-remote-screen/blob/dev/remote-screen/doc/LICENSE",
       "requires": {
         "capabilities": [
           "klipper-generic"
@@ -354,17 +356,15 @@
           "userEditable": true
         }
       ],
-      "changelog_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/499090910",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/503160156",
       "endpoints": [
         {
           "label": "Remote screen",
           "path": "/screen/"
         }
       ],
-      "doc_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/499090925",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/499090902",
-      "license_url": "https://github.com/Bespok3d/u1-remote-screen/blob/main/remote-screen/doc/LICENSE",
-      "attributions": "# Attributions - remote-screen\n\n**Plugin author:** Bespok3d, with the web app from the Extended Firmware overlay `61-app-remote-screen` by @horzadome; the framebuffer server here is written from scratch\n\nMirrors and controls the printer's screen from a browser.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Extended Firmware overlay `61-app-remote-screen` | the PWA by @horzadome, packaged by paxx12 | GPL-3.0 | no | yes |\n\nThe web app in this package comes from the Extended Firmware overlay `61-app-remote-screen`,\nGPL-3.0, whose PWA is credited to @horzadome and whose framebuffer double-buffering in\n`fb-http-server.py` is credited to @suchmememanyskill; packaging by paxx12. `html/manifest.json`\nships with one value changed (`start_url`) and `html/icon.svg` with its comments removed, and parts\nof `html/index.html`, `html/auth.js` and the nginx location file match that overlay. Each of those\nfiles carries a dated note of what changed, except `manifest.json`, which is JSON and cannot hold a\ncomment.\n\nThe framebuffer server, the touch input path and the watchdog are written from scratch.\n",
+      "doc_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/503160168",
+      "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/503160146",
       "deps": []
     },
     {
