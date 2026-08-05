@@ -11,6 +11,8 @@
   "published_at": "2026-03-15",
   "updated_at": "2026-04-02",
   "author": "bespoked",
+  "attributions": "# Attributions - moonraker-auth\n\n**Plugin author:** Bespok3d, switching on a Moonraker option that the Extended Firmware overlay `32-feature-klipper-tweaks` (paxx12) also switches on\n\nTurns on Moonraker's built-in authentication.\n\nThis package ships two lines of Moonraker configuration: the `[authorization]` section and the\n`force_logins` option, both Moonraker's own names. The Extended Firmware overlay\n`32-feature-klipper-tweaks` (paxx12), GPL-3.0, sets the same option, so those two lines read the\nsame in both. The authentication itself is Moonraker's.\n\n## Why this package is licensed as Bespok3d's own work\n\nTwo configuration lines are shared with that overlay, and both are Moonraker's own option names:\n`[authorization]` and `force_logins`. Anyone switching this feature on writes the same two lines,\nbecause they are the only names Moonraker accepts. That is too little to carry authorship, so no\npart of the overlay's licence attaches to this package, and this repo is AGPL-3.0-or-later like the\nrest of Bespok3d's own code.\n",
+  "license_url": "https://github.com/Bespok3d/moonraker-auth/blob/dev/moonraker-auth/doc/LICENSE",
   "requires": {
     "capabilities": [
       "klipper-generic"
@@ -33,10 +35,8 @@
       "userEditable": true
     }
   ],
-  "changelog_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/499090480",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/503159633",
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/499090493",
-  "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/499090463",
-  "license_url": "https://github.com/Bespok3d/moonraker-auth/blob/main/moonraker-auth/doc/LICENSE",
-  "attributions": "# Attributions - moonraker-auth\n\n**Plugin author:** Bespok3d, switching on a Moonraker option that the Extended Firmware overlay `32-feature-klipper-tweaks` (paxx12) also switches on\n\nTurns on Moonraker's built-in authentication.\n\nThis package ships two lines of Moonraker configuration: the `[authorization]` section and the\n`force_logins` option, both Moonraker's own names. The Extended Firmware overlay\n`32-feature-klipper-tweaks` (paxx12), GPL-3.0, sets the same option, so those two lines read the\nsame in both. The authentication itself is Moonraker's.\n\n## Why this package is licensed as Bespok3d's own work\n\nTwo configuration lines are shared with that overlay, and both are Moonraker's own option names:\n`[authorization]` and `force_logins`. Anyone switching this feature on writes the same two lines,\nbecause they are the only names Moonraker accepts. That is too little to carry authorship, so no\npart of the overlay's licence attaches to this package, and this repo is AGPL-3.0-or-later like the\nrest of Bespok3d's own code.\n"
+  "doc_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/503159640",
+  "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/503159630"
 }
