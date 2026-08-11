@@ -2,7 +2,7 @@
   "name": "camera-hw-accel",
   "title": "Camera HW Accel",
   "version": "0.1.10",
-  "description": "Tap into the SoC's video pipeline instead of CPU-encoding every frame. MJPEG over HTTP at /webcam, WebRTC at /webrtc; works on any browser, smooth 30fps even with two cameras attached.\n\nTo have these auto-registered as cameras in Fluidd and Mainsail (so you don't have to add them by hand under Settings → Cameras), also install b3d://bespok3d-org/webcam-builtin for the built-in MIPI camera and b3d://bespok3d-org/webcam-usb for the external USB camera.",
+  "description": "Tap into the SoC's video pipeline instead of CPU-encoding every frame. MJPEG over HTTP at /webcam, WebRTC at /webrtc; works on any browser, smooth 30fps even with two cameras attached.\n\nTo have these auto-registered as cameras in Fluidd and Mainsail (so you don't have to add them by hand under Settings → Cameras), also install [webcam-builtin](b3d://bespok3d/webcam-builtin) for the built-in MIPI camera and [webcam-usb](b3d://bespok3d/webcam-usb) for the external USB camera.",
   "tagline": "HW-accelerated MJPEG and WebRTC streaming for MIPI & USB cameras.",
   "category": "camera",
   "channel": "stable",
@@ -54,7 +54,7 @@
       "userEditable": true
     }
   ],
-  "changelog_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/503152103",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/510440986",
   "endpoints": [
     {
       "label": "Camera 1",
@@ -66,6 +66,6 @@
     }
   ],
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/503152117",
-  "download_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/503152092"
+  "doc_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/510441002",
+  "download_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/510440956"
 }
