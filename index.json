@@ -234,15 +234,15 @@
         }
       ],
       "sw_version": "2.18.0",
-      "changelog_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/503151340",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/510439031",
       "endpoints": [
         {
           "label": "Mainsail",
           "path": ":81/"
         }
       ],
-      "doc_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/503151361",
-      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/503151310",
+      "doc_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/510439054",
+      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/510439009",
       "deps": []
     },
     {
@@ -282,9 +282,9 @@
           "userEditable": true
         }
       ],
-      "changelog_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/503159633",
-      "doc_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/503159640",
-      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/503159630",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/510439007",
+      "doc_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/510439013",
+      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/510438994",
       "deps": []
     },
     {
@@ -652,9 +652,9 @@
         "timelapse"
       ],
       "conflicts": [],
-      "changelog_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/503159658",
-      "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/503159667",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/503159651",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/510438870",
+      "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/510438875",
+      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/510438856",
       "deps": []
     }
   ],
