@@ -22,7 +22,7 @@
     "fluidd-ui"
   ],
   "conflicts": [],
-  "homepage": "https://github.com/bespok3d-org/plugin-fluidd",
+  "homepage": "https://github.com/Bespok3d/fluidd-plugin",
   "config": [
     {
       "key": "FLUIDD_PORT",
@@ -47,7 +47,7 @@
     }
   ],
   "sw_version": "1.37.3",
-  "changelog_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/503159663",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/510463922",
   "endpoints": [
     {
       "label": "Fluidd",
@@ -55,6 +55,6 @@
     }
   ],
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/503159682",
-  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/503159654"
+  "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/510463944",
+  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/510463899"
 }
