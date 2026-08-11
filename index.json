@@ -441,10 +441,10 @@
         "rfid-service"
       ],
       "conflicts": [],
-      "homepage": "https://github.com/bespok3d-org/plugin-rfid-ntag",
-      "changelog_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/503159903",
-      "doc_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/503159918",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/503159898",
+      "homepage": "https://github.com/Bespok3d/u1-enhanced-rfid",
+      "changelog_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/510439619",
+      "doc_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/510439648",
+      "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/510439601",
       "deps": []
     },
     {
