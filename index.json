@@ -3,7 +3,7 @@
   "name": "Bespok3d Official",
   "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
   "author": "bespoked",
-  "updated": "2026-08-10",
+  "updated": "2026-08-13",
   "plugins": [
     {
       "name": "bespok3d-daemon",
@@ -32,7 +32,7 @@
     {
       "name": "bespok3d-jinni-snapmaker-u1",
       "title": "Snapmaker U1 jinni",
-      "version": "0.1.10",
+      "version": "0.1.11",
       "description": "The Snapmaker U1's jinni: the printer-side process that reads this device's board, service and module facts and actuates the daemon's install operations on it. Bundles the shared klipper jinni runtime it extends, so a printer needs only this one package. It is not independently startable: the daemon owns its lifecycle and picks up a new jinni on the restart its own install op already performs.",
       "tagline": "The printer-side process that gives the daemon Snapmaker U1 device knowledge.",
       "category": "system",
@@ -40,7 +40,7 @@
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
       "printer_specific": true,
       "published_at": "2026-08-10",
-      "updated_at": "2026-08-10",
+      "updated_at": "2026-08-13",
       "requires": {
         "capabilities": [
           "snapmaker-u1"
@@ -49,9 +49,9 @@
       "provides": [],
       "conflicts": [],
       "min_daemon_version": "0.12.22",
-      "changelog_url": "bespok3d-jinni-snapmaker-u1/",
+      "changelog_url": "bespok3d-jinni-snapmaker-u1/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/adapters/blob/main/bespok3d-jinni-snapmaker-u1/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/adapters/releases/assets/509150106",
+      "download_url": "https://api.github.com/repos/Bespok3d/adapters/releases/assets/512218398",
       "deps": []
     },
     {
