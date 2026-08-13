@@ -1,7 +1,7 @@
 {
   "name": "spoolman",
   "title": "Spoolman Bridge",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "description": "Spoolman for the U1 multi-tool: the active spool follows the tag the printer reads or the spool you pick, color and material reach the screen and AFC panel, tags are matched by their hardware UID, and you can record which printer each spool is on. Filament length per print is logged automatically.",
   "tagline": "Zero-config Spoolman: active spool always tracked.",
   "category": "filament",
@@ -9,7 +9,7 @@
   "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
   "printer_specific": false,
   "published_at": "2025-09-20",
-  "updated_at": "2026-08-04",
+  "updated_at": "2026-08-13",
   "author": "bespoked",
   "attributions": "# Attributions - spoolman\n\n**Plugin author:** Bespok3d (unlucio). This is a Klipper and Moonraker helper that talks to a Spoolman server; Spoolman itself is Daniel Hultgren (Donkie) and contributors, and none of its code is here\n\nConnects the printer to a Spoolman filament server.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Spoolman | Daniel Hultgren (Donkie) and contributors | AGPL-3.0 | yes | no |\n\nSpoolman runs on your own machine or server; nothing from it ships inside this plugin. The Moonraker\nproxy component here is written from scratch. Upstream: https://github.com/Donkie/Spoolman\n",
   "license_url": "https://github.com/Bespok3d/spoolman-klipper-helper/blob/main/spoolman/doc/LICENSE",
@@ -170,15 +170,28 @@
       "hint": "The name written as a loaded spool's location in Spoolman (e.g. unU1jr). Location tracking is inactive until a name is set.",
       "userEditable": true,
       "scope": "printer"
+    },
+    {
+      "key": "SPOOLMAN_FORCE_GENERIC_VENDOR",
+      "label": "Show my hand-picked spools in Snapmaker Orca",
+      "type": "select",
+      "options": [
+        "true",
+        "false"
+      ],
+      "default": "true",
+      "hint": "On: a spool you pick yourself is reported to slicers as Generic plus its material, the only filament names Snapmaker Orca can match, so it appears under Machine Filament. Spoolman, the AFC lane name and your spool's own record keep the real brand. Off: the brand recorded in Spoolman is sent, and Orca lists nothing for anything but Snapmaker spools.",
+      "userEditable": true,
+      "scope": "global"
     }
   ],
-  "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/510439422",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/512728893",
   "require": [
     {
       "service": "rfid-service",
       "cardinality": "one"
     }
   ],
-  "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/510439442",
-  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/510439394"
+  "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/512728911",
+  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/512728874"
 }
