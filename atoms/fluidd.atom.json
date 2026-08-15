@@ -1,7 +1,7 @@
 {
   "name": "fluidd",
   "title": "Fluidd",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Swaps SM's outdated Fluidd for the current upstream release. You get input-shaper graphs, integrated config/G-code editors, tool-colour preview, modern mesh viz. Uninstall restores the SM-shipped copy automatically; no nginx config touched.",
   "tagline": "Modern Fluidd v1.37.3: replaces the stock SM build.",
   "category": "ui",
@@ -46,8 +46,8 @@
       "scope": "printer"
     }
   ],
-  "sw_version": "1.37.3",
-  "changelog_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/510463922",
+  "sw_version": "1.37.4",
+  "changelog_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/515536048",
   "endpoints": [
     {
       "label": "Fluidd",
@@ -55,6 +55,6 @@
     }
   ],
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/510463944",
-  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/510463899"
+  "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/515536058",
+  "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/515536031"
 }
