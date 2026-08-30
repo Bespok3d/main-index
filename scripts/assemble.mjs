@@ -11,7 +11,7 @@ import { readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
-import { listRefOwner } from './list-ref-url.mjs'
+import { listRefOwner, servedListUrl } from './list-ref-url.mjs'
 
 // Lazy dynamic import of the sibling b3-builder repo's built core, mirroring
 // Bespok3d/scripts/app-bundle.mjs's importBuilderCore -- one signing implementation, not two.
@@ -20,32 +20,17 @@ export async function importBuilderCore(scriptDir) {
   return import(pathToFileURL(corePath).href)
 }
 
-function serviceName(provided) {
-  return typeof provided === 'string' ? provided : provided.service
-}
+// The service graph is resolved by the builder core's implementation, not by a copy living here. This
+// file used to carry its own, and it carried the same defect: an unresolved service fell back to the
+// raw service NAME, so the published index offered `rfid-service` as a dependency, an id no registry
+// can serve, and every plugin behind it became un-installable. One implementation now decides what a
+// dependency is, and it stops the assembly rather than publishing a name that resolves to nothing.
+const { providerByService, requiredServiceNames, resolveDeps, readProviderSources } = await importBuilderCore(
+  dirname(fileURLToPath(import.meta.url)),
+)
 
-function requiredServices(atom) {
-  return (atom.require ?? []).map((requirement) => requirement.service)
-}
-
-function providerByService(atoms) {
-  const providers = {}
-  atoms.forEach((atom) => {
-    ;(atom.provides ?? []).forEach((provided) => {
-      const service = serviceName(provided)
-      if (!(service in providers)) providers[service] = atom.name
-    })
-  })
-  return providers
-}
-
-function resolveDeps(atom, providers) {
-  const resolved = []
-  requiredServices(atom).forEach((service) => {
-    const providerId = providers[service] ?? service
-    if (!resolved.includes(providerId)) resolved.push(providerId)
-  })
-  return resolved
+function providersInAtoms(pluginAtoms) {
+  return pluginAtoms.map((atom) => ({ name: atom.name, provides: atom.provides ?? [] }))
 }
 
 // The org that publishes this main list. A sub-list this org owns is first-party (trust 'project');
@@ -120,14 +105,18 @@ function toCollectionEntry(atom) {
 // references ({name, url}) from lists/*.json: main-index is a list-of-lists (ADR-0012), so a
 // co-repo that publishes its own index.json is referenced by URL here rather than copying its atoms.
 // Collection atoms committed directly here are partitioned into a sibling collections[].
-export function assemble(atoms, lists = [], publisher = 'PLACEHOLDER') {
+// `knownProviders` are the plugins the referenced sub-lists publish. An atom committed here can require
+// a service a sub-list's plugin provides (every feature plugin requires a door from the u1-base list),
+// and the atoms alone cannot name that provider, so the assembly reads the sub-lists it points readers
+// at and resolves against both sets. Without them the requirement has no id and the assembly stops.
+export function assemble(atoms, lists = [], publisher = 'PLACEHOLDER', knownProviders = []) {
   const sorted = [...atoms].sort((earlier, later) => earlier.name.localeCompare(later.name))
   const pluginAtoms = sorted.filter((atom) => !isCollectionAtom(atom))
   const collectionAtoms = sorted.filter(isCollectionAtom)
-  const providers = providerByService(pluginAtoms)
+  const providers = providerByService([...providersInAtoms(pluginAtoms), ...knownProviders])
   const plugins = pluginAtoms.map((atom) => {
     const { require: _require, ...entry } = atom
-    return { ...entry, deps: resolveDeps(atom, providers), publisher }
+    return { ...entry, deps: resolveDeps(atom.name, requiredServiceNames(atom), providers), publisher }
   })
   const collections = collectionAtoms.map((atom) => ({ ...toCollectionEntry(atom), publisher }))
   const updated = [...plugins, ...collections].reduce((latest, entry) => (entry.updated_at > latest ? entry.updated_at : latest), '')
@@ -178,7 +167,8 @@ async function main() {
   const publisher = await builder.publicKeyFingerprint(pubkey)
   const atoms = await readJsonDir(join(repoDir, 'atoms'), '.atom.json')
   const lists = await readJsonDir(join(repoDir, 'lists'), '.json')
-  const index = assemble(atoms, lists, publisher)
+  const knownProviders = await readProviderSources(lists.map((ref) => servedListUrl(ref.url)))
+  const index = assemble(atoms, lists, publisher, knownProviders)
   const bytes = `${JSON.stringify(index, null, 2)}\n`
   const signed = await writeSignedIndex(repoDir, bytes, process.env.REGISTRY_SIGNING_KEY, builder)
   process.stdout.write(`Wrote index.json (${index.plugins.length} plugins, ${index.collections.length} collections, ${index.lists.length} lists)\n`)

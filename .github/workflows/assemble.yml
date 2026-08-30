@@ -35,7 +35,7 @@ jobs:
       # b3-builder is private, so actions/checkout cannot fetch it: this repo's GITHUB_TOKEN is scoped
       # to this repo alone and the checkout dies with "Repository not found". `uses:` is the reach the
       # org Actions access setting does permit, so the core arrives as an action the runner fetches.
-      - uses: Bespok3d/b3-builder/.github/actions/core@68f258d18bac6809acba3f27048bbd691ec6f814  # main @ 2026-07-21
+      - uses: Bespok3d/b3-builder/.github/actions/core@c0180cb4f5cb1080bae1e425696a43539eaac906  # main @ 2026-08-30
         id: builder-core
       # assemble.mjs's importBuilderCore resolves ../../b3-builder/dist/core relative to its own repo
       # root, so the built core has to sit next to main-index, exactly like the local layout.

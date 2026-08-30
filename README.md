@@ -21,9 +21,15 @@ index.json               the published catalog the app loads (generated; do not 
 ```
 
 Each atom carries a raw `require` (the services the plugin needs). `assemble.mjs` builds a
-service-provider map across all atoms and resolves each plugin's `deps` (store ids), then writes
-`index.json`. A plugin's CI commits its atom here; the `assemble-index`
-workflow rebuilds `index.json` on every atom change.
+service-provider map across all atoms AND across the plugins the referenced sub-lists publish, then
+resolves each plugin's `deps` (store ids) and writes `index.json`. The sub-lists are read because a
+plugin here can require a service a plugin in a sub-list provides (every feature plugin requires a
+door from the `u1-base` list), and the atoms alone cannot name that provider. A require nothing
+provides STOPS the assembly: a dep is a store plugin id, so writing the service name there would
+publish a package name no registry can serve and make every plugin behind it un-installable. The
+resolution itself is the `b3-builder` core's, imported, so the two assemblers cannot drift apart.
+A plugin's CI commits its atom here; the `assemble-index` workflow rebuilds `index.json` on every
+atom change.
 
 Adding/updating a plugin = a change to one `atoms/<name>.atom.json` (today the org's plugin CIs
 direct-commit theirs; external submissions will come via PR later). Atom sub-categorization may be

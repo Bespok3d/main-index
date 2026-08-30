@@ -84,3 +84,28 @@ test('assemble overrides each plugin and collection publisher with the derived s
   assert.equal(index.plugins[0].publisher, 'AABBCCDD')
   assert.equal(index.collections[0].publisher, 'AABBCCDD')
 })
+
+// The defect this pair pins shipped live on 2026-08-30: rfid-ntag requires three doors the u1-base
+// plugins provide, u1-base publishes its own sub-list rather than committing atoms here, and the
+// assembly answered by writing the raw SERVICE NAMES into deps. The app read those as package ids,
+// found no such package, and refused rfid-ntag and everything behind it for every user.
+const RFID_ATOM = {
+  name: 'rfid-ntag',
+  title: 'RFID NTAG',
+  version: '0.1.6',
+  updated_at: '2026-06-30',
+  provides: ['rfid-service'],
+  require: [{ service: 'u1-base-toolhead', cardinality: 'one' }],
+  conflicts: [],
+  download_url: 'rfid-ntag-0.1.6.b3',
+  publisher: 'PLACEHOLDER',
+}
+
+test('assemble resolves a require met by a referenced sub-list to that plugin id', () => {
+  const index = assemble([RFID_ATOM], [], 'AABBCCDD', [{ name: 'u1-base-toolhead', provides: ['u1-base-toolhead'] }])
+  assert.deepEqual(index.plugins[0].deps, ['u1-base-toolhead'])
+})
+
+test('assemble refuses to publish a require nothing provides, instead of naming the service as a dep', () => {
+  assert.throws(() => assemble([RFID_ATOM], [], 'AABBCCDD'), /u1-base-toolhead/)
+})
