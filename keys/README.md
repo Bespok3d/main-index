@@ -17,5 +17,21 @@ per-package signature is needed while the org is the sole publisher.
 The **private** half lives only as the `REGISTRY_SIGNING_KEY` Actions secret on this repo; it is
 never committed. A revocation certificate is held offline by the maintainer.
 
-Per-publisher package keys (for external contributors who sign their own `.b3`) are deferred
-until there are external publishers; this list key is the only trust root for now.
+## `lixnix-publisher.pub.asc`: LixNix publisher key
+
+The **public** half of the first external publisher's signing key, registered here so the org has
+one canonical place to fetch and pin it from.
+
+| | |
+| --- | --- |
+| Fingerprint | `0303 4E2A 0888 2463 984D  06E9 6098 E51D 45A9 4591` |
+| Type | RSA-4096, no expiry |
+| UID | `Bespok3d LixNix (Bespok3d.app) <LixNix@Bespok3d.app>` |
+| Role | will sign `.b3` packages and the sub-list index of LixNix's plugin repos |
+
+The **private** half lives only in the publisher's own repos' `REGISTRY_SIGNING_KEY` Actions
+secrets; it is never committed. Registering the key here changes no trust by itself: the apps
+still pin only the list key above, and refuse a `.b3` signed by any other key, so this publisher's
+releases stay unsigned until the apps grow a second trust anchor for this fingerprint.
+
+Until that anchor ships, the list key remains the only trust root.
