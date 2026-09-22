@@ -728,11 +728,6 @@
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
     },
     {
-      "name": "Print Scheduler",
-      "url": "https://github.com/Mauker1/B3_Print_Scheduler/releases/latest/download/index.json",
-      "trust": "community"
-    },
-    {
       "name": "Reference Python Plugins",
       "url": "https://github.com/Bespok3d/reference-python-plugins/releases/latest/download/index.json",
       "trust": "project",
