@@ -28,12 +28,34 @@ door from the `u1-base` list), and the atoms alone cannot name that provider. A 
 provides STOPS the assembly: a dep is a store plugin id, so writing the service name there would
 publish a package name no registry can serve and make every plugin behind it un-installable. The
 resolution itself is the `b3-builder` core's, imported, so the two assemblers cannot drift apart.
-A plugin's CI commits its atom here; the `assemble-index` workflow rebuilds `index.json` on every
+A plugin's CI registers its atom here; the `assemble-index` workflow rebuilds `index.json` on every
 atom change.
 
 Adding/updating a plugin = a change to one `atoms/<name>.atom.json` (today the org's plugin CIs
-direct-commit theirs; external submissions will come via PR later). Atom sub-categorization may be
+direct-commit theirs; contributors submit theirs from a fork by pull request). Atom sub-categorization may be
 introduced later; for now they live flat under `atoms/`.
+
+## Atom registration
+
+The [publisher guide](https://github.com/Bespok3d/b3-builder/blob/main/doc/publishing-a-plugin.md)
+has separate full paths for a root plugin and a repository of plugin directories, including signed
+package inspection and the development-build key publication step. Check the public file on GitHub.
+
+The [register-atoms Action](.github/actions/register-atoms/action.yml) consumes finalized
+`*.atom.json` files from `atoms-dir` (default `dist`). `submission: direct` is the default maintainer
+path and requires `token` with upstream write access. It retains the direct `main` push and rebase
+retry behavior. `submission: pull-request` requires only `contributor-token`, owned by the publisher;
+do not pass the maintainer `token`. The Action creates or reuses that account's fork, validates the
+prospective index assembly, pushes a unique branch there, and opens a PR against
+`Bespok3d/main-index` `main`. The branch is
+`atom-submission/<source-owner>-<source-repo>-<run-id>-<run-attempt>` and its commit is signed off.
+The PR title is `Submit atoms from <source-owner>/<source-repo>`; its body names that source and
+states that prospective assembly passed. An unchanged atom set produces no PR.
+
+An atom PR changes only `atoms/*.atom.json`. It never includes a package, a generated `index.json`,
+or a signature. The PR check assembles a temporary unsigned index to catch unresolved services;
+the signed index is published only after an accepted atom reaches upstream `main`. See
+[CONTRIBUTING.md](CONTRIBUTING.md) for the DCO and review contract.
 
 `index.json` is published with a detached signature (`index.json.sig`) made by the org registry key,
 whose public half is committed at `keys/bespok3d-list.pub.asc` and pinned in the app. The app checks

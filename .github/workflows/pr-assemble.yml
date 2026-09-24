@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+# SPDX-License-Identifier: AGPL-3.0-or-later
+name: prospective-index
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: main-index
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: Bespok3d/b3-builder/.github/actions/core@c0180cb4f5cb1080bae1e425696a43539eaac906
+        id: builder-core
+      - name: Place the built core beside main-index
+        run: ln -sfn "${{ steps.builder-core.outputs.core-root }}" b3-builder
+      - name: Validate the prospective index without signing
+        working-directory: main-index
+        run: env -u REGISTRY_SIGNING_KEY node scripts/assemble.mjs

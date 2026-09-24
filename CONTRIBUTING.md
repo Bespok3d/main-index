@@ -16,6 +16,26 @@ Most of what lands here is generated. A plugin repo's CI registers its list thro
 Action; you rarely hand-edit `index.json` or the assembled lists. If you are adding a list source or
 changing how the index assembles, that is the code to touch, and it ships with a test.
 
+## Submit a plugin atom
+
+Follow the [publisher guide](https://github.com/Bespok3d/b3-builder/blob/main/doc/publishing-a-plugin.md)
+for the complete root-plugin or plugin-directory path. The development-build publication path has
+passed a packaged-app test against a simulated GitHub host; check the public file on GitHub before
+claiming your key is published.
+
+Run the [register-atoms Action](.github/actions/register-atoms/action.yml) with
+`submission: pull-request`, `contributor-token` from your own GitHub account, and `atoms-dir`
+pointing to finalized `*.atom.json` output. The Action copies only those atom files into your fork,
+assembles a prospective index to reject unresolved services, and opens a PR targeting upstream
+`main`. Its branch and PR title/body are specified in [README.md](README.md#atom-registration).
+You do not need an upstream write token. If assembly fails, fix the source plugin or its required
+service before submitting again.
+
+The PR must contain only generated `atoms/*.atom.json` changes. Do not add a `.b3`, `index.json`,
+`index.json.sig`, or hand-edited atom. Reviewers check the atom's package links, publisher identity,
+service requirements, DCO sign-off, and the prospective assembly check. The Action signs off its
+generated atom commit; hand-authored commits need your own sign-off as described below.
+
 ## Develop
 
 ```sh
@@ -26,7 +46,8 @@ Run it before every push; CI runs the same gate.
 
 ## Constraints
 
-- The maintainer owns git history and releases; submit changes as a pull request against `dev`.
+- The maintainer owns git history and releases; submit tooling changes as a pull request against `dev`.
+  Generated atom submissions target `main` through the registration Action.
 - Do not hand-edit generated index output to work around a bug; fix the assembler and let it regenerate.
 
 ## Signing off your work

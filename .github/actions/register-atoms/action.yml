@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
 # SPDX-License-Identifier: AGPL-3.0-or-later
 name: Register atoms in the Bespok3d index
-description: Commit a plugin repo's built atoms into Bespok3d/main-index, so they appear in the published index.json.
+description: Register built atoms directly or submit them to Bespok3d/main-index by pull request.
 author: Bespok3d
 branding:
   icon: upload-cloud
@@ -13,15 +13,20 @@ branding:
 # one thing the tool must not: this index-of-lists is Bespok3d/main-index. That is hardcoded below on
 # purpose, not passed in.
 #
-# An atom repo registers by pushing straight into atoms/, which is what the org's own repos do today.
-# A community repo cannot (it has no write token), so it will register by PR instead. That path is not
-# built yet; when it is, it lands in THIS action behind an input, so a publisher's release.yml never
-# has to know which of the two it got.
+# Org repos register directly. A contributor explicitly selects pull-request submission and supplies
+# their own token, which can create or use their fork but cannot write to this upstream repository.
 
 inputs:
   token:
     description: a token with write access to Bespok3d/main-index (repo secret MAIN_INDEX_TOKEN)
-    required: true
+    required: false
+  contributor-token:
+    description: contributor-owned token with permission to create or use a fork and open a pull request
+    required: false
+  submission:
+    description: direct or pull-request
+    required: false
+    default: direct
   atoms-dir:
     description: dir holding the built *.atom.json files, relative to the checkout (the b3-builder out dir)
     required: false
@@ -30,7 +35,24 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Validate registration mode
+      shell: bash
+      env:
+        B3D_SUBMISSION: ${{ inputs.submission }}
+        MAIN_INDEX_TOKEN: ${{ inputs.token }}
+        CONTRIBUTOR_TOKEN: ${{ inputs.contributor-token }}
+      run: |
+        set -euo pipefail
+        case "$B3D_SUBMISSION" in
+          direct) [ -n "$MAIN_INDEX_TOKEN" ] || { echo "direct submission requires token" >&2; exit 1; } ;;
+          pull-request)
+            [ -n "$CONTRIBUTOR_TOKEN" ] || { echo "pull-request submission requires contributor-token" >&2; exit 1; }
+            [ -z "$MAIN_INDEX_TOKEN" ] || { echo "pull-request submission must not receive the upstream token" >&2; exit 1; }
+            ;;
+          *) echo "submission must be direct or pull-request" >&2; exit 1 ;;
+        esac
     - name: Commit the built atoms into the index
+      if: inputs.submission == 'direct'
       shell: bash
       env:
         MAIN_INDEX_TOKEN: ${{ inputs.token }}
@@ -62,3 +84,53 @@ runs:
           echo "main-index push rejected; rebasing on remote main (attempt ${attempt})"
           git pull --rebase --no-edit origin main
         done
+    - name: Obtain the pinned builder core for prospective assembly
+      if: inputs.submission == 'pull-request'
+      uses: Bespok3d/b3-builder/.github/actions/core@c0180cb4f5cb1080bae1e425696a43539eaac906
+      id: builder-core
+    - name: Submit validated atoms from the contributor fork
+      if: inputs.submission == 'pull-request'
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.contributor-token }}
+        B3D_ATOMS_DIR: ${{ inputs.atoms-dir }}
+        B3D_BUILDER_CORE_ROOT: ${{ steps.builder-core.outputs.core-root }}
+      run: |
+        set -euo pipefail
+        shopt -s nullglob
+        atoms_dir="$(realpath "$B3D_ATOMS_DIR")"
+        atoms=("$atoms_dir"/*.atom.json)
+        [ ${#atoms[@]} -gt 0 ] || { echo "no *.atom.json in ${B3D_ATOMS_DIR}; nothing to submit" >&2; exit 1; }
+        fork_owner="$(gh api user --jq .login)"
+        fork_owner_id="$(gh api user --jq .id)"
+        [ -n "$fork_owner" ] || { echo "contributor token has no GitHub owner" >&2; exit 1; }
+        fork_repo="${fork_owner}/main-index"
+        scratch="$(mktemp -d)"
+        trap 'rm -rf "$scratch"' EXIT
+        git clone --branch main https://github.com/Bespok3d/main-index.git "$scratch/main-index"
+        ln -s "$B3D_BUILDER_CORE_ROOT" "$scratch/b3-builder"
+        branch="atom-submission/${GITHUB_REPOSITORY//\//-}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+        cd "$scratch/main-index"
+        git switch -c "$branch"
+        cp "${atoms[@]}" atoms/
+        env -u REGISTRY_SIGNING_KEY node scripts/assemble.mjs
+        git restore -- index.json index.json.sig
+        git config user.name "$fork_owner"
+        git config user.email "${fork_owner_id}+${fork_owner}@users.noreply.github.com"
+        git add atoms/
+        if git diff --cached --quiet; then
+          echo "atoms unchanged; nothing to submit"
+          exit 0
+        fi
+        git commit -s -m "submit atoms from ${GITHUB_REPOSITORY}"
+        if ! gh api "repos/${fork_repo}" --jq .full_name >/dev/null 2>&1; then
+          gh repo fork Bespok3d/main-index --clone=false --remote=false
+        fi
+        fork_parent="$(gh api "repos/${fork_repo}" --jq .parent.full_name)"
+        [ "$fork_parent" = Bespok3d/main-index ] || { echo "${fork_repo} is not a fork of Bespok3d/main-index" >&2; exit 1; }
+        git remote add contributor "https://x-access-token:${GH_TOKEN}@github.com/${fork_repo}.git"
+        existing_branch="$(git ls-remote contributor "refs/heads/${branch}" | cut -f1)"
+        git push "--force-with-lease=refs/heads/${branch}:${existing_branch}" contributor "HEAD:refs/heads/${branch}"
+        gh pr create --repo Bespok3d/main-index --base main --head "${fork_owner}:${branch}" \
+          --title "Submit atoms from ${GITHUB_REPOSITORY}" \
+          --body "Generated atoms from ${GITHUB_REPOSITORY}. Prospective index assembly passed."

@@ -7,6 +7,25 @@ This file starts with the index as it stood for app alpha 33. Anything before th
 
 ---
 
+## Unreleased
+
+### Atoms can be submitted by pull request
+
+Registering atoms used to need a token with write access to this repository. The `register-atoms`
+Action now also takes `submission: pull-request`: a `contributor-token` owned by the publisher is
+enough, and the Action forks this repository, checks the prospective assembly before anything is
+written, pushes one run-specific branch to the fork and opens a pull request against `main`. A
+`prospective-index` check assembles every such pull request with no secrets. The direct maintainer
+path (`submission: direct`) is unchanged.
+
+### The key bucket has a lookup contract
+
+`keys/README.md` now states how a key registered here is found: `keys/<account-lowercased>-publisher.pub.asc`.
+The app accepts such a key only when its own fingerprint equals the `publisher` the artifact declares
+and the detached signature checks out over the exact served bytes.
+
+---
+
 ## 2026-07-30
 
 ### A plugin repository can publish its list as a release asset

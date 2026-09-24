@@ -13,6 +13,7 @@ import { dirname, join } from 'node:path'
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..')
 const workflow = readFileSync(join(repoRoot, '.github/workflows/assemble.yml'), 'utf-8')
 const registerAtoms = readFileSync(join(repoRoot, '.github/actions/register-atoms/action.yml'), 'utf-8')
+const prospectiveWorkflow = readFileSync(join(repoRoot, '.github/workflows/pr-assemble.yml'), 'utf-8')
 
 function pushBranches() {
   const match = workflow.match(/^\s*branches:\s*\[([^\]]*)\]/m)
@@ -38,4 +39,16 @@ test('assembly watches exactly the branch atoms land on', () => {
 test('a rejected push resyncs to the branch being assembled, not a hardcoded main', () => {
   assert.match(workflow, /git reset --hard "origin\/\$GITHUB_REF_NAME"/)
   assert.doesNotMatch(workflow, /git reset --hard origin\/main/)
+})
+
+test('main-targeted pull requests assemble the prospective index without secrets or publication', () => {
+  assert.match(prospectiveWorkflow, /pull_request:\n\s+branches: \[main\]/)
+  assert.match(prospectiveWorkflow, /permissions:\n\s+contents: read/)
+  assert.match(prospectiveWorkflow, /uses: Bespok3d\/b3-builder\/\.github\/actions\/core@[a-f0-9]{40}/)
+  const pinnedCore = /uses: Bespok3d\/b3-builder\/\.github\/actions\/core@([a-f0-9]{40})/
+  assert.equal(prospectiveWorkflow.match(pinnedCore)[1], workflow.match(pinnedCore)[1])
+  assert.equal(registerAtoms.match(pinnedCore)[1], workflow.match(pinnedCore)[1])
+  assert.match(prospectiveWorkflow, /ln -sfn "\$\{\{ steps\.builder-core\.outputs\.core-root \}\}" b3-builder/)
+  assert.match(prospectiveWorkflow, /working-directory: main-index\n\s+run: env -u REGISTRY_SIGNING_KEY node scripts\/assemble\.mjs/)
+  assert.doesNotMatch(prospectiveWorkflow, /secrets\.|contributor-token|gh pr create|git push|verify-index|REGISTRY_SIGNING_KEY: \$\{\{/)
 })
