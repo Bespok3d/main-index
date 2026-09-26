@@ -213,13 +213,13 @@
       "scope": "global"
     }
   ],
-  "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/521904927",
+  "changelog_url": "https://github.com/Bespok3d/spoolman-klipper-helper/releases/download/spoolman-v0.1.36/spoolman-0.1.36-CHANGELOG.md",
   "require": [
     {
       "service": "rfid-service",
       "cardinality": "one"
     }
   ],
-  "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/521904933",
-  "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/521904917"
+  "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/releases/download/spoolman-v0.1.36/spoolman-0.1.36-README.md",
+  "download_url": "https://github.com/Bespok3d/spoolman-klipper-helper/releases/download/spoolman-v0.1.36/spoolman-0.1.36.b3"
 }

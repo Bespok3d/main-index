@@ -47,7 +47,7 @@
     }
   ],
   "sw_version": "2.18.0",
-  "changelog_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/515536097",
+  "changelog_url": "https://github.com/Bespok3d/mainsail-plugin/releases/download/mainsail-v0.1.9/mainsail-0.1.9-CHANGELOG.md",
   "endpoints": [
     {
       "label": "Mainsail",
@@ -55,6 +55,6 @@
     }
   ],
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/515536110",
-  "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/515536079"
+  "doc_url": "https://github.com/Bespok3d/mainsail-plugin/releases/download/mainsail-v0.1.9/mainsail-0.1.9-README.md",
+  "download_url": "https://github.com/Bespok3d/mainsail-plugin/releases/download/mainsail-v0.1.9/mainsail-0.1.9.b3"
 }

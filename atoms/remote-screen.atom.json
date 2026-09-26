@@ -37,7 +37,7 @@
       "userEditable": true
     }
   ],
-  "changelog_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/510440269",
+  "changelog_url": "https://github.com/Bespok3d/u1-remote-screen/releases/download/remote-screen-v0.1.22/remote-screen-0.1.22-CHANGELOG.md",
   "endpoints": [
     {
       "label": "Remote screen",
@@ -45,6 +45,6 @@
     }
   ],
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/510440296",
-  "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/510440249"
+  "doc_url": "https://github.com/Bespok3d/u1-remote-screen/releases/download/remote-screen-v0.1.22/remote-screen-0.1.22-README.md",
+  "download_url": "https://github.com/Bespok3d/u1-remote-screen/releases/download/remote-screen-v0.1.22/remote-screen-0.1.22.b3"
 }

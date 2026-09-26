@@ -40,8 +40,8 @@
       "userEditable": true
     }
   ],
-  "changelog_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/510439223",
+  "changelog_url": "https://github.com/Bespok3d/panda-breath/releases/download/panda-breath-v0.1.1/panda-breath-0.1.1-CHANGELOG.md",
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/510439256",
-  "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/510439194"
+  "doc_url": "https://github.com/Bespok3d/panda-breath/releases/download/panda-breath-v0.1.1/panda-breath-0.1.1-README.md",
+  "download_url": "https://github.com/Bespok3d/panda-breath/releases/download/panda-breath-v0.1.1/panda-breath-0.1.1.b3"
 }

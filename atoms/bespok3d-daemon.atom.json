@@ -18,8 +18,8 @@
   ],
   "conflicts": [],
   "min_jinni_version": "0.1.10",
-  "changelog_url": "https://api.github.com/repos/Bespok3d/daemon/releases/assets/536911133",
+  "changelog_url": "https://github.com/Bespok3d/daemon/releases/download/bespok3d-daemon-v0.14.0/bespok3d-daemon-0.14.0-CHANGELOG.md",
   "require": [],
-  "doc_url": "https://api.github.com/repos/Bespok3d/daemon/releases/assets/536911146",
-  "download_url": "https://api.github.com/repos/Bespok3d/daemon/releases/assets/536911118"
+  "doc_url": "https://github.com/Bespok3d/daemon/releases/download/bespok3d-daemon-v0.14.0/bespok3d-daemon-0.14.0-README.md",
+  "download_url": "https://github.com/Bespok3d/daemon/releases/download/bespok3d-daemon-v0.14.0/bespok3d-daemon-0.14.0.b3"
 }
