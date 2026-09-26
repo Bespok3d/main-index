@@ -30,7 +30,7 @@
     "requires_daemon": "0.14.0",
     "summary": "RFID Spool Reader used to change your printer's Klipper files itself. From 0.1.14 the printer's base layer does that work instead, so this update also puts on the three base layer plugins that now hold those files. Your saved spool tags and your settings are kept."
   },
-  "changelog_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/540908571",
+  "changelog_url": "https://github.com/Bespok3d/u1-enhanced-rfid/releases/download/rfid-ntag-v0.1.15/rfid-ntag-0.1.15-CHANGELOG.md",
   "require": [
     {
       "service": "u1-base-print-task-config",
@@ -45,6 +45,6 @@
       "cardinality": "one"
     }
   ],
-  "doc_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/540908603",
-  "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/540908535"
+  "doc_url": "https://github.com/Bespok3d/u1-enhanced-rfid/releases/download/rfid-ntag-v0.1.15/rfid-ntag-0.1.15-README.md",
+  "download_url": "https://github.com/Bespok3d/u1-enhanced-rfid/releases/download/rfid-ntag-v0.1.15/rfid-ntag-0.1.15.b3"
 }

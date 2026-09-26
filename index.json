@@ -25,9 +25,9 @@
       ],
       "conflicts": [],
       "min_jinni_version": "0.1.10",
-      "changelog_url": "https://api.github.com/repos/Bespok3d/daemon/releases/assets/536911133",
-      "doc_url": "https://api.github.com/repos/Bespok3d/daemon/releases/assets/536911146",
-      "download_url": "https://api.github.com/repos/Bespok3d/daemon/releases/assets/536911118",
+      "changelog_url": "https://github.com/Bespok3d/daemon/releases/download/bespok3d-daemon-v0.14.0/bespok3d-daemon-0.14.0-CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/daemon/releases/download/bespok3d-daemon-v0.14.0/bespok3d-daemon-0.14.0-README.md",
+      "download_url": "https://github.com/Bespok3d/daemon/releases/download/bespok3d-daemon-v0.14.0/bespok3d-daemon-0.14.0.b3",
       "deps": []
     },
     {
@@ -52,7 +52,7 @@
       "min_daemon_version": "0.12.22",
       "changelog_url": "bespok3d-jinni-snapmaker-u1/doc/CHANGELOG.md",
       "doc_url": "https://github.com/Bespok3d/adapters/blob/main/bespok3d-jinni-snapmaker-u1/doc/README.md",
-      "download_url": "https://api.github.com/repos/Bespok3d/adapters/releases/assets/512218398",
+      "download_url": "https://github.com/Bespok3d/adapters/releases/download/bespok3d-jinni-snapmaker-u1-v0.1.11/bespok3d-jinni-snapmaker-u1-0.1.11.b3",
       "deps": []
     },
     {
@@ -111,7 +111,7 @@
           "userEditable": true
         }
       ],
-      "changelog_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/529701405",
+      "changelog_url": "https://github.com/Bespok3d/u1-hw-camera/releases/download/camera-hw-accel-v0.1.11/camera-hw-accel-0.1.11-CHANGELOG.md",
       "endpoints": [
         {
           "label": "Camera 1",
@@ -122,8 +122,8 @@
           "path": "/webcam2/"
         }
       ],
-      "doc_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/529701425",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-hw-camera/releases/assets/529701380",
+      "doc_url": "https://github.com/Bespok3d/u1-hw-camera/releases/download/camera-hw-accel-v0.1.11/camera-hw-accel-0.1.11-README.md",
+      "download_url": "https://github.com/Bespok3d/u1-hw-camera/releases/download/camera-hw-accel-v0.1.11/camera-hw-accel-0.1.11.b3",
       "deps": []
     },
     {
@@ -175,15 +175,15 @@
         }
       ],
       "sw_version": "1.37.4",
-      "changelog_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/515536048",
+      "changelog_url": "https://github.com/Bespok3d/fluidd-plugin/releases/download/fluidd-v0.1.6/fluidd-0.1.6-CHANGELOG.md",
       "endpoints": [
         {
           "label": "Fluidd",
           "path": "/"
         }
       ],
-      "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/515536058",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-plugin/releases/assets/515536031",
+      "doc_url": "https://github.com/Bespok3d/fluidd-plugin/releases/download/fluidd-v0.1.6/fluidd-0.1.6-README.md",
+      "download_url": "https://github.com/Bespok3d/fluidd-plugin/releases/download/fluidd-v0.1.6/fluidd-0.1.6.b3",
       "deps": []
     },
     {
@@ -235,15 +235,15 @@
         }
       ],
       "sw_version": "2.18.0",
-      "changelog_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/515536097",
+      "changelog_url": "https://github.com/Bespok3d/mainsail-plugin/releases/download/mainsail-v0.1.9/mainsail-0.1.9-CHANGELOG.md",
       "endpoints": [
         {
           "label": "Mainsail",
           "path": ":81/"
         }
       ],
-      "doc_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/515536110",
-      "download_url": "https://api.github.com/repos/Bespok3d/mainsail-plugin/releases/assets/515536079",
+      "doc_url": "https://github.com/Bespok3d/mainsail-plugin/releases/download/mainsail-v0.1.9/mainsail-0.1.9-README.md",
+      "download_url": "https://github.com/Bespok3d/mainsail-plugin/releases/download/mainsail-v0.1.9/mainsail-0.1.9.b3",
       "deps": []
     },
     {
@@ -283,9 +283,9 @@
           "userEditable": true
         }
       ],
-      "changelog_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/510439007",
-      "doc_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/510439013",
-      "download_url": "https://api.github.com/repos/Bespok3d/moonraker-auth/releases/assets/510438994",
+      "changelog_url": "https://github.com/Bespok3d/moonraker-auth/releases/download/moonraker-auth-v0.1.1/moonraker-auth-0.1.1-CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/moonraker-auth/releases/download/moonraker-auth-v0.1.1/moonraker-auth-0.1.1-README.md",
+      "download_url": "https://github.com/Bespok3d/moonraker-auth/releases/download/moonraker-auth-v0.1.1/moonraker-auth-0.1.1.b3",
       "deps": []
     },
     {
@@ -316,9 +316,9 @@
       "homepage": "https://octoeverywhere.com",
       "sw_version": "4.6.8",
       "log": {},
-      "changelog_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/510439234",
-      "doc_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/510439258",
-      "download_url": "https://api.github.com/repos/Bespok3d/octoeverywhere/releases/assets/510439191",
+      "changelog_url": "https://github.com/Bespok3d/octoeverywhere/releases/download/octoeverywhere-v0.1.2/octoeverywhere-0.1.2-CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/octoeverywhere/releases/download/octoeverywhere-v0.1.2/octoeverywhere-0.1.2-README.md",
+      "download_url": "https://github.com/Bespok3d/octoeverywhere/releases/download/octoeverywhere-v0.1.2/octoeverywhere-0.1.2.b3",
       "deps": []
     },
     {
@@ -363,9 +363,9 @@
           "userEditable": true
         }
       ],
-      "changelog_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/510439223",
-      "doc_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/510439256",
-      "download_url": "https://api.github.com/repos/Bespok3d/panda-breath/releases/assets/510439194",
+      "changelog_url": "https://github.com/Bespok3d/panda-breath/releases/download/panda-breath-v0.1.1/panda-breath-0.1.1-CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/panda-breath/releases/download/panda-breath-v0.1.1/panda-breath-0.1.1-README.md",
+      "download_url": "https://github.com/Bespok3d/panda-breath/releases/download/panda-breath-v0.1.1/panda-breath-0.1.1.b3",
       "deps": []
     },
     {
@@ -407,15 +407,15 @@
           "userEditable": true
         }
       ],
-      "changelog_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/510440269",
+      "changelog_url": "https://github.com/Bespok3d/u1-remote-screen/releases/download/remote-screen-v0.1.22/remote-screen-0.1.22-CHANGELOG.md",
       "endpoints": [
         {
           "label": "Remote screen",
           "path": "/screen/"
         }
       ],
-      "doc_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/510440296",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-remote-screen/releases/assets/510440249",
+      "doc_url": "https://github.com/Bespok3d/u1-remote-screen/releases/download/remote-screen-v0.1.22/remote-screen-0.1.22-README.md",
+      "download_url": "https://github.com/Bespok3d/u1-remote-screen/releases/download/remote-screen-v0.1.22/remote-screen-0.1.22.b3",
       "deps": []
     },
     {
@@ -450,9 +450,9 @@
         "requires_daemon": "0.14.0",
         "summary": "RFID Spool Reader used to change your printer's Klipper files itself. From 0.1.14 the printer's base layer does that work instead, so this update also puts on the three base layer plugins that now hold those files. Your saved spool tags and your settings are kept."
       },
-      "changelog_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/540908571",
-      "doc_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/540908603",
-      "download_url": "https://api.github.com/repos/Bespok3d/u1-enhanced-rfid/releases/assets/540908535",
+      "changelog_url": "https://github.com/Bespok3d/u1-enhanced-rfid/releases/download/rfid-ntag-v0.1.15/rfid-ntag-0.1.15-CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/u1-enhanced-rfid/releases/download/rfid-ntag-v0.1.15/rfid-ntag-0.1.15-README.md",
+      "download_url": "https://github.com/Bespok3d/u1-enhanced-rfid/releases/download/rfid-ntag-v0.1.15/rfid-ntag-0.1.15.b3",
       "deps": [
         "u1-base-print-task-config",
         "u1-base-fm175xx-reader",
@@ -674,9 +674,9 @@
           "scope": "global"
         }
       ],
-      "changelog_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/521904927",
-      "doc_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/521904933",
-      "download_url": "https://api.github.com/repos/Bespok3d/spoolman-klipper-helper/releases/assets/521904917",
+      "changelog_url": "https://github.com/Bespok3d/spoolman-klipper-helper/releases/download/spoolman-v0.1.36/spoolman-0.1.36-CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/spoolman-klipper-helper/releases/download/spoolman-v0.1.36/spoolman-0.1.36-README.md",
+      "download_url": "https://github.com/Bespok3d/spoolman-klipper-helper/releases/download/spoolman-v0.1.36/spoolman-0.1.36.b3",
       "deps": [
         "rfid-ntag"
       ]
@@ -705,9 +705,9 @@
         "timelapse"
       ],
       "conflicts": [],
-      "changelog_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/510438870",
-      "doc_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/510438875",
-      "download_url": "https://api.github.com/repos/Bespok3d/fluidd-timelapse/releases/assets/510438856",
+      "changelog_url": "https://github.com/Bespok3d/fluidd-timelapse/releases/download/timelapse-v0.1.1/timelapse-0.1.1-CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/releases/download/timelapse-v0.1.1/timelapse-0.1.1-README.md",
+      "download_url": "https://github.com/Bespok3d/fluidd-timelapse/releases/download/timelapse-v0.1.1/timelapse-0.1.1.b3",
       "deps": []
     }
   ],
@@ -726,11 +726,6 @@
       "trust": "project",
       "author": "bespoked",
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
-    },
-    {
-      "name": "Print Scheduler",
-      "url": "https://github.com/Mauker1/B3_Print_Scheduler/releases/latest/download/index.json",
-      "trust": "community"
     },
     {
       "name": "Reference Python Plugins",
