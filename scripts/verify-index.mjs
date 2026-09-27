@@ -9,27 +9,35 @@
 import { readFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { TIER_FILES } from './release-tiers.mjs'
 import { importBuilderCore } from './assemble.mjs'
 
 const ORG_PUBLIC_KEY = join('keys', 'bespok3d-list.pub.asc')
 
-export async function verifyPublishedIndex(repoDir, builder) {
-  const servedBytes = await readFile(join(repoDir, 'index.json'))
-  const armoredSignature = await readFile(join(repoDir, 'index.json.sig'), 'utf8')
+export async function verifyPublishedIndex(repoDir, builder, filename = 'index.json') {
+  const servedBytes = await readFile(join(repoDir, filename))
+  const armoredSignature = await readFile(join(repoDir, `${filename}.sig`), 'utf8')
   const armoredPublicKey = await readFile(join(repoDir, ORG_PUBLIC_KEY), 'utf8')
 
   return builder.verifyDetached(servedBytes, armoredSignature, armoredPublicKey)
 }
 
+export function verificationFiles(args) {
+  if (args.length === 0) return Object.values(TIER_FILES)
+  if (args.length === 1 && args[0] === '--live-only') return ['index.json']
+  throw new Error('usage: verify-index.mjs [--live-only]')
+}
+
 async function main() {
   const scriptDir = dirname(fileURLToPath(import.meta.url))
   const repoDir = join(scriptDir, '..')
-  const verified = await verifyPublishedIndex(repoDir, await importBuilderCore(scriptDir))
+  const builder = await importBuilderCore(scriptDir)
+  const verified = (await Promise.all(verificationFiles(process.argv.slice(2)).map((filename) => verifyPublishedIndex(repoDir, builder, filename)))).every(Boolean)
   if (!verified) {
-    process.stderr.write(`index.json.sig does not check out over index.json against ${ORG_PUBLIC_KEY}\n`)
+    process.stderr.write(`requested index signatures do not check out against ${ORG_PUBLIC_KEY}\n`)
     process.exit(1)
   }
-  process.stdout.write(`index.json verifies against ${ORG_PUBLIC_KEY}\n`)
+  process.stdout.write(`requested indexes verify against ${ORG_PUBLIC_KEY}\n`)
 }
 
 if (process.argv[1] !== undefined && process.argv[1].endsWith('verify-index.mjs')) {

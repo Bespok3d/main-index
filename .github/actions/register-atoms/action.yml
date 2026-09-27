@@ -22,6 +22,12 @@ inputs:
   token:
     description: a token with write access to Bespok3d/main-index (repo secret MAIN_INDEX_TOKEN)
     required: true
+  release-kind:
+    description: Release membership, live, prerelease or draft
+    default: live
+  selected-ids:
+    description: Space-separated IDs to register, other built units stay untouched
+    required: true
   atoms-dir:
     description: dir holding the built *.atom.json files, relative to the checkout (the b3-builder out dir)
     required: false
@@ -34,6 +40,9 @@ runs:
       shell: bash
       env:
         MAIN_INDEX_TOKEN: ${{ inputs.token }}
+        B3D_RELEASE_KIND: ${{ inputs.release-kind }}
+        B3D_SELECTED_IDS: ${{ inputs.selected-ids }}
+        B3D_ACTION_PATH: ${{ github.action_path }}
         B3D_ATOMS_DIR: ${{ inputs.atoms-dir }}
       run: |
         set -euo pipefail
@@ -46,7 +55,8 @@ runs:
         # --branch main: the atom has to land on the branch assembly and the app read, not on whatever
         # the repo's default branch happens to be.
         git clone --branch main "https://x-access-token:${MAIN_INDEX_TOKEN}@github.com/Bespok3d/main-index.git" "$workdir"
-        cp "${atoms[@]}" "$workdir/atoms/"
+        read -r -a selected_ids <<< "$B3D_SELECTED_IDS"
+        node "$B3D_ACTION_PATH/../../../scripts/register-atoms.mjs" "$B3D_ATOMS_DIR" "$workdir/atoms" "$B3D_RELEASE_KIND" "${selected_ids[@]}"
         cd "$workdir"
         git config user.name "bespok3d-bot"
         git config user.email "bot@bespok3d.local"

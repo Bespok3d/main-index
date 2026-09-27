@@ -24,6 +24,8 @@ run_check "assemble signing" node --test scripts/assemble-sign.test.mjs
 run_check "verify index"    node --test scripts/verify-index.test.mjs
 run_check "verify lists"    node --test scripts/verify-lists.test.mjs
 run_check "assemble workflow" node --test scripts/assemble-workflow.test.mjs
+run_check "release rehearsal" node --test scripts/release-rehearsal.test.mjs
+run_check "release tiers" node --test scripts/release-tiers.test.mjs
 run_check "register atoms"  node --test scripts/register-atoms-action.test.mjs
 
 workflow_pinning_check "$REPO_ROOT"

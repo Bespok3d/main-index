@@ -33,7 +33,7 @@ jobs:
       # The gate's tests sign and verify through b3-builder's core, which assemble.mjs imports from a
       # sibling b3-builder/ dir. It is reached through `uses:` at a pinned SHA and symlinked into place,
       # exactly as checks.yml and assemble.yml already do.
-      - uses: Bespok3d/b3-builder/.github/actions/core@c0180cb4f5cb1080bae1e425696a43539eaac906  # main @ 2026-08-30
+      - uses: Bespok3d/b3-builder/.github/actions/core@ad9caa68bcb5157dd13a1d499934cda17927ca03  # local Stage 03 tooling; publish only after authorization
         id: builder-core
       - name: Place the built core beside main-index
         run: ln -sfn "${{ steps.builder-core.outputs.core-root }}" b3-builder

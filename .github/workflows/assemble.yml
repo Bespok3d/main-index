@@ -17,6 +17,7 @@ on:
       - atoms/**
       - lists/**
       - scripts/assemble.mjs
+      - scripts/release-tiers.mjs
       - .github/workflows/assemble.yml
   workflow_dispatch:
 
@@ -35,7 +36,7 @@ jobs:
       # b3-builder is private, so actions/checkout cannot fetch it: this repo's GITHUB_TOKEN is scoped
       # to this repo alone and the checkout dies with "Repository not found". `uses:` is the reach the
       # org Actions access setting does permit, so the core arrives as an action the runner fetches.
-      - uses: Bespok3d/b3-builder/.github/actions/core@c0180cb4f5cb1080bae1e425696a43539eaac906  # main @ 2026-08-30
+      - uses: Bespok3d/b3-builder/.github/actions/core@ad9caa68bcb5157dd13a1d499934cda17927ca03  # local Stage 03 tooling; publish only after authorization
         id: builder-core
       # assemble.mjs's importBuilderCore resolves ../../b3-builder/dist/core relative to its own repo
       # root, so the built core has to sit next to main-index, exactly like the local layout.
@@ -57,7 +58,7 @@ jobs:
             # signature has to verify over the exact bytes about to be committed, against the org
             # public key checked in under keys/.
             node scripts/verify-index.mjs
-            git add -f index.json index.json.sig
+            git add -f index.json index.json.sig prerelease-index.json prerelease-index.json.sig draft-index.json draft-index.json.sig
             if git diff --cached --quiet; then
               echo "index unchanged; nothing to commit"
               break

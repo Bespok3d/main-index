@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: '20'
       # b3-builder's core is reached through `uses:` at a pinned SHA, exactly as in assemble.yml.
-      - uses: Bespok3d/b3-builder/.github/actions/core@c0180cb4f5cb1080bae1e425696a43539eaac906  # main @ 2026-08-30
+      - uses: Bespok3d/b3-builder/.github/actions/core@ad9caa68bcb5157dd13a1d499934cda17927ca03  # local Stage 03 tooling; publish only after authorization
         id: builder-core
       - name: Place the built core beside main-index
         run: ln -sfn "${{ steps.builder-core.outputs.core-root }}" b3-builder
@@ -41,4 +41,4 @@ jobs:
         run: node --test scripts/*.test.mjs
       - name: Prove index.json and its signature are the same artifact
         working-directory: main-index
-        run: node scripts/verify-index.mjs
+        run: node scripts/verify-index.mjs --live-only

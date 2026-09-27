@@ -11,6 +11,7 @@ import { readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
+import { TIER_FILES, atomsForTier } from './release-tiers.mjs'
 import { listRefOwner, servedListUrl } from './list-ref-url.mjs'
 
 // Lazy dynamic import of the sibling b3-builder repo's built core, mirroring
@@ -129,8 +130,8 @@ export function assemble(atoms, lists = [], publisher = 'PLACEHOLDER', knownProv
 // Placing the signature is a REPLACE, never an append. A run that produced no signature must DELETE the
 // one a previous signed run left behind: those bytes no longer match the index sitting next to them, and
 // the app reads a stale signature as a failed verification (tampering) rather than as an unsigned list.
-async function placeIndexSignature(repoDir, signature) {
-  const signaturePath = join(repoDir, 'index.json.sig')
+async function placeIndexSignature(repoDir, signature, filename = 'index.json') {
+  const signaturePath = join(repoDir, `${filename}.sig`)
   if (!signature) {
     await rm(signaturePath, { force: true })
     return false
@@ -147,16 +148,33 @@ export async function writeIndexSignature(repoDir, bytes, signingKey, builder) {
 // would leave it on disk beside the PREVIOUS run's .sig whenever signing throws, and a signature that
 // does not match the index next to it reads as tampering, not as an unsigned list. Signing first means
 // a signing failure aborts before anything is written and the last good pair survives untouched.
-export async function writeSignedIndex(repoDir, bytes, signingKey, builder) {
+export async function writeSignedIndex(repoDir, bytes, signingKey, builder, filename = 'index.json') {
   const signature = signingKey ? await builder.signDetached(Buffer.from(bytes, 'utf8'), signingKey) : null
-  await writeFile(join(repoDir, 'index.json'), bytes)
+  await writeFile(join(repoDir, filename), bytes)
 
-  return placeIndexSignature(repoDir, signature)
+  return placeIndexSignature(repoDir, signature, filename)
 }
 
 async function readJsonDir(dir, suffix) {
   const names = (await readdir(dir).catch(() => [])).filter((name) => name.endsWith(suffix))
   return Promise.all(names.map((name) => readFile(join(dir, name), 'utf8').then(JSON.parse)))
+}
+
+export async function assembleTiers(repoDir, atoms, lists, publisher, knownProviders, signingKey, builder) {
+  const indexes = Object.fromEntries(Object.entries(TIER_FILES).map(([tier, filename]) => {
+    const selected = atomsForTier(atoms, tier)
+    const providers = [...knownProviders, ...providersInAtoms(atoms.filter((atom) => atomTierForProvider(atom, tier))) ]
+    const index = assemble(selected, tier === 'live' ? lists : [], publisher, providers)
+    return [filename, index]
+  }))
+  await Promise.all(Object.entries(indexes).map(async ([filename, index]) => {
+    await writeSignedIndex(repoDir, `${JSON.stringify(index, null, 2)}\n`, signingKey, builder, filename)
+  }))
+  return indexes
+}
+
+function atomTierForProvider(atom, tier) {
+  return atom.kind !== 'collection' && (atom.release_kind === tier || (atom.release_kind ?? 'live') === 'live')
 }
 
 async function main() {
@@ -168,11 +186,8 @@ async function main() {
   const atoms = await readJsonDir(join(repoDir, 'atoms'), '.atom.json')
   const lists = await readJsonDir(join(repoDir, 'lists'), '.json')
   const knownProviders = await readProviderSources(lists.map((ref) => servedListUrl(ref.url)))
-  const index = assemble(atoms, lists, publisher, knownProviders)
-  const bytes = `${JSON.stringify(index, null, 2)}\n`
-  const signed = await writeSignedIndex(repoDir, bytes, process.env.REGISTRY_SIGNING_KEY, builder)
-  process.stdout.write(`Wrote index.json (${index.plugins.length} plugins, ${index.collections.length} collections, ${index.lists.length} lists)\n`)
-  process.stdout.write(signed ? 'Wrote index.json.sig\n' : 'No REGISTRY_SIGNING_KEY: removed any stale index.json.sig\n')
+  await assembleTiers(repoDir, atoms, lists, publisher, knownProviders, process.env.REGISTRY_SIGNING_KEY, builder)
+
 }
 
 if (process.argv[1] && process.argv[1].endsWith('assemble.mjs')) {

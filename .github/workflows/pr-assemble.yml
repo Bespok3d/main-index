@@ -1,0 +1,34 @@
+# SPDX-FileCopyrightText: Copyright (C) 2026 unlucio and the Bespok3d contributors
+# SPDX-License-Identifier: AGPL-3.0-or-later
+name: prospective-tier-assembly
+on:
+  pull_request:
+    paths:
+      - atoms/**
+      - lists/**
+      - scripts/**
+      - .github/workflows/pr-assemble.yml
+permissions:
+  contents: read
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: main-index
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: Bespok3d/b3-builder/.github/actions/core@ad9caa68bcb5157dd13a1d499934cda17927ca03
+        id: builder-core
+      - name: Place the built core beside main-index
+        run: ln -sfn "${{ steps.builder-core.outputs.core-root }}" b3-builder
+      - name: Validate the prospective three-tier assembly without publication credentials
+        working-directory: main-index
+        run: |
+          node scripts/assemble.mjs
+          test -s index.json
+          test -s prerelease-index.json
+          test -s draft-index.json
+          node --test scripts/release-tiers.test.mjs

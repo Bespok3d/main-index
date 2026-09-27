@@ -13,7 +13,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { importBuilderCore } from './assemble.mjs'
-import { verifyPublishedIndex } from './verify-index.mjs'
+import { verificationFiles, verifyPublishedIndex } from './verify-index.mjs'
 
 const scriptDir = dirname(fileURLToPath(import.meta.url))
 const repoDir = dirname(scriptDir)
@@ -37,4 +37,12 @@ test('an index edited after signing fails against the signature left beside it',
 
   assert.equal(verified, false)
   await rm(workDir, { recursive: true, force: true })
+})
+
+test('assembly requires every tier while committed Live verification is explicitly scoped', () => {
+  assert.deepEqual(verificationFiles([]).sort(), ['draft-index.json', 'index.json', 'prerelease-index.json'])
+  assert.deepEqual(verificationFiles(['--live-only']), ['index.json'])
+  assert.throws(() => verificationFiles(['--unknown']), /usage/)
+  const checks = readFile(new URL('../.github/workflows/checks.yml', import.meta.url), 'utf8')
+  return checks.then((source) => assert.match(source, /run: node scripts\/verify-index\.mjs --live-only/))
 })

@@ -75,3 +75,20 @@ the individual authors named above.
 
 Bespok3d is built and maintained in the open, on stock printer firmware. If it saved you an
 afternoon, you can [buy me a coffee](https://buymeacoffee.com/unlucio).
+
+## Release tiers
+
+Assembly emits and signs three sibling catalogs: `index.json` (Live), `prerelease-index.json`, and
+`draft-index.json`. `release_kind` selects membership; an unmarked legacy atom stays Live. The
+existing `channel` stability ceiling is unchanged. Empty tier catalogs are signed valid sources.
+`verify-index.mjs` verifies all three detached signatures over their exact file bytes.
+
+Registration accepts `release-kind` and explicit `selected-ids`, reads only those unit atoms and
+writes flat `<unit>.<kind>.atom.json` files. A candidate cannot overwrite its incumbent Live atom.
+Draft-to-prerelease removes only that same candidate's obsolete draft membership. Retries retain
+unrelated units and the publisher identity. Co-repositories keep their Live sub-list and register
+selected candidate atoms directly in the corresponding tier.
+
+The PR assembly workflow checks the proposed atom set across all three catalogs without publication
+credentials; fixture tests use throwaway keys to verify each signature. Final public tooling pins
+must be available before consumer publication.
