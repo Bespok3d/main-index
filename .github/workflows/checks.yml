@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: '20'
       # b3-builder's core is reached through `uses:` at a pinned SHA, exactly as in assemble.yml.
-      - uses: Bespok3d/b3-builder/.github/actions/core@ad9caa68bcb5157dd13a1d499934cda17927ca03  # local Stage 03 tooling; publish only after authorization
+      - uses: Bespok3d/b3-builder/.github/actions/core@83c7a42a881829fd3c8186fe48cf7aeda5495d91  # local Stage 03 tooling; publish only after authorization
         id: builder-core
       - name: Place the built core beside main-index
         run: ln -sfn "${{ steps.builder-core.outputs.core-root }}" b3-builder
