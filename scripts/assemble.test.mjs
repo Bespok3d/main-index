@@ -102,8 +102,32 @@ const RFID_ATOM = {
 }
 
 test('assemble resolves a require met by a referenced sub-list to that plugin id', () => {
-  const index = assemble([RFID_ATOM], [], 'AABBCCDD', [{ name: 'u1-base-toolhead', provides: ['u1-base-toolhead'] }])
+  const index = assemble([RFID_ATOM], [], 'AABBCCDD', [{ name: 'u1-base-toolhead', provides: ['u1-base-toolhead'] }], [{ name: 'u1-base-toolhead', download_url: 'https://example.invalid/toolhead.b3', deps: [] }])
   assert.deepEqual(index.plugins[0].deps, ['u1-base-toolhead'])
+})
+
+test('the signed root includes the exact published base package needed for an RFID install', () => {
+  const base = { name: 'u1-base-toolhead', version: '0.1.0', download_url: 'https://example.invalid/u1-base-toolhead-0.1.0.b3', deps: [] }
+  const index = assemble([RFID_ATOM], [], 'AABBCCDD', [{ name: base.name, provides: ['u1-base-toolhead'] }], [base])
+  assert.deepEqual(index.plugins.map((plugin) => plugin.name), ['rfid-ntag', base.name])
+  assert.deepEqual(index.plugins[1], base)
+  assert.deepEqual(index.plugins[0].deps, [base.name])
+})
+
+test('root refuses a dependency with no published package URL rather than advertising an un-installable RFID plugin', () => {
+  assert.throws(() => assemble([RFID_ATOM], [], 'AABBCCDD', [{ name: 'u1-base-toolhead', provides: ['u1-base-toolhead'] }]), /required package is not published/)
+})
+
+test('Spoolman pulls RFID and every published base dependency into the signed root', () => {
+  const baseNames = ['u1-base-print-task-config', 'u1-base-fm175xx-reader', 'u1-base-filament-detect']
+  const baseEntries = baseNames.map((name) => ({ name, version: '0.1.0', download_url: `https://example.invalid/${name}.b3`, deps: [] }))
+  const rfid = { ...RFID_ATOM, require: baseNames.map((service) => ({ service })) }
+  const spoolman = { ...PLUGIN_ATOM, require: [{ service: 'rfid-service' }] }
+  const providers = baseNames.map((name) => ({ name, provides: [name] }))
+  const index = assemble([rfid, spoolman], [], 'AABBCCDD', providers, baseEntries)
+  assert.deepEqual(index.plugins.find((entry) => entry.name === 'rfid-ntag').deps, baseNames)
+  assert.deepEqual(index.plugins.find((entry) => entry.name === 'spoolman').deps, ['rfid-ntag'])
+  assert.deepEqual(index.plugins.filter((entry) => baseNames.includes(entry.name)).map((entry) => entry.name).sort(), [...baseNames].sort())
 })
 
 test('assemble refuses to publish a require nothing provides, instead of naming the service as a dep', () => {

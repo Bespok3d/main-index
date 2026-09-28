@@ -109,21 +109,52 @@ function toCollectionEntry(atom) {
 // a service a sub-list's plugin provides (every feature plugin requires a door from the u1-base list),
 // and the atoms alone cannot name that provider, so the assembly reads the sub-lists it points readers
 // at and resolves against both sets. Without them the requirement has no id and the assembly stops.
-export function assemble(atoms, lists = [], publisher = 'PLACEHOLDER', knownProviders = []) {
+export function assemble(atoms, lists = [], publisher = 'PLACEHOLDER', knownProviders = [], publishedDependencies = []) {
   const sorted = [...atoms].sort((earlier, later) => earlier.name.localeCompare(later.name))
   const pluginAtoms = sorted.filter((atom) => !isCollectionAtom(atom))
   const collectionAtoms = sorted.filter(isCollectionAtom)
   const providers = providerByService([...providersInAtoms(pluginAtoms), ...knownProviders])
-  const plugins = pluginAtoms.map((atom) => {
+  const atomPlugins = pluginAtoms.map((atom) => {
     const { require: _require, ...entry } = atom
     return { ...entry, deps: resolveDeps(atom.name, requiredServiceNames(atom), providers), publisher }
   })
+  const plugins = withPublishedDependencies(atomPlugins, publishedDependencies)
   const collections = collectionAtoms.map((atom) => ({ ...toCollectionEntry(atom), publisher }))
   const updated = [...plugins, ...collections].reduce((latest, entry) => (entry.updated_at > latest ? entry.updated_at : latest), '')
   const sortedLists = [...lists]
     .sort((earlier, later) => earlier.name.localeCompare(later.name))
     .map((ref) => stampListRef(ref, publisher))
   return { schema_version: 1, name: 'Bespok3d Official', publisher, author: LIST_AUTHOR, updated, plugins, collections, lists: sortedLists }
+}
+
+// An atom can depend on a package in a referenced sub-list. Keep the exact released package entry
+// in the signed root too, so an unavailable child list does not strand the dependent halfway through
+// an install. The list reference still exposes the full publisher catalog and stays authoritative.
+export function withPublishedDependencies(atomPlugins, publishedDependencies) {
+  const dependencies = new Map(publishedDependencies.map((entry) => [entry.name, entry]))
+  const included = new Set(atomPlugins.map((entry) => entry.name))
+  const pending = atomPlugins.flatMap((entry) => entry.deps ?? [])
+  const selected = []
+  while (pending.length) {
+    const name = pending.shift()
+    if (included.has(name)) continue
+    const entry = dependencies.get(name)
+    if (!entry || !entry.download_url) throw new Error(`required package is not published in a referenced list: ${name}`)
+    included.add(name)
+    selected.push(entry)
+    pending.push(...(entry.deps ?? []))
+  }
+  return [...atomPlugins, ...selected].sort((earlier, later) => earlier.name.localeCompare(later.name))
+}
+
+async function publishedDependencyEntries(lists) {
+  const officialLists = lists.filter(isOrgOwned)
+  const responses = await Promise.all(officialLists.map(async (ref) => {
+    const response = await fetch(servedListUrl(ref.url))
+    if (!response.ok) throw new Error(`dependency list ${ref.url} answered ${response.status}`)
+    return response.json()
+  }))
+  return responses.flatMap((index) => index.plugins)
 }
 
 // Placing the signature is a REPLACE, never an append. A run that produced no signature must DELETE the
@@ -168,7 +199,8 @@ async function main() {
   const atoms = await readJsonDir(join(repoDir, 'atoms'), '.atom.json')
   const lists = await readJsonDir(join(repoDir, 'lists'), '.json')
   const knownProviders = await readProviderSources(lists.map((ref) => servedListUrl(ref.url)))
-  const index = assemble(atoms, lists, publisher, knownProviders)
+  const dependencies = await publishedDependencyEntries(lists)
+  const index = assemble(atoms, lists, publisher, knownProviders, dependencies)
   const bytes = `${JSON.stringify(index, null, 2)}\n`
   const signed = await writeSignedIndex(repoDir, bytes, process.env.REGISTRY_SIGNING_KEY, builder)
   process.stdout.write(`Wrote index.json (${index.plugins.length} plugins, ${index.collections.length} collections, ${index.lists.length} lists)\n`)

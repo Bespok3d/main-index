@@ -28,6 +28,10 @@ door from the `u1-base` list), and the atoms alone cannot name that provider. A 
 provides STOPS the assembly: a dep is a store plugin id, so writing the service name there would
 publish a package name no registry can serve and make every plugin behind it un-installable. The
 resolution itself is the `b3-builder` core's, imported, so the two assemblers cannot drift apart.
+Required packages from org-owned sub-lists are also copied into the signed root from their published
+entries, including their download URLs and transitive dependencies. An RFID install can therefore
+find its U1 base packages even when the app cannot fetch that sub-list separately; assembly refuses
+an entry whose required package has no published archive. The sub-list remains linked in `lists`.
 A plugin's CI commits its atom here; the `assemble-index` workflow rebuilds `index.json` on every
 atom change.
 
