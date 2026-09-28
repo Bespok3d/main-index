@@ -29,8 +29,8 @@ provides STOPS the assembly: a dep is a store plugin id, so writing the service 
 publish a package name no registry can serve and make every plugin behind it un-installable. The
 resolution itself is the `b3-builder` core's, imported, so the two assemblers cannot drift apart.
 A Live plugin CI commits its atom to `main`. A draft or prerelease opens an atom PR against `dev`;
-after merge the `assemble-index` workflow signs the dev catalogs. Live reads `main/index.json`;
-Staging overlays `dev/prerelease-index.json` on that Live source.
+after merge the same `assemble-index` workflow signs `dev/index.json`. Live reads `main/index.json`;
+Staging also reads `dev/index.json` as a separate source. Neither index filters by release kind.
 
 Adding/updating a plugin = a change to one `atoms/<name>.atom.json`. Atom sub-categorization may be
 introduced later; for now they live flat under `atoms/`.
@@ -76,21 +76,21 @@ the individual authors named above.
 Bespok3d is built and maintained in the open, on stock printer firmware. If it saved you an
 afternoon, you can [buy me a coffee](https://buymeacoffee.com/unlucio).
 
-## Release tiers
+## Release branches
 
-Assembly emits and signs three sibling catalogs: `index.json` (Live), `prerelease-index.json`, and
-`draft-index.json`. `release_kind` selects membership; an unmarked legacy atom stays Live. The
-existing `channel` stability ceiling is unchanged. Empty tier catalogs are signed valid sources.
-`verify-index.mjs` verifies all three detached signatures over their exact file bytes.
+Assembly emits and signs the same `index.json` on `main` and `dev`, from that branch's atoms and
+lists. `release_kind` describes how the unit was published on GitHub; it never filters the catalog.
+The existing `channel` stability ceiling is unchanged. `verify-index.mjs` verifies the detached
+signature over the exact assembled bytes on either branch.
 
 Registration accepts `release-kind` and explicit `selected-ids`, reads only those unit atoms and
-writes flat `<unit>.<kind>.atom.json` files. A candidate cannot overwrite its incumbent Live atom.
+writes the selected `<unit>.atom.json` on the chosen branch. A candidate cannot overwrite its
+incumbent Live atom on `main`.
 Candidate registration opens a PR to `dev`; the PR workflow validates its prospective index, and
 merging triggers signed dev assembly. `MAIN_INDEX_TOKEN` needs contents write and pull requests
 write for this step. Live registration remains on `main`.
-Draft-to-prerelease removes only that same candidate's obsolete draft membership. Retries retain
-unrelated units and the publisher identity. Co-repositories keep their Live sub-list and register
-selected candidate atoms directly in the corresponding tier.
+Draft-to-prerelease updates the same dev atom. Retries retain unrelated units and the publisher
+identity. Co-repositories keep their Live sub-list and register selected candidate atoms on dev.
 
 The PR assembly workflow checks the proposed atom set across all three catalogs without publication
 credentials; fixture tests use throwaway keys to verify each signature. Final public tooling pins

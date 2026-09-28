@@ -11,7 +11,6 @@ import { readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
-import { TIER_FILES, atomsForTier } from './release-tiers.mjs'
 import { listRefOwner, servedListUrl } from './list-ref-url.mjs'
 
 // Lazy dynamic import of the sibling b3-builder repo's built core, mirroring
@@ -112,6 +111,7 @@ function toCollectionEntry(atom) {
 // at and resolves against both sets. Without them the requirement has no id and the assembly stops.
 export function assemble(atoms, lists = [], publisher = 'PLACEHOLDER', knownProviders = []) {
   const sorted = [...atoms].sort((earlier, later) => earlier.name.localeCompare(later.name))
+  if (new Set(sorted.map((atom) => atom.name)).size !== sorted.length) throw new Error('duplicate atom name in index')
   const pluginAtoms = sorted.filter((atom) => !isCollectionAtom(atom))
   const collectionAtoms = sorted.filter(isCollectionAtom)
   const providers = providerByService([...providersInAtoms(pluginAtoms), ...knownProviders])
@@ -160,21 +160,10 @@ async function readJsonDir(dir, suffix) {
   return Promise.all(names.map((name) => readFile(join(dir, name), 'utf8').then(JSON.parse)))
 }
 
-export async function assembleTiers(repoDir, atoms, lists, publisher, knownProviders, signingKey, builder) {
-  const indexes = Object.fromEntries(Object.entries(TIER_FILES).map(([tier, filename]) => {
-    const selected = atomsForTier(atoms, tier)
-    const providers = [...knownProviders, ...providersInAtoms(atoms.filter((atom) => atomTierForProvider(atom, tier))) ]
-    const index = assemble(selected, tier === 'live' ? lists : [], publisher, providers)
-    return [filename, index]
-  }))
-  await Promise.all(Object.entries(indexes).map(async ([filename, index]) => {
-    await writeSignedIndex(repoDir, `${JSON.stringify(index, null, 2)}\n`, signingKey, builder, filename)
-  }))
-  return indexes
-}
-
-function atomTierForProvider(atom, tier) {
-  return atom.kind !== 'collection' && (atom.release_kind === tier || (atom.release_kind ?? 'live') === 'live')
+export async function assembleSignedIndex(repoDir, atoms, lists, publisher, knownProviders, signingKey, builder) {
+  const index = assemble(atoms, lists, publisher, knownProviders)
+  await writeSignedIndex(repoDir, `${JSON.stringify(index, null, 2)}\n`, signingKey, builder)
+  return index
 }
 
 async function main() {
@@ -186,7 +175,7 @@ async function main() {
   const atoms = await readJsonDir(join(repoDir, 'atoms'), '.atom.json')
   const lists = await readJsonDir(join(repoDir, 'lists'), '.json')
   const knownProviders = await readProviderSources(lists.map((ref) => servedListUrl(ref.url)))
-  await assembleTiers(repoDir, atoms, lists, publisher, knownProviders, process.env.REGISTRY_SIGNING_KEY, builder)
+  await assembleSignedIndex(repoDir, atoms, lists, publisher, knownProviders, process.env.REGISTRY_SIGNING_KEY, builder)
 
 }
 

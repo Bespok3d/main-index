@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { atomTier } from './release-tiers.mjs'
+import { atomReleaseKind } from './release-kind.mjs'
 
 export function registerAtoms(sourceDir, targetDir, kind, selectedIds) {
   if (!['live', 'draft', 'prerelease'].includes(kind)) throw new Error('invalid registration release kind')
@@ -14,8 +14,8 @@ export function registerAtoms(sourceDir, targetDir, kind, selectedIds) {
     const incumbents = existing.filter((entry) => entry.atom.name === atom.name)
     if (incumbents.some((entry) => entry.atom.publisher !== atom.publisher)) throw new Error(`publisher identity changed: ${atom.name}`)
   })
-  atoms.forEach((atom) => registerOne(atom, kind, existing, targetDir))
-  return atoms.map((atom) => `${atom.name}.${kind}.atom.json`)
+  atoms.forEach((atom) => registerOne(atom, existing, targetDir))
+  return atoms.map((atom) => `${atom.name}.atom.json`)
 }
 
 function readSelected(sourceDir, name, kind) {
@@ -24,22 +24,17 @@ function readSelected(sourceDir, name, kind) {
   const legacy = join(sourceDir, `${name}.atom.json`)
   const path = existsSync(join(sourceDir, filename)) ? join(sourceDir, filename) : legacy
   const atom = JSON.parse(readFileSync(path, 'utf8'))
-  if (atom.name !== name || atomTier(atom) !== kind) throw new Error(`selected atom identity mismatch: ${name}`)
+  if (atom.name !== name || atomReleaseKind(atom) !== kind) throw new Error(`selected atom identity mismatch: ${name}`)
   if (atom.kind !== 'collection' && !/^https:\/\//.test(atom.download_url ?? '')) throw new Error(`selected atom lacks published URL: ${name}`)
-  return { ...atom, release_kind: kind }
+  const { release_kind: _releaseKind, ...catalogAtom } = atom
+  return catalogAtom
 }
 
-function registerOne(atom, kind, existing, targetDir) {
-  const destination = `${atom.name}.${kind}.atom.json`
+function registerOne(atom, existing, targetDir) {
+  const destination = `${atom.name}.atom.json`
   writeFileSync(join(targetDir, destination), `${JSON.stringify(atom, null, 2)}\n`)
-  existing.filter((entry) => obsolete(entry.atom, atom, kind) && entry.filename !== destination)
+  existing.filter((entry) => entry.atom.name === atom.name && entry.filename !== destination)
     .forEach((entry) => rmSync(join(targetDir, entry.filename), { force: true }))
-}
-
-function obsolete(existing, incoming, kind) {
-  if (existing.name !== incoming.name) return false
-  if (atomTier(existing) === kind) return true
-  return kind === 'prerelease' && atomTier(existing) === 'draft' && existing.version === incoming.version
 }
 
 if (process.argv[1]?.endsWith('/register-atoms.mjs')) {

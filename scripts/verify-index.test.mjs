@@ -39,10 +39,9 @@ test('an index edited after signing fails against the signature left beside it',
   await rm(workDir, { recursive: true, force: true })
 })
 
-test('assembly requires every tier while committed Live verification is explicitly scoped', () => {
-  assert.deepEqual(verificationFiles([]).sort(), ['draft-index.json', 'index.json', 'prerelease-index.json'])
-  assert.deepEqual(verificationFiles(['--live-only']), ['index.json'])
+test('both branches verify the same index.json contract', () => {
+  assert.deepEqual(verificationFiles([]), ['index.json'])
   assert.throws(() => verificationFiles(['--unknown']), /usage/)
   const checks = readFile(new URL('../.github/workflows/checks.yml', import.meta.url), 'utf8')
-  return checks.then((source) => assert.match(source, /run: node scripts\/verify-index\.mjs --live-only/))
+  return checks.then((source) => assert.match(source, /run: node scripts\/verify-index\.mjs\s/))
 })

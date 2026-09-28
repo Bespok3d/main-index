@@ -41,4 +41,4 @@ jobs:
         run: node --test scripts/*.test.mjs
       - name: Prove index.json and its signature are the same artifact
         working-directory: main-index
-        run: node scripts/verify-index.mjs --live-only
+        run: node scripts/verify-index.mjs

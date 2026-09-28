@@ -9,7 +9,6 @@
 import { readFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { TIER_FILES } from './release-tiers.mjs'
 import { importBuilderCore } from './assemble.mjs'
 
 const ORG_PUBLIC_KEY = join('keys', 'bespok3d-list.pub.asc')
@@ -23,9 +22,8 @@ export async function verifyPublishedIndex(repoDir, builder, filename = 'index.j
 }
 
 export function verificationFiles(args) {
-  if (args.length === 0) return Object.values(TIER_FILES)
-  if (args.length === 1 && args[0] === '--live-only') return ['index.json']
-  throw new Error('usage: verify-index.mjs [--live-only]')
+  if (args.length === 0) return ['index.json']
+  throw new Error('usage: verify-index.mjs')
 }
 
 async function main() {

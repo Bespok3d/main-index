@@ -42,6 +42,10 @@ test('assemble partitions collection atoms into collections[] and strips the kin
   assert.equal(index.updated, '2026-06-30')
 })
 
+test('a branch cannot publish two versions of the same plugin in one index', () => {
+  assert.throws(() => assemble([PLUGIN_ATOM, { ...PLUGIN_ATOM, version: '0.1.5-pre' }]), /duplicate atom name/)
+})
+
 test('assemble keeps stamping list trust and always emits a collections[] slot', () => {
   const index = assemble([], [{ name: 'Material Tags', url: 'github:Bespok3d/material-tags/index.json' }])
   assert.deepEqual(index.collections, [])

@@ -6,7 +6,7 @@ name: assemble-index
 # index.json from all atoms and commit it. The app fetches this index.json. index.json is at the
 # repo root (not under atoms/), so committing it does not re-trigger this workflow.
 #
-# main serves Live; dev serves the signed candidate index used by Staging after a PR is merged.
+# Each branch signs its own index.json; the Staging app reads dev alongside Live's main.
 on:
   push:
     branches: [main, dev]
@@ -14,7 +14,7 @@ on:
       - atoms/**
       - lists/**
       - scripts/assemble.mjs
-      - scripts/release-tiers.mjs
+      - scripts/release-kind.mjs
       - .github/workflows/assemble.yml
   workflow_dispatch:
 
@@ -55,7 +55,7 @@ jobs:
             # signature has to verify over the exact bytes about to be committed, against the org
             # public key checked in under keys/.
             node scripts/verify-index.mjs
-            git add -f index.json index.json.sig prerelease-index.json prerelease-index.json.sig draft-index.json draft-index.json.sig
+            git add -f index.json index.json.sig
             if git diff --cached --quiet; then
               echo "index unchanged; nothing to commit"
               break

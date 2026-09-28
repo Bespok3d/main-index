@@ -37,7 +37,9 @@ test('candidate PRs validate prospective assembly against dev', () => {
   const prWorkflow = readFileSync(join(repoRoot, '.github/workflows/pr-assemble.yml'), 'utf-8')
   assert.match(prWorkflow, /pull_request:\s*branches: \[dev\]/)
   assert.match(prWorkflow, /node scripts\/assemble\.mjs/)
-  assert.match(prWorkflow, /test -s prerelease-index\.json/)
+  assert.match(prWorkflow, /test -s index\.json/)
+  assert.doesNotMatch(prWorkflow, /(?:prerelease|draft)-index\.json/)
+  assert.match(workflow, /git add -f index\.json index\.json\.sig\s/)
 })
 
 test('a rejected push resyncs to the branch being assembled, not a hardcoded main', () => {

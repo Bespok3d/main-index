@@ -2,6 +2,6 @@
 
 # Build output of scripts/assemble.mjs, not source. Tracking them only produces rebase conflicts.
 # CI publishes the signed pairs with `git add -f`. Live reads the main branch;
-# Staging reads the dev tier catalog as a repo file, never a release asset.
+# Staging reads the dev branch's index.json as a repo file, never a release asset.
 index.json
 index.json.sig
