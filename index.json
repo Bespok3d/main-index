@@ -709,6 +709,99 @@
       "doc_url": "https://github.com/Bespok3d/fluidd-timelapse/releases/download/timelapse-v0.1.1/timelapse-0.1.1-README.md",
       "download_url": "https://github.com/Bespok3d/fluidd-timelapse/releases/download/timelapse-v0.1.1/timelapse-0.1.1.b3",
       "deps": []
+    },
+    {
+      "name": "u1-base-filament-detect",
+      "title": "U1 Base: filament detect",
+      "version": "0.1.0",
+      "description": "Part of the U1 Base Layer. On its own it changes nothing you can see: it opens the printer's filament detection to plugins so that other plugins can use it.\n\nWhat it opens:\n• A plugin can register a reader for a spool tag the stock firmware does not know, so its own tags fill in the filament details instead of being ignored.\n• A plugin can ask how many filament channels the printer has, and can set the filament details for one of them.\n\nWith no plugin registered, filament detection behaves exactly as it does today. Install this because a plugin you want asks for it. Under the hood it edits Klipper's own program files on the printer. Uninstalling puts the originals back, and it re-applies itself after a firmware update. Snapmaker U1 only.",
+      "tagline": "Opens the printer's filament detection to plugins. Alone it changes nothing.",
+      "category": "tuning",
+      "channel": "stable",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+      "printer_specific": true,
+      "published_at": "2026-08-22",
+      "updated_at": "2026-08-22",
+      "author": "bespoked",
+      "attributions": "# Attributions - u1-base-filament-detect\n\n**Plugin author:** Bespok3d\n\nThe patch in this package is the Bespok3d project's own work. It is applied to Snapmaker's Klipper\nfork, which is GPL-3.0, so the patch is GPL-3.0-only as well.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Snapmaker's Klipper fork | Snapmaker and the Klipper contributors | GPL-3.0 | yes | no |\n",
+      "license_url": "https://github.com/Bespok3d/u1-base/blob/dev/u1-base-filament-detect/doc/LICENSE",
+      "requires": {
+        "capabilities": [
+          "klipper-generic"
+        ]
+      },
+      "provides": [
+        "u1-base-filament-detect"
+      ],
+      "conflicts": [],
+      "min_daemon_version": "0.14.0",
+      "homepage": null,
+      "changelog_url": "https://github.com/Bespok3d/u1-base/releases/download/u1-base-filament-detect-v0.1.0/u1-base-filament-detect-0.1.0-CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/u1-base/releases/download/u1-base-filament-detect-v0.1.0/u1-base-filament-detect-0.1.0-README.md",
+      "download_url": "https://github.com/Bespok3d/u1-base/releases/download/u1-base-filament-detect-v0.1.0/u1-base-filament-detect-0.1.0.b3",
+      "deps": []
+    },
+    {
+      "name": "u1-base-fm175xx-reader",
+      "title": "U1 Base: RFID reader",
+      "version": "0.1.0",
+      "description": "Part of the U1 Base Layer. On its own it changes nothing you can see: it opens the printer's RFID reader to plugins so that other plugins can use it.\n\nWhat it opens:\n• A plugin can claim a card the printer could not read, so a tag the stock reader does not understand is still handled instead of being dropped.\n• A plugin can register a handler for a card type, and can talk to the card through the printer's own reader, including NTAG pages and MIFARE Classic blocks.\n\nWith no plugin registered, the reader behaves exactly as it does today. Install this because a plugin you want asks for it. Under the hood it edits Klipper's own program files on the printer. Uninstalling puts the originals back, and it re-applies itself after a firmware update. Snapmaker U1 only.",
+      "tagline": "Opens the printer's RFID reader to plugins. Alone it changes nothing.",
+      "category": "tuning",
+      "channel": "stable",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+      "printer_specific": true,
+      "published_at": "2026-08-22",
+      "updated_at": "2026-08-22",
+      "author": "bespoked",
+      "attributions": "# Attributions - u1-base-fm175xx-reader\n\n**Plugin author:** paxx12 (Extended Firmware overlay `13-patch-rfid`), packaged and extended by Bespok3d\n\nThe patch in this package is applied to Snapmaker's Klipper fork, which is GPL-3.0, so the patch is\nGPL-3.0-only as well. About a fifth of the lines it adds come from `03-fm175xx-reader-enabled-guard.patch`\nin the Extended Firmware overlay `13-patch-rfid`; the patch file itself records that origin in its\nheader.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Snapmaker's Klipper fork | Snapmaker and the Klipper contributors | GPL-3.0 | yes | no |\n| Extended Firmware overlay `13-patch-rfid` | paxx12 | GPL-3.0 | no | yes |\n",
+      "license_url": "https://github.com/Bespok3d/u1-base/blob/dev/u1-base-fm175xx-reader/doc/LICENSE",
+      "requires": {
+        "capabilities": [
+          "klipper-generic"
+        ]
+      },
+      "provides": [
+        "u1-base-fm175xx-reader"
+      ],
+      "conflicts": [],
+      "min_daemon_version": "0.14.0",
+      "homepage": null,
+      "changelog_url": "https://github.com/Bespok3d/u1-base/releases/download/u1-base-fm175xx-reader-v0.1.0/u1-base-fm175xx-reader-0.1.0-CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/u1-base/releases/download/u1-base-fm175xx-reader-v0.1.0/u1-base-fm175xx-reader-0.1.0-README.md",
+      "download_url": "https://github.com/Bespok3d/u1-base/releases/download/u1-base-fm175xx-reader-v0.1.0/u1-base-fm175xx-reader-0.1.0.b3",
+      "deps": []
+    },
+    {
+      "name": "u1-base-print-task-config",
+      "title": "U1 Base: print task config",
+      "version": "0.1.0",
+      "description": "Part of the U1 Base Layer. On its own it changes nothing you can see: it opens two doors in the printer's print task settings so that other plugins can use them.\n\nWhat it opens:\n• A plugin can ask the printer to stop resetting pressure advance at the start of a print, and to let it go again afterwards. Several plugins can ask at the same time, and the reset comes back only once the last one has let go.\n• A plugin can allow FORCE=1 on SET_PRINT_PREFERENCES, so a preference can be changed while a print is running. With no plugin asking, the printer refuses mid print exactly as it does today.\n\nInstall this because a plugin you want asks for it. Under the hood it edits Klipper's own program files on the printer. Uninstalling puts the originals back, and it re-applies itself after a firmware update. Snapmaker U1 only.",
+      "tagline": "Opens the printer's print task settings to plugins. Alone it changes nothing.",
+      "category": "tuning",
+      "channel": "stable",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+      "printer_specific": true,
+      "published_at": "2026-08-22",
+      "updated_at": "2026-08-22",
+      "author": "bespoked",
+      "attributions": "# Attributions - u1-base-print-task-config\n\n**Plugin author:** Bespok3d\n\nThe patch in this package is the Bespok3d project's own work. It is applied to Snapmaker's Klipper\nfork, which is GPL-3.0, so the patch is GPL-3.0-only as well.\n\nThe idea of a `FORCE` parameter that overrides the printer's mid-print refusal came from paxx12's\nExtended Firmware overlay `36-feature-print-preferences` (GPL-3.0). None of that overlay's code\nships here: the guard is expressed differently, through a registration a plugin holds, so that\nmore than one plugin can ask for it at once. The credit is for the idea, and it is recorded here\nbecause this is where the change to Snapmaker's file now lives.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Snapmaker's Klipper fork | Snapmaker and the Klipper contributors | GPL-3.0 | yes | no |\n\n",
+      "license_url": "https://github.com/Bespok3d/u1-base/blob/dev/u1-base-print-task-config/doc/LICENSE",
+      "requires": {
+        "capabilities": [
+          "klipper-generic"
+        ]
+      },
+      "provides": [
+        "u1-base-print-task-config"
+      ],
+      "conflicts": [],
+      "min_daemon_version": "0.14.0",
+      "homepage": null,
+      "changelog_url": "https://github.com/Bespok3d/u1-base/releases/download/u1-base-print-task-config-v0.1.0/u1-base-print-task-config-0.1.0-CHANGELOG.md",
+      "doc_url": "https://github.com/Bespok3d/u1-base/releases/download/u1-base-print-task-config-v0.1.0/u1-base-print-task-config-0.1.0-README.md",
+      "download_url": "https://github.com/Bespok3d/u1-base/releases/download/u1-base-print-task-config-v0.1.0/u1-base-print-task-config-0.1.0.b3",
+      "deps": []
     }
   ],
   "collections": [],
