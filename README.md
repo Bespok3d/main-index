@@ -92,6 +92,6 @@ write for this step. Live registration remains on `main`.
 Draft-to-prerelease updates the same dev atom. Retries retain unrelated units and the publisher
 identity. Co-repositories keep their Live sub-list and register selected candidate atoms on dev.
 
-The PR assembly workflow checks the proposed atom set across all three catalogs without publication
-credentials; fixture tests use throwaway keys to verify each signature. Final public tooling pins
+The PR assembly workflow checks the proposed atom set in the dev catalog without publication
+credentials; fixture tests use throwaway keys to verify its signature. Final public tooling pins
 must be available before consumer publication.
