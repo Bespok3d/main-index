@@ -6,6 +6,7 @@
 
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 
 import { assemble } from './assemble.mjs'
 
@@ -81,6 +82,12 @@ test('assemble leaves a third-party list ref without an org author or publisher,
   const pinned = assemble([], [{ name: 'Acme Tags', url: 'github:Acme/tags/index.json', author: 'acme', publisher: 'EE55' }], 'AABBCCDD')
   assert.equal(pinned.lists[0].author, 'acme')
   assert.equal(pinned.lists[0].publisher, 'EE55')
+})
+
+test('the accepted Print Scheduler list remains in the dev index as a community source', () => {
+  const printScheduler = JSON.parse(readFileSync(new URL('../lists/print-scheduler.json', import.meta.url), 'utf8'))
+  const index = assemble([], [printScheduler])
+  assert.deepEqual(index.lists, [{ ...printScheduler, trust: 'community' }])
 })
 
 test('assemble overrides each plugin and collection publisher with the derived signer identity', () => {
