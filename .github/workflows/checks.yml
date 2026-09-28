@@ -21,7 +21,7 @@ jobs:
           path: main-index
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
       # The release rehearsal imports dist/action in addition to the assembly core.
       - uses: Bespok3d/b3-builder/.github/actions/core@83c7a42a881829fd3c8186fe48cf7aeda5495d91
         id: builder-core

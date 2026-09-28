@@ -29,7 +29,7 @@ jobs:
           path: main-index
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
       # b3-builder is private, so actions/checkout cannot fetch it: this repo's GITHUB_TOKEN is scoped
       # to this repo alone and the checkout dies with "Repository not found". `uses:` is the reach the
       # org Actions access setting does permit, so the core arrives as an action the runner fetches.

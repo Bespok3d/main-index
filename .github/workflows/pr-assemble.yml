@@ -20,7 +20,7 @@ jobs:
           path: main-index
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
       - uses: Bespok3d/b3-builder/.github/actions/core@9322144c063a621191fe50951c803c6f79227277
         id: builder-core
       - name: Place the built core beside main-index
