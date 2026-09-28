@@ -735,6 +735,13 @@
       "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
     },
     {
+      "name": "Thermal Master",
+      "url": "https://github.com/Bespok3d/B3_ThermalMaster/releases/latest/download/index.json",
+      "trust": "project",
+      "author": "bespoked",
+      "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0"
+    },
+    {
       "name": "U1 AFC Lite",
       "url": "https://github.com/Bespok3d/u1-afc-lite/releases/latest/download/index.json",
       "trust": "project",
