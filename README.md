@@ -28,11 +28,11 @@ door from the `u1-base` list), and the atoms alone cannot name that provider. A 
 provides STOPS the assembly: a dep is a store plugin id, so writing the service name there would
 publish a package name no registry can serve and make every plugin behind it un-installable. The
 resolution itself is the `b3-builder` core's, imported, so the two assemblers cannot drift apart.
-A plugin's CI commits its atom here; the `assemble-index` workflow rebuilds `index.json` on every
-atom change.
+A Live plugin CI commits its atom to `main`. A draft or prerelease opens an atom PR against `dev`;
+after merge the `assemble-index` workflow signs the dev catalogs. Live reads `main/index.json`;
+Staging overlays `dev/prerelease-index.json` on that Live source.
 
-Adding/updating a plugin = a change to one `atoms/<name>.atom.json` (today the org's plugin CIs
-direct-commit theirs; external submissions will come via PR later). Atom sub-categorization may be
+Adding/updating a plugin = a change to one `atoms/<name>.atom.json`. Atom sub-categorization may be
 introduced later; for now they live flat under `atoms/`.
 
 `index.json` is published with a detached signature (`index.json.sig`) made by the org registry key,
@@ -85,6 +85,9 @@ existing `channel` stability ceiling is unchanged. Empty tier catalogs are signe
 
 Registration accepts `release-kind` and explicit `selected-ids`, reads only those unit atoms and
 writes flat `<unit>.<kind>.atom.json` files. A candidate cannot overwrite its incumbent Live atom.
+Candidate registration opens a PR to `dev`; the PR workflow validates its prospective index, and
+merging triggers signed dev assembly. `MAIN_INDEX_TOKEN` needs contents write and pull requests
+write for this step. Live registration remains on `main`.
 Draft-to-prerelease removes only that same candidate's obsolete draft membership. Retries retain
 unrelated units and the publisher identity. Co-repositories keep their Live sub-list and register
 selected candidate atoms directly in the corresponding tier.

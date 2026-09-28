@@ -12,10 +12,18 @@ import { dirname, join } from 'node:path'
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..')
 const registerAtoms = readFileSync(join(repoRoot, '.github/actions/register-atoms/action.yml'), 'utf-8')
 
-test('atoms are pushed to the branch the app reads, not the default branch', () => {
-  assert.match(registerAtoms, /git clone --branch main "https:\/\/x-access-token:/)
+test('candidate atoms land on dev and Live atoms land on main', () => {
+  assert.match(registerAtoms, /index_branch=dev/)
+  assert.match(registerAtoms, /\[ "\$B3D_RELEASE_KIND" = live \] && index_branch=main/)
+  assert.match(registerAtoms, /git clone --branch "\$index_branch" "https:\/\/x-access-token:/)
 })
 
 test('the push retry rebases onto the branch that was checked out', () => {
-  assert.match(registerAtoms, /git pull --rebase --no-edit origin main/)
+  assert.match(registerAtoms, /git pull --rebase --no-edit origin "\$index_branch"/)
+})
+
+test('candidate registration opens a PR to dev rather than updating its served index directly', () => {
+  assert.match(registerAtoms, /git -C "\$workdir" switch -c "\$candidate_branch"/)
+  assert.match(registerAtoms, /git push -u origin "\$candidate_branch"/)
+  assert.match(registerAtoms, /gh pr create --repo Bespok3d\/main-index --base dev --head "\$candidate_branch"/)
 })

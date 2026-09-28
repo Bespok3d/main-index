@@ -24,15 +24,20 @@ function pushBranches() {
 // The branch a plugin's release job puts its atom on, read off the action that puts it there, so the
 // two halves of one mechanism cannot drift apart: teaching register-atoms a different branch without
 // teaching assembly the same one is what leaves index.json frozen while atoms keep arriving.
-function atomLandingBranch() {
-  const match = registerAtoms.match(/git clone --branch (\S+)/)
-  assert.ok(match, 'register-atoms clones without naming a branch')
+test('assembly watches Live and candidate atom branches', () => {
+  assert.deepEqual(pushBranches(), ['main', 'dev'])
+  assert.match(registerAtoms, /index_branch=dev/)
+  assert.match(registerAtoms, /\[ "\$B3D_RELEASE_KIND" = live \] && index_branch=main/)
+  assert.match(registerAtoms, /git clone --branch "\$index_branch"/)
+  assert.match(registerAtoms, /gh pr create --repo Bespok3d\/main-index --base dev/)
+  assert.match(registerAtoms, /git pull --rebase --no-edit origin "\$index_branch"/)
+})
 
-  return match[1]
-}
-
-test('assembly watches exactly the branch atoms land on', () => {
-  assert.deepEqual(pushBranches(), [atomLandingBranch()])
+test('candidate PRs validate prospective assembly against dev', () => {
+  const prWorkflow = readFileSync(join(repoRoot, '.github/workflows/pr-assemble.yml'), 'utf-8')
+  assert.match(prWorkflow, /pull_request:\s*branches: \[dev\]/)
+  assert.match(prWorkflow, /node scripts\/assemble\.mjs/)
+  assert.match(prWorkflow, /test -s prerelease-index\.json/)
 })
 
 test('a rejected push resyncs to the branch being assembled, not a hardcoded main', () => {

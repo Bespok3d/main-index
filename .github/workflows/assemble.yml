@@ -6,13 +6,10 @@ name: assemble-index
 # index.json from all atoms and commit it. The app fetches this index.json. index.json is at the
 # repo root (not under atoms/), so committing it does not re-trigger this workflow.
 #
-# main only, because main is the whole published path: the register-atoms action clones this repo with
-# --branch main to land an atom, and the app reads index.json through the contents API pinned at
-# ?ref=main. Assembling on dev as well wrote a second index.json that nothing serves, onto the branch
-# the maintainer works on, which is what drove main and dev apart.
+# main serves Live; dev serves the signed candidate index used by Staging after a PR is merged.
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
     paths:
       - atoms/**
       - lists/**
@@ -36,7 +33,7 @@ jobs:
       # b3-builder is private, so actions/checkout cannot fetch it: this repo's GITHUB_TOKEN is scoped
       # to this repo alone and the checkout dies with "Repository not found". `uses:` is the reach the
       # org Actions access setting does permit, so the core arrives as an action the runner fetches.
-      - uses: Bespok3d/b3-builder/.github/actions/core@83c7a42a881829fd3c8186fe48cf7aeda5495d91  # local Stage 03 tooling; publish only after authorization
+      - uses: Bespok3d/b3-builder/.github/actions/core@9322144c063a621191fe50951c803c6f79227277
         id: builder-core
       # assemble.mjs's importBuilderCore resolves ../../b3-builder/dist/core relative to its own repo
       # root, so the built core has to sit next to main-index, exactly like the local layout.

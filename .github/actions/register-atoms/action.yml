@@ -13,14 +13,11 @@ branding:
 # one thing the tool must not: this index-of-lists is Bespok3d/main-index. That is hardcoded below on
 # purpose, not passed in.
 #
-# An atom repo registers by pushing straight into atoms/, which is what the org's own repos do today.
-# A community repo cannot (it has no write token), so it will register by PR instead. That path is not
-# built yet; when it is, it lands in THIS action behind an input, so a publisher's release.yml never
-# has to know which of the two it got.
+# Candidate atoms enter dev through a PR; Live releases update main only after promotion.
 
 inputs:
   token:
-    description: a token with write access to Bespok3d/main-index (repo secret MAIN_INDEX_TOKEN)
+    description: MAIN_INDEX_TOKEN with contents write and pull requests write on Bespok3d/main-index
     required: true
   release-kind:
     description: Release membership, live, prerelease or draft
@@ -44,6 +41,7 @@ runs:
         B3D_SELECTED_IDS: ${{ inputs.selected-ids }}
         B3D_ACTION_PATH: ${{ github.action_path }}
         B3D_ATOMS_DIR: ${{ inputs.atoms-dir }}
+        GH_TOKEN: ${{ inputs.token }}
       run: |
         set -euo pipefail
         shopt -s nullglob
@@ -52,9 +50,14 @@ runs:
         workdir="$(mktemp -d)"
         # Full clone (no --depth 1) so a rebase on a concurrent push from another plugin repo has the
         # history it needs. Several repos release into this one index and they do collide.
-        # --branch main: the atom has to land on the branch assembly and the app read, not on whatever
-        # the repo's default branch happens to be.
-        git clone --branch main "https://x-access-token:${MAIN_INDEX_TOKEN}@github.com/Bespok3d/main-index.git" "$workdir"
+        # Candidate atoms land on dev; only a Live release changes the main catalog.
+        index_branch=dev
+        [ "$B3D_RELEASE_KIND" = live ] && index_branch=main
+        git clone --branch "$index_branch" "https://x-access-token:${MAIN_INDEX_TOKEN}@github.com/Bespok3d/main-index.git" "$workdir"
+        if [ "$index_branch" = dev ]; then
+          candidate_branch="candidate/${GITHUB_REPOSITORY##*/}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git -C "$workdir" switch -c "$candidate_branch"
+        fi
         read -r -a selected_ids <<< "$B3D_SELECTED_IDS"
         node "$B3D_ACTION_PATH/../../../scripts/register-atoms.mjs" "$B3D_ATOMS_DIR" "$workdir/atoms" "$B3D_RELEASE_KIND" "${selected_ids[@]}"
         cd "$workdir"
@@ -67,8 +70,17 @@ runs:
         fi
         git commit -m "update atoms from ${GITHUB_REPOSITORY##*/}"
         for attempt in 1 2 3 4 5; do
-          git push && { echo "pushed main-index (attempt ${attempt})"; exit 0; }
+          if [ "$index_branch" = dev ]; then
+            git push -u origin "$candidate_branch" && break
+          else
+            git push && { echo "pushed main-index (attempt ${attempt})"; exit 0; }
+          fi
           [ "$attempt" = 5 ] && { echo "main-index push failed after ${attempt} attempts" >&2; exit 1; }
-          echo "main-index push rejected; rebasing on remote main (attempt ${attempt})"
-          git pull --rebase --no-edit origin main
+          echo "main-index push rejected; rebasing on remote ${index_branch} (attempt ${attempt})"
+          git pull --rebase --no-edit origin "$index_branch"
         done
+        if [ "$index_branch" = dev ]; then
+          gh pr create --repo Bespok3d/main-index --base dev --head "$candidate_branch" \
+            --title "Candidate atoms from ${GITHUB_REPOSITORY##*/}" \
+            --body "Merge to assemble the signed dev catalog for Staging."
+        fi

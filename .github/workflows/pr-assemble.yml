@@ -3,6 +3,7 @@
 name: prospective-tier-assembly
 on:
   pull_request:
+    branches: [dev]
     paths:
       - atoms/**
       - lists/**
@@ -20,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - uses: Bespok3d/b3-builder/.github/actions/core@83c7a42a881829fd3c8186fe48cf7aeda5495d91
+      - uses: Bespok3d/b3-builder/.github/actions/core@9322144c063a621191fe50951c803c6f79227277
         id: builder-core
       - name: Place the built core beside main-index
         run: ln -sfn "${{ steps.builder-core.outputs.core-root }}" b3-builder
