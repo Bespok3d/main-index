@@ -1,0 +1,34 @@
+{
+  "name": "force-timelapse",
+  "title": "Force Timelapse",
+  "version": "0.1.2-pre",
+  "description": "Forces timelapse frame capture on every print, regardless of the Snapmaker app's timelapse setting. Your slicer must call TIMELAPSE_START, TIMELAPSE_TAKE_FRAME, and TIMELAPSE_STOP (most do when timelapse is enabled in the slicer). Pairs well with the Timelapse plugin for the Fluidd/Mainsail menu. Snapmaker U1 only.",
+  "tagline": "Capture a timelapse on every print, no app toggle needed.",
+  "category": "printing",
+  "channel": "stable",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+  "printer_specific": true,
+  "published_at": "2026-04-18",
+  "updated_at": "2026-11-10",
+  "author": "bespoked",
+  "attributions": "# Attributions - force-timelapse\n\n**Plugin author:** paxx12 (Extended Firmware overlay `36-feature-print-preferences`), packaged by Bespok3d\n\nForces timelapse frames on every print.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Extended Firmware overlay `36-feature-print-preferences` | paxx12 | GPL-3.0 | no | yes |\n\nThe Klipper config in this package is the `timelapse_force.cfg` tweak from the Extended Firmware overlay\n`36-feature-print-preferences` (paxx12), GPL-3.0. It ships here with the same macro, the\nsame `rename_existing` name and the same body; only the file name and the layout differ.\n",
+  "license_url": "https://github.com/Bespok3d/u1-force-macros/blob/main/force-timelapse/doc/LICENSE",
+  "requires": {
+    "capabilities": [
+      "klipper-generic"
+    ]
+  },
+  "provides": [
+    "force-timelapse"
+  ],
+  "conflicts": [],
+  "changelog_url": "https://github.com/Bespok3d/u1-force-macros/releases/download/plugin-force-timelapse-v0.1.2-pre/force-timelapse-0.1.2-pre-CHANGELOG.md",
+  "require": [
+    {
+      "service": "print-prefs-force",
+      "cardinality": "one"
+    }
+  ],
+  "doc_url": "https://github.com/Bespok3d/u1-force-macros/releases/download/plugin-force-timelapse-v0.1.2-pre/force-timelapse-0.1.2-pre-README.md",
+  "download_url": "https://github.com/Bespok3d/u1-force-macros/releases/download/plugin-force-timelapse-v0.1.2-pre/force-timelapse-0.1.2-pre.b3"
+}
