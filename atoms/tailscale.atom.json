@@ -1,0 +1,47 @@
+{
+  "name": "tailscale",
+  "title": "Tailscale",
+  "version": "0.1.3-pre",
+  "description": "Joins the printer to your Tailscale mesh network (tailnet), so you can reach Fluidd/Mainsail, the camera, and SSH from anywhere without opening a port on your router. Bring your own account: generate an auth key at login.tailscale.com/admin/settings/keys, then paste it below. The printer authorizes itself the way any Tailscale device does; it appears in your tailnet's device list like a laptop or phone. Bespok3d hosts no coordination service and never sees your auth key or traffic. Runs tailscaled as a managed service on top of the tun-module base (a real /dev/net/tun the tailscale0 network interface needs).",
+  "tagline": "Reach your printer from anywhere over your Tailscale network.",
+  "category": "system",
+  "channel": "stable",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+  "printer_specific": false,
+  "published_at": "2026-07-05",
+  "updated_at": "2026-07-05",
+  "author": "bespoked",
+  "attributions": "# Attributions - tailscale\n\n**Plugin author:** Tailscale Inc., packaged by Bespok3d; the idea of a VPN on the U1 comes from the Extended Firmware overlay `66-app-vpn`, initial Tailscale support there by @mcristina422\n\nPuts the printer on a Tailscale network.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Tailscale client | Tailscale Inc. | BSD-3-Clause | yes | yes |\n\nThe official arm64 Tailscale build (currently 1.98.8) is downloaded from https://pkgs.tailscale.com\nat build time and shipped inside the package.\n\nThe binaries are Tailscale's own builds, shipped byte for byte as downloaded; nothing of\nTailscale's is stored in this repository. The licence text and the provenance note are in\n`vendor/tailscale/` at the root of this repository.\n\nPorted from the Extended Firmware overlay `66-app-vpn`, GPL-3.0, whose Tailscale work is credited to\n@mcristina422.\n",
+  "license_url": "https://github.com/Bespok3d/networking/blob/dev/tailscale/doc/LICENSE",
+  "requires": {
+    "capabilities": [
+      "klipper-generic"
+    ]
+  },
+  "provides": [
+    "tailscale"
+  ],
+  "conflicts": [],
+  "config": [
+    {
+      "key": "TS_AUTHKEY",
+      "label": "Tailscale auth key",
+      "type": "text",
+      "placeholder": "tskey-auth-...",
+      "hint": "From your tailnet's admin console (login.tailscale.com/admin/settings/keys, then Generate auth key; a brand-new account lands on an 'add a device' wizard first, open the keys page directly). Turn on Reusable: a reusable key lets you reinstall without generating a new one, and one reusable key can join several printers (each appears as its own device). Bring your own account; Bespok3d hosts nothing.",
+      "required": true,
+      "scope": "global",
+      "userEditable": true
+    }
+  ],
+  "sw_version": "1.98.8",
+  "changelog_url": "https://github.com/Bespok3d/networking/releases/download/plugin-tailscale-v0.1.3-pre/tailscale-0.1.3-pre-CHANGELOG.md",
+  "require": [
+    {
+      "service": "tun",
+      "cardinality": "one"
+    }
+  ],
+  "doc_url": "https://github.com/Bespok3d/networking/releases/download/plugin-tailscale-v0.1.3-pre/tailscale-0.1.3-pre-README.md",
+  "download_url": "https://github.com/Bespok3d/networking/releases/download/plugin-tailscale-v0.1.3-pre/tailscale-0.1.3-pre.b3"
+}
