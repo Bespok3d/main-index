@@ -1,0 +1,34 @@
+{
+  "name": "rfid-elegoo",
+  "title": "Elegoo Filament Tag",
+  "version": "0.1.6-pre",
+  "description": "Decoder for the filament block on factory Elegoo (Centauri) spool tags: material, color, nozzle temperature range, diameter and weight, verified field by field against a real factory spool and its label, and read on a real Snapmaker U1. The factory tag is an open NFC Type 2 tag (NTAG213-style memory, no key) that the RFID Spool Reader's standard NTAG reader picks up; this plugin decodes the pages it reads. Its layout differs from ELEGOO's published byte table: fields are page-aligned and a nozzle range is present. Elegoo's tag is small and sits further out than the U1's reader reaches for a tag that small, so a spool sitting on its holder is not read: hold the tag against the centre of the holder while the filament feeds, then mount it (steps in the doc). Confirmed on one printer and one spool so far. Needs RFID Spool Reader 0.1.15 or newer. Read-only.",
+  "tagline": "Reads factory Elegoo spool tags (hold the tag at the reader when loading).",
+  "category": "filament",
+  "channel": "testing",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+  "printer_specific": true,
+  "published_at": "2026-06-29",
+  "updated_at": "2026-11-10",
+  "author": "bespoked",
+  "attributions": "# Attributions - rfid-elegoo\n\n**Plugin author:** Bespok3d, tag format published by ELEGOO\n\nReads Elegoo filament tags.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| ELEGOO-RFID-Tag-Guide | ELEGOO | see the project | no | no |\n\nField layout verified against a real factory spool, with ELEGOO's published guide at\nhttps://github.com/ELEGOO-3D/ELEGOO-RFID-Tag-Guide as a reference for the field facts\n(material codes, units). Factory tags differ from the guide's byte table; see the doc.\nNo code from it is used here.\n",
+  "license_url": "https://github.com/Bespok3d/material-tags/blob/dev/rfid-elegoo/doc/LICENSE",
+  "requires": {
+    "capabilities": [
+      "rfid-spi"
+    ]
+  },
+  "provides": [],
+  "conflicts": [],
+  "homepage": "https://github.com/ELEGOO-3D/ELEGOO-RFID-Tag-Guide",
+  "changelog_url": "https://github.com/Bespok3d/material-tags/releases/download/plugin-rfid-elegoo-v0.1.6-pre/rfid-elegoo-0.1.6-pre-CHANGELOG.md",
+  "require": [
+    {
+      "service": "rfid-service",
+      "cardinality": "one",
+      "version": ">=0.1.15"
+    }
+  ],
+  "doc_url": "https://github.com/Bespok3d/material-tags/releases/download/plugin-rfid-elegoo-v0.1.6-pre/rfid-elegoo-0.1.6-pre-README.md",
+  "download_url": "https://github.com/Bespok3d/material-tags/releases/download/plugin-rfid-elegoo-v0.1.6-pre/rfid-elegoo-0.1.6-pre.b3"
+}
