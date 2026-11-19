@@ -1,0 +1,33 @@
+{
+  "name": "rfid-openprinttag",
+  "title": "OpenPrintTag Filament Tag",
+  "version": "0.2.0-pre",
+  "description": "Decodes the OpenPrintTag (prusa3d) filament data format - an open CBOR payload - off any NTAG21x the reader can read, mapping material, brand, colors, diameter, weight, manufacture date, and nozzle/bed/drying temperatures into the shared rfid_data.json. No key required. Note: Prusa's own factory spools use ISO-15693 tags the U1 reader cannot read; this targets OpenPrintTag payloads written onto a standard NTAG21x. Installs the RFID Spool Reader automatically. Read-only. Testing channel.",
+  "tagline": "Decode the OpenPrintTag data format on NTAG (no key).",
+  "category": "filament",
+  "channel": "testing",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+  "printer_specific": true,
+  "published_at": "2026-06-30",
+  "updated_at": "2026-11-10",
+  "author": "bespoked",
+  "attributions": "# Attributions - rfid-openprinttag\n\n**Plugin author:** Bespok3d, tag format published by the OpenPrintTag project\n\nReads OpenPrintTag filament tags.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| OpenPrintTag specification | the OpenPrintTag project | published specification | no | no |\n\nThe CBOR reader (`cbor_min.py`) is a clean-room implementation of the RFC 8949 subset OpenPrintTag\nuses, because Python's standard library has no CBOR codec. It is not taken from any third-party CBOR\nlibrary.\n",
+  "license_url": "https://github.com/Bespok3d/material-tags/blob/dev/rfid-openprinttag/doc/LICENSE",
+  "requires": {
+    "capabilities": [
+      "rfid-spi"
+    ]
+  },
+  "provides": [],
+  "conflicts": [],
+  "homepage": "https://specs.openprinttag.org",
+  "changelog_url": "https://github.com/Bespok3d/material-tags/releases/download/plugin-rfid-openprinttag-v0.2.0-pre/rfid-openprinttag-0.2.0-pre-CHANGELOG.md",
+  "require": [
+    {
+      "service": "rfid-service",
+      "cardinality": "one"
+    }
+  ],
+  "doc_url": "https://github.com/Bespok3d/material-tags/releases/download/plugin-rfid-openprinttag-v0.2.0-pre/rfid-openprinttag-0.2.0-pre-README.md",
+  "download_url": "https://github.com/Bespok3d/material-tags/releases/download/plugin-rfid-openprinttag-v0.2.0-pre/rfid-openprinttag-0.2.0-pre.b3"
+}
