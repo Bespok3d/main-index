@@ -1,17 +1,17 @@
 {
   "name": "mainsail",
   "title": "Mainsail",
-  "version": "0.1.9",
-  "description": "Installs Mainsail v2.18.0 as a second web frontend. Runs on port 81 by default so Fluidd stays on port 80. Set port 80 to make Mainsail primary; Fluidd shifts to 81 automatically.",
+  "version": "0.1.10-pre",
+  "description": "Installs Mainsail v2.19.0 as a second web frontend. Runs on port 81 by default so Fluidd stays on port 80. Set port 80 to make Mainsail primary; Fluidd shifts to 81 automatically.",
   "tagline": "Mainsail web interface alongside Fluidd, on your chosen port.",
   "category": "ui",
   "channel": "stable",
   "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
   "printer_specific": true,
   "published_at": "2026-01-10",
-  "updated_at": "2026-07-03",
+  "updated_at": "2026-11-09",
   "author": "bespoked",
-  "attributions": "# Attributions - mainsail\n\n**Plugin author:** the mainsail-crew, packaged by Bespok3d\n\nInstalls the Mainsail web interface.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Mainsail | the mainsail-crew | GPL-3.0 | yes | yes |\n\nThe released Mainsail web bundle is shipped verbatim inside this plugin (currently v2.18.0).\nUpstream: https://github.com/mainsail-crew/mainsail\n\nThe U1 packaging approach follows the Extended Firmware overlay `63-app-mainsail` (paxx12), GPL-3.0.\n",
+  "attributions": "# Attributions - mainsail\n\n**Plugin author:** the mainsail-crew, packaged by Bespok3d\n\nInstalls the Mainsail web interface.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Mainsail | the mainsail-crew | GPL-3.0 | yes | yes |\n\nThe released Mainsail web bundle is shipped verbatim inside this plugin (currently v2.19.0).\nUpstream: https://github.com/mainsail-crew/mainsail\n\nThe U1 packaging approach follows the Extended Firmware overlay `63-app-mainsail` (paxx12), GPL-3.0.\n",
   "license_url": "https://github.com/Bespok3d/mainsail-plugin/blob/main/mainsail/doc/LICENSE",
   "requires": {
     "capabilities": [
@@ -46,8 +46,8 @@
       "scope": "printer"
     }
   ],
-  "sw_version": "2.18.0",
-  "changelog_url": "https://github.com/Bespok3d/mainsail-plugin/releases/download/mainsail-v0.1.9/mainsail-0.1.9-CHANGELOG.md",
+  "sw_version": "2.19.0",
+  "changelog_url": "https://github.com/Bespok3d/mainsail-plugin/releases/download/plugin-mainsail-v0.1.10-pre/mainsail-0.1.10-pre-CHANGELOG.md",
   "endpoints": [
     {
       "label": "Mainsail",
@@ -55,6 +55,6 @@
     }
   ],
   "require": [],
-  "doc_url": "https://github.com/Bespok3d/mainsail-plugin/releases/download/mainsail-v0.1.9/mainsail-0.1.9-README.md",
-  "download_url": "https://github.com/Bespok3d/mainsail-plugin/releases/download/mainsail-v0.1.9/mainsail-0.1.9.b3"
+  "doc_url": "https://github.com/Bespok3d/mainsail-plugin/releases/download/plugin-mainsail-v0.1.10-pre/mainsail-0.1.10-pre-README.md",
+  "download_url": "https://github.com/Bespok3d/mainsail-plugin/releases/download/plugin-mainsail-v0.1.10-pre/mainsail-0.1.10-pre.b3"
 }
