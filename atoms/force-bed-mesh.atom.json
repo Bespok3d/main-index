@@ -1,0 +1,36 @@
+{
+  "name": "force-bed-mesh",
+  "title": "Force Bed Mesh",
+  "version": "0.1.2-pre",
+  "description": "Forces a full bed mesh calibration before every print, even when the Snapmaker app would skip it, so the first layer sticks reliably on a freshly leveled bed. Pick this OR Force Adaptive Bed Mesh, not both. Snapmaker U1 only.",
+  "tagline": "Always run a full bed mesh before each print.",
+  "category": "printing",
+  "channel": "stable",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+  "printer_specific": true,
+  "published_at": "2026-04-12",
+  "updated_at": "2026-11-10",
+  "author": "bespoked",
+  "attributions": "# Attributions - force-bed-mesh\n\n**Plugin author:** paxx12 (Extended Firmware overlay `36-feature-print-preferences`), packaged by Bespok3d\n\nForces a full bed mesh before every print.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Extended Firmware overlay `36-feature-print-preferences` | paxx12 | GPL-3.0 | no | yes |\n\nThe Klipper config in this package is the `bed_leveling_force.cfg` tweak from the Extended Firmware overlay\n`36-feature-print-preferences` (paxx12), GPL-3.0. It ships here with the same macro, the\nsame `rename_existing` name and the same body; only the file name and the layout differ.\n",
+  "license_url": "https://github.com/Bespok3d/u1-force-macros/blob/main/force-bed-mesh/doc/LICENSE",
+  "requires": {
+    "capabilities": [
+      "klipper-generic"
+    ]
+  },
+  "provides": [
+    "force-bed-mesh"
+  ],
+  "conflicts": [
+    "force-bed-mesh-adaptive"
+  ],
+  "changelog_url": "https://github.com/Bespok3d/u1-force-macros/releases/download/plugin-force-bed-mesh-v0.1.2-pre/force-bed-mesh-0.1.2-pre-CHANGELOG.md",
+  "require": [
+    {
+      "service": "print-prefs-force",
+      "cardinality": "one"
+    }
+  ],
+  "doc_url": "https://github.com/Bespok3d/u1-force-macros/releases/download/plugin-force-bed-mesh-v0.1.2-pre/force-bed-mesh-0.1.2-pre-README.md",
+  "download_url": "https://github.com/Bespok3d/u1-force-macros/releases/download/plugin-force-bed-mesh-v0.1.2-pre/force-bed-mesh-0.1.2-pre.b3"
+}
