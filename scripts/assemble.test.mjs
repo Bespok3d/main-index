@@ -144,3 +144,9 @@ test('Spoolman pulls RFID and every published base dependency into the signed ro
 test('assemble refuses to publish a require nothing provides, instead of naming the service as a dep', () => {
   assert.throws(() => assemble([RFID_ATOM], [], 'AABBCCDD'), /u1-base-toolhead/)
 })
+
+test('assemble keeps the build fingerprint on each plugin entry, so a same-version rebuild reads as an update', () => {
+  const fingerprint = 'a'.repeat(64)
+  const index = assemble([{ ...PLUGIN_ATOM, fingerprint }, COLLECTION_ATOM], [])
+  assert.equal(index.plugins[0].fingerprint, fingerprint)
+})

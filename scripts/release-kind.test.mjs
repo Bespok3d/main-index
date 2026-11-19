@@ -82,3 +82,27 @@ test('registration refuses a candidate publisher change before replacing the inc
   assert.throws(() => registerAtoms(source, target, 'draft', ['selected']), /publisher identity changed/)
   assert.deepEqual(atomAt(target, 'selected'), incumbent)
 })
+
+test('registration and the signed index keep the build fingerprint the atom carries', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'fingerprint-index-'))
+  const source = mkdtempSync(join(tmpdir(), 'fingerprint-source-'))
+  const fingerprint = 'b'.repeat(64)
+  const { privateKey, publicKey } = await generateKey({ type: 'ecc', userIDs: [{ name: 'fixture' }], format: 'armored' })
+  stageAtom(source, { ...atom('candidate', '2.0.0-pre', 'prerelease'), fingerprint })
+  registerAtoms(source, directory, 'prerelease', ['candidate'])
+  assert.equal(atomAt(directory, 'candidate').fingerprint, fingerprint)
+  const publisher = await builder.publicKeyFingerprint(publicKey)
+  await assembleSignedIndex(directory, [atomAt(directory, 'candidate')], [], publisher, [], privateKey, builder)
+  const signedIndex = JSON.parse(readFileSync(join(directory, 'index.json'), 'utf8'))
+  assert.equal(signedIndex.plugins[0].fingerprint, fingerprint)
+})
+
+test('a same-version rebuild with a new fingerprint replaces the incumbent atom', () => {
+  const source = mkdtempSync(join(tmpdir(), 'rebuild-source-'))
+  const target = mkdtempSync(join(tmpdir(), 'rebuild-target-'))
+  const rebuildFingerprint = 'c'.repeat(64)
+  writeFileSync(join(target, 'selected.atom.json'), JSON.stringify({ ...atom('selected', '2.0.0'), fingerprint: 'a'.repeat(64) }))
+  stageAtom(source, { ...atom('selected', '2.0.0', 'live'), fingerprint: rebuildFingerprint })
+  registerAtoms(source, target, 'live', ['selected'])
+  assert.equal(atomAt(target, 'selected').fingerprint, rebuildFingerprint)
+})
