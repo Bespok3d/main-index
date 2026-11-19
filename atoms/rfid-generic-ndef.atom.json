@@ -1,0 +1,33 @@
+{
+  "name": "rfid-generic-ndef",
+  "title": "Generic NDEF Filament Tag",
+  "version": "0.2.0-pre",
+  "description": "Best-effort reader for filament NFC tags that store their data as plain JSON in an NDEF record but do not use a recognized protocol (OpenSpool and other protocol-keyed tags are handled by their own decoders). Maps common field names (brand, type, color_hex, additional_color_hexes, min_temp/max_temp, bed_temp, diameter, weight) into the shared rfid_data.json. Requires the RFID Spool Reader, which it installs automatically. Read-only: it never writes a tag.",
+  "tagline": "Read any plain-JSON NFC filament tag the U1 reader can see.",
+  "category": "filament",
+  "channel": "stable",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+  "printer_specific": true,
+  "published_at": "2026-06-29",
+  "updated_at": "2026-11-10",
+  "author": "bespoked",
+  "attributions": "# Attributions - rfid-generic-ndef\n\n**Plugin author:** Bespok3d, NDEF published by the NFC Forum\n\nReads any plain NDEF tag.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| NDEF specification | the NFC Forum | published specification | no | no |\n",
+  "license_url": "https://github.com/Bespok3d/material-tags/blob/dev/rfid-generic-ndef/doc/LICENSE",
+  "requires": {
+    "capabilities": [
+      "rfid-spi"
+    ]
+  },
+  "provides": [],
+  "conflicts": [],
+  "homepage": "https://github.com/Bespok3d/material-tags",
+  "changelog_url": "https://github.com/Bespok3d/material-tags/releases/download/plugin-rfid-generic-ndef-v0.2.0-pre/rfid-generic-ndef-0.2.0-pre-CHANGELOG.md",
+  "require": [
+    {
+      "service": "rfid-service",
+      "cardinality": "one"
+    }
+  ],
+  "doc_url": "https://github.com/Bespok3d/material-tags/releases/download/plugin-rfid-generic-ndef-v0.2.0-pre/rfid-generic-ndef-0.2.0-pre-README.md",
+  "download_url": "https://github.com/Bespok3d/material-tags/releases/download/plugin-rfid-generic-ndef-v0.2.0-pre/rfid-generic-ndef-0.2.0-pre.b3"
+}
