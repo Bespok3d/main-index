@@ -1,0 +1,40 @@
+{
+  "name": "print-prefs-core",
+  "title": "Print Preferences Core",
+  "version": "0.1.3-pre",
+  "description": "A small shared component the 'force' print-preference plugins build on. It lets Klipper apply a print preference (bed mesh, timelapse) once a print has already started, which Klipper normally refuses. You usually don't install this directly: it comes along automatically when you install a Force Bed Mesh or Force Timelapse plugin, and stays as long as one of them is installed. Snapmaker U1 only.",
+  "tagline": "Shared engine for the print-start 'force' options.",
+  "category": "printing",
+  "channel": "stable",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+  "printer_specific": true,
+  "published_at": "2026-04-05",
+  "updated_at": "2026-11-10",
+  "author": "bespoked",
+  "attributions": "# Attributions\n\nThis plugin ships its own Klipper extra and its own config section. It contains no code taken from\nanother project.\n\nThe change to Snapmaker's `print_task_config.py` that makes `FORCE=1` mean something now lives in\nthe base-layer plugin `u1-base-print-task-config`, which this plugin requires. The credit for the\noriginal FORCE guard, paxx12's Extended Firmware overlay `36-feature-print-preferences` (GPL-3.0),\ntravels with that change and is recorded there.\n",
+  "license_url": "https://github.com/Bespok3d/u1-force-macros/blob/main/print-prefs-core/doc/LICENSE",
+  "requires": {
+    "capabilities": [
+      "klipper-generic"
+    ]
+  },
+  "provides": [
+    "print-prefs-force"
+  ],
+  "conflicts": [],
+  "min_daemon_version": "0.14.0",
+  "migration": {
+    "until_version": "0.1.2",
+    "requires_daemon": "0.14.0",
+    "summary": "Print Preferences Core used to change your printer's Klipper files itself. From 0.1.2 the printer's base layer does that work instead, so this update also puts on the base layer plugin that now holds that file. Your Force Bed Mesh and Force Timelapse options keep working as they did."
+  },
+  "changelog_url": "https://github.com/Bespok3d/u1-force-macros/releases/download/plugin-print-prefs-core-v0.1.3-pre/print-prefs-core-0.1.3-pre-CHANGELOG.md",
+  "require": [
+    {
+      "service": "u1-base-print-task-config",
+      "cardinality": "one"
+    }
+  ],
+  "doc_url": "https://github.com/Bespok3d/u1-force-macros/releases/download/plugin-print-prefs-core-v0.1.3-pre/print-prefs-core-0.1.3-pre-README.md",
+  "download_url": "https://github.com/Bespok3d/u1-force-macros/releases/download/plugin-print-prefs-core-v0.1.3-pre/print-prefs-core-0.1.3-pre.b3"
+}
