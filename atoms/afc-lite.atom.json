@@ -1,0 +1,67 @@
+{
+  "name": "afc-lite",
+  "title": "AFC Lite (Automated Filament Changer)",
+  "version": "0.1.14-pre",
+  "description": "Lightweight Automated Filament Changer support for the Snapmaker U1's four toolheads. Ships the AFC, AFC_unit and AFC_lane Klipper extras plus an afc.cfg that maps the four lanes (E0-E3) to the U1 extruders and filament motion sensors, and adds gcode macros for color, material, vendor, map, spool id, weight, tool change and lane/tool unload. Per-lane state feeds the U1's SET_PRINT_FILAMENT_CONFIG so the slicer and screen track what is loaded.",
+  "tagline": "Four-lane filament tracking and tool-change macros for the U1.",
+  "category": "filament",
+  "channel": "stable",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+  "printer_specific": true,
+  "published_at": "2026-06-08",
+  "updated_at": "2026-08-19",
+  "author": "bespoked",
+  "attributions": "# Attributions - afc-lite\n\n**Plugin author:** paxx12 (Extended Firmware overlay `31-feature-afc-lite`) and Bespok3d, extended from that overlay\n\nKlipper support for an AFC filament changer.\n\n| Upstream project | Author | Licence | Needed at runtime | Code ships in this package |\n| --- | --- | --- | --- | --- |\n| Extended Firmware overlay `31-feature-afc-lite` | paxx12 | GPL-3.0 | no | yes |\n\nThe Klipper extras in this package come from the Extended Firmware overlay `31-feature-afc-lite`\n(paxx12), GPL-3.0. `AFC_unit.py` ships unchanged. `AFC.py` and `AFC_lane.py` are that overlay's\nfiles extended here; about half of what this plugin ships is still that overlay's code.\n",
+  "license_url": "https://github.com/Bespok3d/u1-afc-lite/blob/dev/afc-lite/doc/LICENSE",
+  "requires": {
+    "capabilities": [
+      "klipper-generic"
+    ]
+  },
+  "provides": [
+    "afc"
+  ],
+  "conflicts": [],
+  "config": [
+    {
+      "key": "AFC_TOOLMAP_ASK",
+      "label": "Filament to tools mapper",
+      "type": "select",
+      "options": [
+        "off",
+        "on"
+      ],
+      "default": "off",
+      "hint": "Off by default. On, a print started from the web interface or the slicer never starts until Fluidd or Mainsail has asked which lane feeds each tool, so a print sent straight from the slicer can be mapped without the printer's screen. It waits as long as it takes, and dismissing the question drops the print instead of starting it.",
+      "userEditable": true,
+      "scope": "printer"
+    },
+    {
+      "key": "AFC_TOOLMAP_FEED",
+      "label": "Filament auto loaders",
+      "type": "select",
+      "options": [
+        "off",
+        "on"
+      ],
+      "default": "off",
+      "hint": "Off by default. On, once you have said which lane feeds each tool, the printer loads filament into the lanes that print needs and have none, the same way it does for a print started from its own screen, instead of starting and stopping on a filament error. It only acts on a print it held for the question above, and it leaves a lane alone when there is no spool in its feeder.",
+      "userEditable": true,
+      "scope": "printer"
+    }
+  ],
+  "migration": {
+    "until_version": "0.1.13",
+    "requires_daemon": "0.14.0",
+    "summary": "AFC Lite now needs a spool reader working alongside it, so this update also puts the RFID Spool Reader on your printer. What each lane already holds is kept."
+  },
+  "changelog_url": "https://github.com/Bespok3d/u1-afc-lite/releases/download/plugin-afc-lite-v0.1.14-pre/afc-lite-0.1.14-pre-CHANGELOG.md",
+  "require": [
+    {
+      "service": "rfid-service",
+      "cardinality": "one"
+    }
+  ],
+  "doc_url": "https://github.com/Bespok3d/u1-afc-lite/releases/download/plugin-afc-lite-v0.1.14-pre/afc-lite-0.1.14-pre-README.md",
+  "download_url": "https://github.com/Bespok3d/u1-afc-lite/releases/download/plugin-afc-lite-v0.1.14-pre/afc-lite-0.1.14-pre.b3"
+}
