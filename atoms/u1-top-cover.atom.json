@@ -1,0 +1,49 @@
+{
+  "name": "u1-top-cover",
+  "title": "U1 Smart Top Cover",
+  "version": "0.1.0-pre",
+  "description": "Lets the Exhaust fan setting in Orca's filament profile drive the Snapmaker U1 top cover's exhaust fan. Orca sends it as M106 P3, which the stock U1 rejects; this plugin turns it into the top cover's exhaust speed. Every other fan command stays stock. An exhaust Orca left on turns off by itself after the print. For PLA, PETG and TPU, the Fan level setting cools the chamber to suit the lowest softening temperature of the materials the print uses, instead of the stock fixed 42 C. No top cover: the command is ignored and the print goes on.",
+  "tagline": "Orca's exhaust fan setting drives the top cover's exhaust fan.",
+  "category": "printing",
+  "channel": "testing",
+  "publisher": "679939555819fb5f6423dc68c4388e76bfa9b4e0",
+  "printer_specific": true,
+  "published_at": "2026-11-21",
+  "updated_at": "2026-11-22",
+  "author": "bespoked",
+  "attributions": "# Attributions - u1-top-cover\n\n**Plugin author:** Bespok3d\n\nLets the slicer's exhaust fan setting drive the Snapmaker U1 top cover's exhaust fan, and cools the chamber to suit the materials' softening temperature at the fan level you pick.\n\nNo third-party code ships in this package.\n",
+  "license_url": "https://github.com/Bespok3d/u1-extras/blob/dev/u1-top-cover/doc/LICENSE",
+  "requires": {
+    "capabilities": [
+      "klipper-generic"
+    ]
+  },
+  "provides": [
+    "u1-top-cover"
+  ],
+  "conflicts": [],
+  "min_daemon_version": "0.10.1",
+  "config": [
+    {
+      "key": "FAN_LEVEL",
+      "label": "Fan level",
+      "type": "select",
+      "options": [
+        "0",
+        "0.25",
+        "0.5",
+        "0.75",
+        "1"
+      ],
+      "default": "0.5",
+      "hint": "0 keeps the chamber coolest, with the exhaust always on and loudest. 1 is quietest: the chamber runs warmer, closer to the softening temperature, and the exhaust may stop. 0.5 sits in between.",
+      "userEditable": true,
+      "scope": "printer"
+    }
+  ],
+  "changelog_url": "https://github.com/Bespok3d/u1-extras/releases/download/plugin-u1-top-cover-v0.1.0-pre/u1-top-cover-0.1.0-pre-CHANGELOG.md",
+  "require": [],
+  "doc_url": "https://github.com/Bespok3d/u1-extras/releases/download/plugin-u1-top-cover-v0.1.0-pre/u1-top-cover-0.1.0-pre-README.md",
+  "download_url": "https://github.com/Bespok3d/u1-extras/releases/download/plugin-u1-top-cover-v0.1.0-pre/u1-top-cover-0.1.0-pre.b3",
+  "fingerprint": "e9fdb897a2a8c1c59458b0d881a56ee462ef78391eecef8f79de6fd9c42469be"
+}
